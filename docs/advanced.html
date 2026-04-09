@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Topics - .NET Study Plan</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">⚡</div>
+            <div class="dotnet">.NET Study Plan</div>
+            <h1><a href="index.html" style="color: var(--accent); text-decoration: none;">Zero to Market</a></h1>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Modules</div>
+            <a href="index.html" class="nav-link"><span class="nav-number">🏠</span>Home</a>
+            <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
+            <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
+            <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
+            <a href="advanced.html" class="nav-link active"><span class="nav-number">04</span>Advanced Topics</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">In This Module</div>
+            <a href="#middleware" class="nav-link"><span class="nav-number">16</span>Middleware</a>
+            <a href="#dependency-injection" class="nav-link"><span class="nav-number">17</span>Dependency Injection</a>
+            <a href="#logging" class="nav-link"><span class="nav-number">18</span>Logging & Config</a>
+            <a href="#deployment" class="nav-link"><span class="nav-number">19</span>Deployment</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero">
+            <div class="hero-badge"><span>📚 Module 4</span></div>
+            <h1>Advanced <span>Topics</span></h1>
+            <p>Master middleware, dependency injection, logging, and deployment strategies for production-ready applications.</p>
+        </div>
+
+        <!-- 16: Middleware -->
+        <section class="section" id="middleware">
+            <div class="section-header">
+                <span class="section-number">16</span>
+                <div>
+                    <h2 class="section-title">Middleware Pipeline</h2>
+                    <span class="section-subtitle">The chain that processes every request</span>
+                </div>
+            </div>
+
+            <span class="level-badge intermediate">Intermediate</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <div>
+                        <h3 class="card-title">How Middleware Works</h3>
+                        <p class="card-description">Each middleware can process requests and responses</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    A["📥 Request"] -->|"1"| B["📋 Logging"]
+    B -->|"2"| C["🔐 Authentication"]
+    C -->|"3"| D["⚡ Routing"]
+    D -->|"4"| E["🎯 Endpoint"]
+    E -->|"Response"| D --> C --> B --> A
+    style A fill:#58a6ff,color:#fff
+    style B fill:#d29922,color:#fff
+    style C fill:#f85149,color:#fff
+    style D fill:#a371f7,color:#fff
+    style E fill:#3fb950,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Custom Middleware</span>
+<span class="keyword">public class</span> <span class="type">RequestTimingMiddleware</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">RequestDelegate</span> _next;
+    
+    <span class="keyword">public</span> <span class="method">RequestTimingMiddleware</span>(<span class="type">RequestDelegate</span> next)
+    {
+        _next = next;
+    }
+    
+    <span class="keyword">public async</span> <span class="type">Task</span> <span class="method">InvokeAsync</span>(<span class="type">HttpContext</span> context)
+    {
+        <span class="keyword">var</span> <span class="type">stopwatch</span> = <span class="type">Stopwatch</span>.<span class="method">StartNew</span>();
+        
+        <span class="keyword">await</span> _next(context); <span class="comment">// Call next middleware</span>
+        
+        <span class="type">stopwatch</span>.<span class="method">Stop</span>();
+        context.Response.Headers[<span class="string">"X-Response-Time"</span>] 
+            = <span class="type">$</span>"{<span class="type">stopwatch</span>.ElapsedMilliseconds}ms";
+    }
+}
+
+<span class="comment">// Register in Program.cs</span>
+<span class="keyword">var</span> <span class="type">app</span> = builder.<span class="method">Build</span>();
+app.<span class="method">UseMiddleware</span><<span class="type">RequestTimingMiddleware</span>>();
+app.<span class="method">UseAuthentication</span>();
+app.<span class="method">UseAuthorization</span>();
+app.<span class="method">MapControllerRoute</span>(...);
+app.<span class="method">Run</span>();</pre>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">❓ Quiz: In what order should you register middleware?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">Authorization → Authentication → Logging</div>
+                    <div class="quiz-option" data-answer="correct">Logging → Authentication → Authorization</div>
+                    <div class="quiz-option" data-answer="wrong">Any order - it doesn't matter</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </section>
+
+        <!-- 17: Dependency Injection -->
+        <section class="section" id="dependency-injection">
+            <div class="section-header">
+                <span class="section-number">17</span>
+                <div>
+                    <h2 class="section-title">Dependency Injection</h2>
+                    <span class="section-subtitle">ASP.NET Core's built-in IoC container</span>
+                </div>
+            </div>
+
+            <span class="level-badge intermediate">Intermediate</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📦</span>
+                    <div>
+                        <h3 class="card-title">The DI Container</h3>
+                        <p class="card-description">Automatic dependency resolution and lifetime management</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+sequenceDiagram
+    participant Controller
+    participant Container
+    participant Service
+    
+    Container->>Service: new UserService(repo, mailer)
+    Container->>Controller: inject UserService
+    Controller->>Service: doSomething()
+    Service-->>Controller: result
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Define services</span>
+<span class="keyword">public interface</span> <span class="type">IUserService</span>
+{
+    <span class="type">Task</span><<span class="type">User</span>> <span class="method">GetByIdAsync</span>(<span class="type">int</span> id);
+}
+
+<span class="keyword">public class</span> <span class="type">UserService</span> : <span class="type">IUserService</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">AppDbContext</span> _context;
+    
+    <span class="keyword">public</span> <span class="method">UserService</span>(<span class="type">AppDbContext</span> context)
+    {
+        _context = context;
+    }
+    
+    <span class="keyword">public async</span> <span class="type">Task</span><<span class="type">User</span>> <span class="method">GetByIdAsync</span>(<span class="type">int</span> id)
+        => <span class="keyword">await</span> _context.Users.<span class="method">FindAsync</span>(id);
+}
+
+<span class="comment">// Register in Program.cs</span>
+<span class="type">builder</span>.<span class="method">Services</span>.<span class="method">AddScoped</span><<span class="type">IUserService</span>, <span class="type">UserService</span>>();
+
+<span class="comment">// Use in controller</span>
+<span class="keyword">public class</span> <span class="type">UsersController</span> : <span class="type">ControllerBase</span>
+{
+    <span class="keyword">public</span> <span class="method">UsersController</span>(<span class="type">IUserService</span> userService)
+    {
+        _userService = userService; <span class="comment">// Injected automatically!</span>
+    }
+}</pre>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="grid-item">
+                    <h4>Singleton</h4>
+                    <p style="font-size:0.8rem;color:var(--text-secondary);">One instance for entire app</p>
+                </div>
+                <div class="grid-item">
+                    <h4>Scoped</h4>
+                    <p style="font-size:0.8rem;color:var(--text-secondary);">One per request</p>
+                </div>
+                <div class="grid-item">
+                    <h4>Transient</h4>
+                    <p style="font-size:0.8rem;color:var(--text-secondary);">New instance each time</p>
+                </div>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-header">✨ Pro Tip</div>
+                <p>Use Scoped for most services ( DbContext, UserService). Use Singleton for truly global things like ILogger.</p>
+            </div>
+        </section>
+
+        <!-- 18: Logging & Config -->
+        <section class="section" id="logging">
+            <div class="section-header">
+                <span class="section-number">18</span>
+                <div>
+                    <h2 class="section-title">Logging & Configuration</h2>
+                    <span class="section-subtitle">Debugging and environment settings</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📝</span>
+                    <div>
+                        <h3 class="card-title">Built-in Logging</h3>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Constructor injection</span>
+<span class="keyword">private readonly</span> <span class="type">ILogger</span><<span class="type">UserService</span>> _logger;
+
+<span class="keyword">public</span> <span class="method">UserService</span>(<span class="type">ILogger</span><<span class="type">UserService</span>> logger)
+{
+    _logger = logger;
+}
+
+<span class="comment">// Use it</span>
+_logger.<span class="method">LogInformation</span>(<span class="string">"Creating user {Email}"</span>, email);
+_logger.<span class="method">LogWarning</span>(<span class="string">"User not found: {Id}"</span>, id);
+_logger.<span class="method">LogError</span>(ex, <span class="string">"Failed to process order"</span>);</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⚙️</span>
+                    <div>
+                        <h3 class="card-title">Configuration with appsettings.json</h3>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// appsettings.json</span>
+{
+  <span class="string">"ConnectionStrings"</span>: {
+    <span class="string">"DefaultConnection"</span>: <span class="string">"Server=localhost;Database=MyApp"</span>
+  },
+  <span class="string">"Logging"</span>: {
+    <span class="string">"LogLevel"</span>: {
+      <span class="string">"Default"</span>: <span class="string">"Information"</span>,
+      <span class="string">"Microsoft"</span>: <span class="string">"Warning"</span>
+    }
+  }
+}
+
+<span class="comment">// Use in code</span>
+<span class="keyword">var</span> <span class="type">connectionString</span> = builder.Configuration
+    .<span class="method">GetConnectionString</span>(<span class="string">"DefaultConnection"</span>);</pre>
+                </div>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-header">✨ Pro Tip</div>
+                <p>Use User Secrets in development (dotnet user-secrets set) for sensitive values. Never commit API keys or connection strings with passwords to source control!</p>
+            </div>
+        </section>
+
+        <!-- 19: Deployment -->
+        <section class="section" id="deployment">
+            <div class="section-header">
+                <span class="section-number">19</span>
+                <div>
+                    <h2 class="section-title">Deployment</h2>
+                    <span class="section-subtitle">Getting your app to production</span>
+                </div>
+            </div>
+
+            <span class="level-badge advanced">Advanced</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🚀</span>
+                    <div>
+                        <h3 class="card-title">Deployment Options</h3>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    A["💻 Development"] -->|"Build"| B["📦 Package"]
+    B --> C1["🐳 Docker"]
+    B --> C2["☁️ Azure/AWS"]
+    B --> C3["🖥️ VPS"]
+    C1 --> D["🐙 Container"]
+    C2 --> D2["☁️ Cloud"]
+    C3 --> D3["Server"]
+    style A fill:#58a6ff,color:#fff
+    style B fill:#a371f7,color:#fff
+                </div>
+
+                <div class="grid-3">
+                    <div class="grid-item">
+                        <h4>🐳 Docker</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Containerize for consistency</p>
+                        <div class="code-block">
+                            <pre style="font-size:0.75rem"><span class="comment"># Dockerfile</span>
+<span class="keyword">FROM</span> mcr.microsoft.com/dotnet/sdk:8.0
+<span class="keyword">WORKDIR</span> /app
+<span class="keyword">COPY</span> . .
+<span class="keyword">RUN</span> dotnet publish -c Release
+<span class="keyword">EXPOSE</span> 80
+<span class="keyword">ENTRYPOINT</span> [<span class="string">"dotnet"</span>, <span class="string">"app.dll"</span>]</pre>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h4>☁️ Azure App Service</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Managed .NET hosting</p>
+                        <div class="code-block">
+                            <pre style="font-size:0.75rem"><span class="comment"># Deploy with GitHub Actions</span>
+- uses: azure/webapps-deploy@v2
+  with:
+    publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}</pre>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h4>🖥️ Linux VPS</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Full control, lower cost</p>
+                        <div class="code-block">
+                            <pre style="font-size:0.75rem"><span class="comment"># Install and run</span>
+dotnet restore
+dotnet build -c Release
+systemctl start myapp</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-header">🎯 Exercise: Prepare for Deployment</div>
+                <p>Before deploying, ensure you have:</p>
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Connection strings in environment variables</li>
+                    <li><span class="checkbox"></span> HTTPS configured</li>
+                    <li><span class="checkbox"></span> Logging set up</li>
+                    <li><span class="checkbox"></span> Health check endpoint</li>
+                    <li><span class="checkbox"></span> Proper error pages</li>
+                </ul>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-header">✨ Next Step</div>
+                <p>Ready to start your career? <a href="career.html" style="color: var(--accent);">Continue to Career Path →</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <p><a href="aspnet-core.html" style="color: var(--accent);">← ASP.NET Core</a> | <a href="index.html" style="color: var(--accent);">Home</a> | <a href="career.html" style="color: var(--accent);">Career Path →</a></p>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+            sequence: { actorMargin: 50, showSequenceNumbers: true }
+        });
+
+        // Quiz functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const container = this.closest('.quiz-container');
+                const options = container.querySelectorAll('.quiz-option');
+                const feedback = container.querySelector('.quiz-feedback');
+                
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    opt.style.pointerEvents = 'none';
+                });
+                
+                if (this.dataset.answer === 'correct') {
+                    this.classList.add('correct');
+                    feedback.textContent = '✓ Correct! Great job!';
+                    feedback.className = 'quiz-feedback show correct';
+                } else {
+                    this.classList.add('incorrect');
+                    this.style.textDecoration = 'line-through';
+                    const correct = container.querySelector('[data-answer="correct"]');
+                    correct.classList.add('correct');
+                    feedback.textContent = '✗ Not quite. The correct answer is highlighted.';
+                    feedback.className = 'quiz-feedback show incorrect';
+                }
+            });
+        });
+
+        // Checklist functionality
+        document.querySelectorAll('.checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+    </script>
+</body>
+</html>

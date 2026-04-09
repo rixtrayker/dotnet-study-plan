@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASP.NET Core - .NET Study Plan</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">⚡</div>
+            <div class="dotnet">.NET Study Plan</div>
+            <h1><a href="index.html" style="color: var(--accent); text-decoration: none;">Zero to Market</a></h1>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Modules</div>
+            <a href="index.html" class="nav-link"><span class="nav-number">🏠</span>Home</a>
+            <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
+            <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
+            <a href="aspnet-core.html" class="nav-link active"><span class="nav-number">03</span>ASP.NET Core</a>
+            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">In This Module</div>
+            <a href="#project-setup" class="nav-link"><span class="nav-number">07</span>Project Setup</a>
+            <a href="#mvc-aspnet" class="nav-link"><span class="nav-number">08</span>MVC in ASP.NET</a>
+            <a href="#entity-framework" class="nav-link"><span class="nav-number">09</span>Entity Framework</a>
+            <a href="#rest-apis" class="nav-link"><span class="nav-number">10</span>REST APIs</a>
+            <a href="#authentication" class="nav-link"><span class="nav-number">11</span>Authentication</a>
+            <a href="#testing" class="nav-link"><span class="nav-number">12</span>Testing</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero">
+            <div class="hero-badge"><span>📚 Module 3</span></div>
+            <h1>ASP.NET <span>Core</span></h1>
+            <p>Build production-ready web applications with ASP.NET Core. From project setup to deployment, master the modern .NET web framework.</p>
+        </div>
+
+        <!-- 07: Project Setup -->
+        <section class="section" id="project-setup">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <div>
+                    <h2 class="section-title">Project Setup</h2>
+                    <span class="section-subtitle">Creating your first ASP.NET Core application</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 5</span>
+            <span class="level-badge beginner">Beginner</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🚀</span>
+                    <div>
+                        <h3 class="card-title">Creating a New Project</h3>
+                        <p class="card-description">Start with the dotnet CLI</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph steps["Project Setup Steps"]
+        S1["1. Install .NET SDK"]
+        S2["2. Create Project"]
+        S3["3. Run & Test"]
+    end
+    style S1 fill:#58a6ff,color:#fff
+    style S2 fill:#a371f7,color:#fff
+    style S3 fill:#3fb950,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment"># Install .NET SDK (if not already installed)
+# Download from https://dotnet.microsoft.com/download
+
+# Create a new web app (MVC)
+dotnet new mvc -n MyFirstApp
+cd MyFirstApp
+
+# Run the application
+dotnet run
+
+# Open browser to https://localhost:5001</span></pre>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-box-header">💡 Pro Tip</div>
+                    <p>Use <code>dotnet new --list</code> to see all available templates. For APIs, use <code>webapi</code> template.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📁</span>
+                    <div>
+                        <h3 class="card-title">Project Structure</h3>
+                        <p class="card-description">Understanding the MVC template</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart TB
+    subgraph structure["ASP.NET Core Project"]
+        P1["📁 Controllers/<br/>Request handlers"]
+        P2["📁 Views/<br/>Razor pages"]
+        P3["📁 Models/<br/>Data models"]
+        P4["📁 wwwroot/<br/>Static files"]
+        P5["📁 Program.cs<br/>Entry point"]
+    end
+    style P1 fill:#58a6ff,color:#fff
+    style P2 fill:#a371f7,color:#fff
+    style P3 fill:#3fb950,color:#fff
+    style P4 fill:#d29922,color:#fff
+    style P5 fill:#f85149,color:#fff
+                </div>
+
+                <div class="grid-3">
+                    <div class="grid-item">
+                        <h4>Controllers/</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Handle HTTP requests and return responses.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>Views/</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Razor views that render HTML.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>Models/</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">C# classes representing your data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⚙️</span>
+                    <div>
+                        <h3 class="card-title">appsettings.json</h3>
+                        <p class="card-description">Configuration for your app</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre>{
+  <span class="string">"Logging"</span>: {
+    <span class="string">"LogLevel"</span>: {
+      <span class="string">"Default"</span>: <span class="string">"Information"</span>,
+      <span class="string">"Microsoft"</span>: <span class="string">"Warning"</span>
+    }
+  },
+  <span class="string">"AllowedHosts"</span>: <span class="string">"*"</span>,
+  <span class="string">"ConnectionStrings"</span>: {
+    <span class="string">"DefaultConnection"</span>: <span class="string">"Server=localhost;Database=MyApp"</span>
+  }
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 08: MVC in ASP.NET -->
+        <section class="section" id="mvc-aspnet">
+            <div class="section-header">
+                <span class="section-number">08</span>
+                <div>
+                    <h2 class="section-title">MVC in ASP.NET</h2>
+                    <span class="section-subtitle">Building full-featured web applications</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 6</span>
+            <span class="level-badge beginner">Beginner</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📝</span>
+                    <div>
+                        <h3 class="card-title">Controllers in Detail</h3>
+                        <p class="card-description">Handle requests and return responses</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph flow["Request Flow"]
+        R["🌐 HTTP Request"] --> C["📝 Controller"]
+        C --> M["📦 Model"]
+        M --> V["🎨 View"]
+        V --> Res["📄 HTTP Response"]
+    end
+    style R fill:#58a6ff,color:#fff
+    style C fill:#a371f7,color:#fff
+    style M fill:#3fb950,color:#fff
+    style V fill:#d29922,color:#fff
+    style Res fill:#f85149,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="keyword">public class</span> <span class="type">HomeController</span> : <span class="type">Controller</span>
+{
+    <span class="comment">// GET: /Home/Index</span>
+    <span class="keyword">public IActionResult</span> <span class="method">Index</span>()
+    {
+        <span class="keyword">return</span> <span class="type">View</span>();
+    }
+
+    <span class="comment">// GET: /Home/Privacy</span>
+    <span class="keyword">public IActionResult</span> <span class="method">Privacy</span>()
+    {
+        <span class="keyword">return</span> <span class="type">View</span>();
+    }
+
+    <span class="comment">// Error handler</span>
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None)]
+    <span class="keyword">public IActionResult</span> <span class="method">Error</span>()
+    {
+        <span class="keyword">return</span> <span class="type">View</span>(<span class="keyword">new</span> <span class="type">ErrorViewModel</span> { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+}</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <div>
+                        <h3 class="card-title">Routing</h3>
+                        <p class="card-description">How URLs map to controllers</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Program.cs - Configure routing</span>
+<span class="type">var</span> builder = <span class="type">WebApplication</span>.<span class="method">CreateBuilder</span>(args);
+<span class="type">var</span> app = builder.<span class="method">Build</span>();
+
+app.<span class="method">UseRouting</span>();
+
+app.<span class="method">MapControllerRoute</span>(
+    name: <span class="string">"default"</span>,
+    pattern: <span class="string">"{controller=Home}/{action=Index}/{id?}"</span>);
+
+app.<span class="method">Run</span>();
+
+<span class="comment">// URL examples:</span>
+<span class="comment">// /                 -> HomeController.Index</span>
+<span class="comment">// /Home/Privacy    -> HomeController.Privacy</span>
+<span class="comment">// /Products/5      -> ProductsController.Details(5)</span></pre>
+                </div>
+
+                <div class="grid-2">
+                    <div class="grid-item">
+                        <h4 Conventional Routing</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">URL pattern matched to controller/action names.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4 Attribute Routing</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Attributes directly on controller methods.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📨</span>
+                    <div>
+                        <h3 class="card-title">Working with Forms</h3>
+                        <p class="card-description">GET and POST requests</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="keyword">public class</span> <span class="type">ContactController</span> : <span class="type">Controller</span>
+{
+    <span class="comment">// GET: /Contact</span>
+    [HttpGet]
+    <span class="keyword">public IActionResult</span> <span class="method">Index</span>()
+    {
+        <span class="keyword">return</span> <span class="type">View</span>();
+    }
+
+    <span class="comment">// POST: /Contact</span>
+    [HttpPost]
+    <span class="keyword">public IActionResult</span> <span class="method">Index</span>(<span class="type">ContactForm</span> model)
+    {
+        <span class="keyword">if</span> (.<span class="method">ModelState</span>.<span class="method">IsValid</span>)
+        {
+            <span class="comment">// Process the form data</span>
+            _service.<span class="method">SaveContact</span>(model);
+            <span class="keyword">return</span> <span class="type">RedirectToAction</span>(<span class="string">"Success"</span>);
+        }
+        <span class="keyword">return</span> <span class="type">View</span>(model);
+    }
+}</pre>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-box-header">💡 ModelState.IsValid</div>
+                    <p>Always check ModelState.IsValid before processing form data. It validates all [Required], [MaxLength], and other data annotations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 09: Entity Framework -->
+        <section class="section" id="entity-framework">
+            <div class="section-header">
+                <span class="section-number">09</span>
+                <div>
+                    <h2 class="section-title">Entity Framework Core</h2>
+                    <span class="section-subtitle">Database access made easy</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 7</span>
+            <span class="level-badge intermediate">Intermediate</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🗄️</span>
+                    <div>
+                        <h3 class="card-title">Getting Started with EF Core</h3>
+                        <p class="card-description">Install and configure</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph ef["EF Core Flow"]
+        M["📦 Model Class"] --> C["🔧 DbContext"]
+        C --> D["🗄️ Database"]
+        D --> Q["📡 LINQ Queries"]
+    end
+    style M fill:#58a6ff,color:#fff
+    style C fill:#a371f7,color:#fff
+    style D fill:#3fb950,color:#fff
+    style Q fill:#d29922,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment"># Install EF Core packages</span>
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+<span class="comment"># Create a DbContext</span>
+<span class="keyword">public class</span> <span class="type">AppDbContext</span> : <span class="type">DbContext</span>
+{
+    <span class="keyword">public</span> <span class="type">DbSet</span><<span class="type">User</span>> Users { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+    <span class="keyword">public</span> <span class="type">DbSet</span><<span class="type">Product</span>> Products { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+
+    <span class="keyword">protected override void</span> <span class="method">OnConfiguring</span>(<span class="type">DbContextOptionsBuilder</span> options)
+    {
+        options.<span class="method">UseSqlServer</span>(<span class="string">"Server=.;Database=MyApp;Trusted_Connection=true"</span>);
+    }
+}</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <div>
+                        <h3 class="card-title">CRUD Operations</h3>
+                        <p class="card-description">Create, Read, Update, Delete</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="keyword">using</span> var context = <span class="keyword">new</span> <span class="type">AppDbContext</span>();
+
+<span class="comment">// CREATE - Add new record</span>
+<span class="keyword">var</span> user = <span class="keyword">new</span> <span class="type">User</span> { Name = <span class="string">"John"</span>, Email = <span class="string">"john@example.com"</span> };
+context.Users.<span class="method">Add</span>(user);
+context.<span class="method">SaveChanges</span>();
+
+<span class="comment">// READ - Query records</span>
+<span class="keyword">var</span> allUsers = context.Users.<span class="method">ToList</span>();
+<span class="keyword">var</span> john = context.Users.<span class="method">FirstOrDefault</span>(u => u.Name == <span class="string">"John"</span>);
+
+<span class="comment">// UPDATE - Modify record</span>
+john.Email = <span class="string">"newemail@example.com"</span>;
+context.<span class="method">SaveChanges</span>();
+
+<span class="comment">// DELETE - Remove record</span>
+context.Users.<span class="method">Remove</span>(john);
+context.<span class="method">SaveChanges</span>();</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <div>
+                        <h3 class="card-title">Relationships</h3>
+                        <p class="card-description">One-to-Many and Many-to-Many</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// One-to-Many: Author has many Books</span>
+<span class="keyword">public class</span> <span class="type">Author</span>
+{
+    <span class="keyword">public int</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+    <span class="keyword">public string</span> Name { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+    <span class="keyword">public</span> <span class="type">List</span><<span class="type">Book</span>> Books { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+}
+
+<span class="keyword">public class</span> <span class="type">Book</span>
+{
+    <span class="keyword">public int</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+    <span class="keyword">public string</span> Title { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+    <span class="keyword">public int</span> AuthorId { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+    <span class="keyword">public</span> <span class="type">Author</span> Author { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+}
+
+<span class="comment">// Query with Include</span>
+<span class="keyword">var</span> books = context.Books.<span class="method">Include</span>(b => b.Author).<span class="method">ToList</span>();</pre>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="quiz-question">❓ Quiz: What method loads related data in EF Core?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="wrong">SaveChanges()</div>
+                        <div class="quiz-option" data-answer="correct">Include()</div>
+                        <div class="quiz-option" data-answer="wrong">ToList()</div>
+                        <div class="quiz-option" data-answer="wrong">Add()</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10: REST APIs -->
+        <section class="section" id="rest-apis">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <div>
+                    <h2 class="section-title">REST APIs</h2>
+                    <span class="section-subtitle">Building Web APIs with ASP.NET Core</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 8</span>
+            <span class="level-badge intermediate">Intermediate</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌐</span>
+                    <div>
+                        <h3 class="card-title">Creating a Web API</h3>
+                        <p class="card-description">Return JSON data</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph api["REST API Flow"]
+        Req["📨 HTTP Request"] --> C["📝 API Controller"]
+        C --> S["📦 Service Layer"]
+        S --> Db["🗄️ Database"]
+        Db --> Json["📄 JSON Response"]
+    end
+    style Req fill:#58a6ff,color:#fff
+    style C fill:#a371f7,color:#fff
+    style S fill:#3fb950,color:#fff
+    style Db fill:#d29922,color:#fff
+    style Json fill:#f85149,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Controllers/ProductsController.cs</span>
+[<span class="type">ApiController</span>]
+[<span class="type">Route</span>(<span class="string">"api/[controller]"</span>)]
+<span class="keyword">public class</span> <span class="type">ProductsController</span> : <span class="type">ControllerBase</span>
+{
+    <span class="keyword">private readonly</span> <span class="type">AppDbContext</span> _context;
+
+    <span class="keyword">public</span> <span class="method">ProductsController</span>(<span class="type">AppDbContext</span> context)
+    {
+        _context = context;
+    }
+
+    <span class="comment">// GET: api/products</span>
+    [<span class="type">HttpGet</span>]
+    <span class="keyword">public</span> <span class="type">ActionResult</span><<span class="type">List</span><<span class="type">Product</span>>> <span class="method">GetProducts</span>()
+    {
+        <span class="keyword">return</span> _context.Products.<span class="method">ToList</span>();
+    }
+
+    <span class="comment">// GET: api/products/5</span>
+    [<span class="type">HttpGet</span>(<span class="string">"{id}"</span>)]
+    <span class="keyword">public</span> <span class="type">ActionResult</span><<span class="type">Product</span>> <span class="method">GetProduct</span>(<span class="keyword">int</span> id)
+    {
+        <span class="keyword">var</span> product = _context.Products.<span class="method">Find</span>(id);
+        <span class="keyword">if</span> (product == <span class="keyword">null</span>)
+            <span class="keyword">return</span> <span class="type">NotFound</span>();
+        <span class="keyword">return</span> product;
+    }
+}</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">➕</span>
+                    <div>
+                        <h3 class="card-title">CRUD Operations in API</h3>
+                        <p class="card-description">POST, PUT, DELETE</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// POST: api/products</span>
+[<span class="type">HttpPost</span>]
+<span class="keyword">public</span> <span class="type">ActionResult</span><<span class="type">Product</span>> <span class="method">PostProduct</span>(<span class="type">Product</span> product)
+{
+    _context.Products.<span class="method">Add</span>(product);
+    _context.<span class="method">SaveChanges</span>();
+    <span class="keyword">return</span> <span class="type">CreatedAtAction</span>(<span class="string">"GetProduct"</span>, <span class="keyword">new</span> { id = product.Id }, product);
+}
+
+<span class="comment">// PUT: api/products/5</span>
+[<span class="type">HttpPut</span>(<span class="string">"{id}"</span>)]
+<span class="keyword">public</span> <span class="type">ActionResult</span><<span class="type">Product</span>> <span class="method">PutProduct</span>(<span class="keyword">int</span> id, <span class="type">Product</span> product)
+{
+    <span class="keyword">if</span> (id != product.Id)
+        <span class="keyword">return</span> <span class="type">BadRequest</span>();
+
+    _context.<span class="method">Entry</span>(product).<span class="method">State</span> = <span class="type">EntityState</span>.Modified;
+    _context.<span class="method">SaveChanges</span>();
+    <span class="keyword">return</span> <span class="type">NoContent</span>();
+}
+
+<span class="comment">// DELETE: api/products/5</span>
+[<span class="type">HttpDelete</span>(<span class="string">"{id}"</span>)]
+<span class="keyword">public</span> <span class="type">ActionResult</span><<span class="type">Product</span>> <span class="method">DeleteProduct</span>(<span class="keyword">int</span> id)
+{
+    <span class="keyword">var</span> product = _context.Products.<span class="method">Find</span>(id);
+    <span class="keyword">if</span> (product == <span class="keyword">null</span>)
+        <span class="keyword">return</span> <span class="type">NotFound</span>();
+
+    _context.Products.<span class="method">Remove</span>(product);
+    _context.<span class="method">SaveChanges</span>();
+    <span class="keyword">return</span> <span class="type">NoContent</span>();
+}</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🧪</span>
+                    <div>
+                        <h3 class="card-title">Testing APIs with Swagger</h3>
+                        <p class="card-description">Auto-generated API documentation</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment"># Install Swagger packages</span>
+dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+dotnet add package Swashbuckle.AspNetCore
+
+<span class="comment"># Program.cs - Add Swagger</span>
+builder.<span class="method">Services</span>.<span class="method">AddEndpointsApiExplorer</span>();
+builder.<span class="method">Services</span>.<span class="method">AddSwaggerGen</span>();
+
+<span class="type">var</span> app = builder.<span class="method">Build</span>();
+
+app.<span class="method">UseSwagger</span>();
+app.<span class="method">UseSwaggerUI</span>(c => c.SwaggerEndpoint(<span class="string">"/swagger/v1/swagger.json"</span>, <span class="string">"My API v1"</span>));
+
+<span class="comment"># Access: https://localhost:5001/swagger</span></pre>
+                </div>
+
+                <div class="exercise-box">
+                    <div class="exercise-header">🎯 Exercise: Build a REST API</div>
+                    <p>Create a Todo API with these endpoints:</p>
+                    <ul class="checklist">
+                        <li><span class="checkbox"></span> GET /api/todos - List all todos</li>
+                        <li><span class="checkbox"></span> POST /api/todos - Create a todo</li>
+                        <li><span class="checkbox"></span> PUT /api/todos/{id} - Update a todo</li>
+                        <li><span class="checkbox"></span> DELETE /api/todos/{id} - Delete a todo</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11: Authentication -->
+        <section class="section" id="authentication">
+            <div class="section-header">
+                <span class="section-number">11</span>
+                <div>
+                    <h2 class="section-title">Authentication & Authorization</h2>
+                    <span class="section-subtitle">Securing your applications</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 9</span>
+            <span class="level-badge intermediate">Intermediate</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔐</span>
+                    <div>
+                        <h3 class="card-title">ASP.NET Core Identity</h3>
+                        <p class="card-description">Built-in authentication system</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph auth["Authentication Flow"]
+        U["👤 User"] --> L["🔑 Login"]
+        L --> T["🎫 Token"]
+        T --> A["✅ Authorized"]
+    end
+    style U fill:#58a6ff,color:#fff
+    style L fill:#a371f7,color:#fff
+    style T fill:#3fb950,color:#fff
+    style A fill:#d29922,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment"># Install Identity packages</span>
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+<span class="comment">// Program.cs - Configure Identity</span>
+builder.<span class="method">Services</span>.<span class="method">AddDefaultIdentity</span><<span class="type">IdentityUser</span>>()
+    .<span class="method">AddEntityFrameworkStores</span><<span class="type">AppDbContext</span>>();
+
+<span class="comment">// Add cookie authentication</span>
+builder.<span class="method">Services</span>.<span class="method">AddAuthentication</span>(<span class="type">CookieAuthenticationDefaults</span>.AuthenticationScheme)
+    .<span class="method">AddCookie</span>();
+
+<span class="type">var</span> app = builder.<span class="method">Build</span>();
+app.<span class="method">UseAuthentication</span>();</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🎫</span>
+                    <div>
+                        <h3 class="card-title">JWT Authentication</h3>
+                        <p class="card-description">Token-based auth for APIs</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Install JWT package</span>
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+
+<span class="comment">// Program.cs - Configure JWT</span>
+builder.<span class="method">Services</span>.<span class="method">AddAuthentication</span>(<span class="type">JwtBearerDefaults</span>.AuthenticationScheme)
+    .<span class="method">AddJwtBearer</span>(options =>
+    {
+        options.TokenValidationParameters = <span class="keyword">new</span> <span class="type">TokenValidationParameters</span>
+        {
+            ValidateIssuer = <span class="keyword">true</span>,
+            ValidateAudience = <span class="keyword">true</span>,
+            ValidateLifetime = <span class="keyword">true</span>,
+            ValidIssuer = <span class="string">"myapp"</span>,
+            ValidAudience = <span class="string">"myapp"</span>,
+            IssuerSigningKey = <span class="keyword">new</span> <span class="type">SymmetricSecurityKey</span>(
+                <span class="type">Encoding</span>.UTF8.GetBytes(<span class="string">"your-secret-key-here"</span>))
+        };
+    });</pre>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Generate JWT token</span>
+<span class="keyword">public</span> <span class="type">string</span> <span class="method">GenerateJwtToken</span>(<span class="type">IdentityUser</span> user)
+{
+    <span class="keyword">var</span> claims = <span class="keyword">new</span> <span class="type">List</span><<span class="type">Claim</span>>
+    {
+        <span class="keyword">new</span> <span class="type">Claim</span>(<span class="type">ClaimTypes</span>.NameIdentifier, user.Id),
+        <span class="keyword">new</span> <span class="type">Claim</span>(<span class="type">ClaimTypes</span>.Name, user.Email)
+    };
+
+    <span class="keyword">var</span> key = <span class="keyword">new</span> <span class="type">SymmetricSecurityKey</span>(
+        <span class="type">Encoding</span>.UTF8.GetBytes(<span class="string">"your-secret-key"</span>));
+    <span class="keyword">var</span> creds = <span class="keyword">new</span> <span class="type">SigningCredentials</span>(key, <span class="type">SecurityAlgorithms</span>.HmacSha256);
+
+    <span class="keyword">var</span> token = <span class="keyword">new</span> <span class="type">JwtSecurityToken</span>(
+        issuer: <span class="string">"myapp"</span>,
+        audience: <span class="string">"myapp"</span>,
+        claims: claims,
+        expires: <span class="type">DateTime</span>.<span class="method">Now</span>().<span class="method">AddDays</span>(7),
+        signingCredentials: creds);
+
+    <span class="keyword">return new</span> <span class="type">JwtSecurityTokenHandler</span>().<span class="method">WriteToken</span>(token);
+}</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🛡️</span>
+                    <div>
+                        <h3 class="card-title">Authorization</h3>
+                        <p class="card-description">Protect your controllers</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Require authenticated user</span>
+[<span class="type">Authorize</span>]
+<span class="keyword">public class</span> <span class="type">SecureController</span> : <span class="type">ControllerBase</span>
+{
+    <span class="comment">// Require specific role</span>
+    [<span class="type">Authorize</span>(<span class="type">Roles</span> = <span class="string">"Admin"</span>)]
+    [<span class="type">HttpGet</span>(<span class="string">"admin"</span>)]
+    <span class="keyword">public IActionResult</span> <span class="method">AdminOnly</span>()
+    {
+        <span class="keyword">return</span> <span class="type">Ok</span>(<span class="string">"Admin area"</span>);
+    }
+
+    <span class="comment">// Require policy</span>
+    [<span class="type">Authorize</span>(<span class="type">Policy</span> = <span class="string">"RequireDeveloper"</span>)]
+    [<span class="type">HttpGet</span>(<span class="string">"developer"</span>)]
+    <span class="keyword">public IActionResult</span> <span class="method">DeveloperOnly</span>()
+    {
+        <span class="keyword">return</span> <span class="type">Ok</span>(<span class="string">"Developer area"</span>);
+    }
+}</pre>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-box-header">💡 Authorization vs Authentication</div>
+                    <p><strong>Authentication</strong> = Who are you? (Login)<br><strong>Authorization</strong> = What can you do? (Roles/Policies)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12: Testing -->
+        <section class="section" id="testing">
+            <div class="section-header">
+                <span class="section-number">12</span>
+                <div>
+                    <h2 class="section-title">Testing</h2>
+                    <span class="section-subtitle">Unit tests, integration tests, and more</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 10</span>
+            <span class="level-badge intermediate">Intermediate</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🧪</span>
+                    <div>
+                        <h3 class="card-title">Testing Basics</h3>
+                        <p class="card-description">xUnit and testing frameworks</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart TB
+    subgraph testing["Testing Pyramid"]
+        U["🟢 Unit Tests<br/>Fast, many"]
+        I["🟡 Integration Tests<br/>Medium"]
+        E["🔴 E2E Tests<br/>Slow, few"]
+    end
+    style U fill:#3fb950,color:#fff
+    style I fill:#d29922,color:#fff
+    style E fill:#f85149,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment"># Install xUnit</span>
+dotnet add package xunit
+dotnet add package xunit.runner.visualstudio
+dotnet add package Microsoft.NET.Test.SDK
+
+<span class="comment"># Create test project</span>
+dotnet new xunit -n MyApp.Tests
+dotnet add reference ../MyApp/MyApp.csproj
+
+<span class="comment"># Run tests</span>
+dotnet test</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📝</span>
+                    <div>
+                        <h3 class="card-title">Writing Unit Tests</h3>
+                        <p class="card-description">Test your business logic</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="keyword">public class</span> <span class="type">CalculatorTests</span>
+{
+    [<span class="type">Fact</span>]
+    <span class="keyword">public void</span> <span class="method">Add_ReturnsSum</span>()
+    {
+        <span class="comment">// Arrange</span>
+        <span class="keyword">var</span> calculator = <span class="keyword">new</span> <span class="type">Calculator</span>();
+
+        <span class="comment">// Act</span>
+        <span class="keyword">var</span> result = calculator.<span class="method">Add</span>(2, 3);
+
+        <span class="comment">// Assert</span>
+        <span class="type">Assert</span>.<span class="method">Equal</span>(5, result);
+    }
+
+    [<span class="type">Theory</span>]
+    [<span class="type">InlineData</span>(1, 1, 2)]
+    [<span class="type">InlineData</span>(2, 3, 5)]
+    [<span class="type">InlineData</span>(10, 20, 30)]
+    <span class="keyword">public void</span> <span class="method">Add_ReturnsCorrectSum</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> expected)
+    {
+        <span class="keyword">var</span> calculator = <span class="keyword">new</span> <span class="type">Calculator</span>();
+        <span class="keyword">var</span> result = calculator.<span class="method">Add</span>(a, b);
+        <span class="type">Assert</span>.<span class="method">Equal</span>(expected, result);
+    }
+}</pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌐</span>
+                    <div>
+                        <h3 class="card-title">Integration Tests</h3>
+                        <p class="card-description">Test your API end-to-end</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Install integration testing package</span>
+dotnet add package Microsoft.AspNetCore.Mvc.Testing
+
+<span class="keyword">public class</span> <span class="type">ProductApiTests</span> : <span class="type">IClassFixture</span><<span class="type">WebApplicationFactory</span><<span class="type">Program</span>>>
+{
+    <span class="keyword">private readonly</span> <span class="type">HttpClient</span> _client;
+
+    <span class="keyword">public</span> <span class="method">ProductApiTests</span>(<span class="type">WebApplicationFactory</span><<span class="type">Program</span>> factory)
+    {
+        _client = factory.<span class="method">CreateClient</span>();
+    }
+
+    [<span class="type">Fact</span>]
+    <span class="keyword">public async Task</span> <span class="method">GetProducts_ReturnsSuccess</span>()
+    {
+        <span class="comment">// Act</span>
+        <span class="keyword">var</span> response = <span class="keyword">await</span> _client.<span class="method">GetAsync</span>(<span class="string">"/api/products"</span>);
+
+        <span class="comment">// Assert</span>
+        response.<span class="method">EnsureSuccessStatusCode</span>();
+        <span class="keyword">var</span> content = <span class="keyword">await</span> response.Content.<span class="method">ReadAsStringAsync</span>();
+        <span class="type">Assert</span>.<span class="method">NotEmpty</span>(content);
+    }
+}</pre>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-box-header">💡 Test Coverage</div>
+                    <p>Aim for 70-80% code coverage on your business logic. Focus on testing edge cases and error handling, not trivial code.</p>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-header">🎯 Exercise: Write Tests</div>
+                <p>Create test coverage for your Todo API:</p>
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Unit test: Test service layer methods</li>
+                    <li><span class="checkbox"></span> Unit test: Test validation logic</li>
+                    <li><span class="checkbox"></span> Integration test: Test POST /api/todos</li>
+                    <li><span class="checkbox"></span> Integration test: Test GET /api/todos/{id}</li>
+                </ul>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-header">✨ Next Step</div>
+                <p>Ready for more? <a href="advanced.html" style="color: var(--accent);">Continue to Advanced Topics →</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <p><a href="csharp-basics.html" style="color: var(--accent);">← C# Basics</a> | <a href="index.html" style="color: var(--accent);">Home</a> | <a href="advanced.html" style="color: var(--accent);">Advanced Topics →</a></p>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+
+        document.querySelectorAll('.checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const container = this.closest('.quiz-container');
+                const options = container.querySelectorAll('.quiz-option');
+                const feedback = container.querySelector('.quiz-feedback');
+                
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    opt.style.pointerEvents = 'none';
+                });
+                
+                if (this.dataset.answer === 'correct') {
+                    this.classList.add('correct');
+                    feedback.textContent = '✓ Correct! Great job!';
+                    feedback.className = 'quiz-feedback show correct';
+                } else {
+                    this.classList.add('incorrect');
+                    this.style.textDecoration = 'line-through';
+                    const correct = container.querySelector('[data-answer="correct"]');
+                    correct.classList.add('correct');
+                    feedback.textContent = '✗ Not quite. The correct answer is highlighted.';
+                    feedback.className = 'quiz-feedback show incorrect';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

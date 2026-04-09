@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Path - .NET Study Plan</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">⚡</div>
+            <div class="dotnet">.NET Study Plan</div>
+            <h1><a href="index.html" style="color: var(--accent); text-decoration: none;">Zero to Market</a></h1>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Modules</div>
+            <a href="index.html" class="nav-link"><span class="nav-number">🏠</span>Home</a>
+            <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
+            <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
+            <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
+            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
+            <a href="career.html" class="nav-link active"><span class="nav-number">05</span>Career Path</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">In This Module</div>
+            <a href="#market" class="nav-link"><span class="nav-number">13</span>Market Requirements</a>
+            <a href="#portfolio" class="nav-link"><span class="nav-number">14</span>Portfolio Projects</a>
+            <a href="#interviews" class="nav-link"><span class="nav-number">15</span>Interview Prep</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero">
+            <div class="hero-badge"><span>📚 Module 5</span></div>
+            <h1>Career <span>Path</span></h1>
+            <p>Bridge the gap from learning to landing your first .NET developer role. Market requirements, portfolio building, and interview preparation.</p>
+        </div>
+
+        <!-- 13: Market Requirements -->
+        <section class="section" id="market">
+            <div class="section-header">
+                <span class="section-number">13</span>
+                <div>
+                    <h2 class="section-title">Market Requirements</h2>
+                    <span class="section-subtitle">What employers are looking for</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 13</span>
+            <span class="level-badge everyone">Everyone</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🎯</span>
+                    <div>
+                        <h3 class="card-title">Must-Have Skills</h3>
+                        <p class="card-description">These are non-negotiable for any .NET junior role</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph must["Must Have"]
+        M1["C# / .NET<br/>Programming"]
+        M2["ASP.NET Core<br/>Web Framework"]
+        M3["SQL / Databases<br/>Data Storage"]
+        M4["REST APIs<br/>Integration"]
+        M5["Git<br/>Version Control"]
+    end
+    style M1 fill:#58a6ff,color:#fff
+    style M2 fill:#a371f7,color:#fff
+    style M3 fill:#3fb950,color:#fff
+    style M4 fill:#d29922,color:#fff
+    style M5 fill:#f85149,color:#fff
+                </div>
+
+                <div class="grid-3">
+                    <div class="grid-item">
+                        <h4>💻 Core Language</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">C# syntax, OOP concepts, LINQ</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>🌐 Web Framework</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">ASP.NET Core MVC/Razor Pages</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>🗄️ Database</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">SQL, EF Core, migrations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📈</span>
+                    <div>
+                        <h3 class="card-title">Should-Know Skills</h3>
+                        <p class="card-description">Differentiate yourself from other candidates</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph should["Should Know"]
+        S1["JWT / Auth<br/>Security"]
+        S2["Docker<br/>Containerization"]
+        S3["xUnit / NUnit<br/>Testing"]
+        S4["Azure/AWS<br/>Cloud Basics"]
+    end
+    style S1 fill:#58a6ff,color:#fff
+    style S2 fill:#a371f7,color:#fff
+    style S3 fill:#3fb950,color:#fff
+    style S4 fill:#d29922,color:#fff
+                </div>
+
+                <div class="concept-tag">Authentication</div>
+                <div class="concept-tag">Authorization</div>
+                <div class="concept-tag">Docker</div>
+                <div class="concept-tag">Unit Testing</div>
+                <div class="concept-tag">CI/CD Basics</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌟</span>
+                    <div>
+                        <h3 class="card-title">Nice-to-Have Skills</h3>
+                        <p class="card-description">Bonus points that help you stand out</p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="grid-item">
+                        <h4>☁️ Cloud Platforms</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Azure, AWS basics</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>🔄 Modern APIs</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">GraphQL, gRPC</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <div class="tip-box-header">💡 Focus on the Basics First</div>
+                <p>Master the "Must Have" skills before expanding to "Should Know". Employers prioritize strong fundamentals over breadth.</p>
+            </div>
+        </section>
+
+        <!-- 14: Portfolio Projects -->
+        <section class="section" id="portfolio">
+            <div class="section-header">
+                <span class="section-number">14</span>
+                <div>
+                    <h2 class="section-title">Portfolio Projects</h2>
+                    <span class="section-subtitle">Build projects that demonstrate your skills</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 14</span>
+            <span class="level-badge everyone">Everyone</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📁</span>
+                    <div>
+                        <h3 class="card-title">Project Recommendations</h3>
+                        <p class="card-description">Build these to showcase your .NET skills</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph projects["Portfolio Projects"]
+        P1["📝 Todo API<br/>REST CRUD<br/>Full-stack"]
+        P2["🛒 E-commerce<br/>Shopping Cart<br/>Auth + Payments"]
+        P3["📊 Dashboard<br/>Admin Panel<br/>Real-time Data"]
+    end
+    style P1 fill:#58a6ff,color:#fff
+    style P2 fill:#a371f7,color:#fff
+    style P3 fill:#3fb950,color:#fff
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">✅</span>
+                    <div>
+                        <h3 class="card-title">Project Checklist</h3>
+                        <p class="card-description">What every portfolio project should include</p>
+                    </div>
+                </div>
+
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Working CRUD operations (Create, Read, Update, Delete)</li>
+                    <li><span class="checkbox"></span> Database integration with EF Core</li>
+                    <li><span class="checkbox"></span> Clean API responses (proper status codes)</li>
+                    <li><span class="checkbox"></span> Basic authentication/authorization</li>
+                    <li><span class="checkbox"></span> Git version control with meaningful commits</li>
+                    <li><span class="checkbox"></span> README with setup instructions</li>
+                    <li><span class="checkbox"></span> Deployed to a live URL (Azure/AWSRender)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🐙</span>
+                    <div>
+                        <h3 class="card-title">GitHub Best Practices</h3>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment"># Good commit messages</span>
+<span class="type">add</span> <span class="method">user</span> model and repository
+<span class="type">implement</span> <span class="method">user</span> CRUD endpoints
+<span class="type">add</span> <span class="method">JWT</span> authentication
+<span class="type">fix</span> <span class="method">validation</span> error handling
+
+<span class="comment"># Branch naming</span>
+<span class="type">feature</span>/user-authentication
+<span class="type">bugfix</span>/login-validation
+<span class="type">hotfix</span>/production-error</pre>
+                </div>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-header">✨ Quality Over Quantity</div>
+                <p>Two well-documented, working projects are better than five half-finished ones. Focus on completing projects with clean code and proper architecture.</p>
+            </div>
+        </section>
+
+        <!-- 15: Interview Preparation -->
+        <section class="section" id="interviews">
+            <div class="section-header">
+                <span class="section-number">15</span>
+                <div>
+                    <h2 class="section-title">Interview Preparation</h2>
+                    <span class="section-subtitle">Prepare to ace your technical interviews</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 15</span>
+            <span class="level-badge everyone">Everyone</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <div>
+                        <h3 class="card-title">Interview Rounds</h3>
+                        <p class="card-description">What to expect in the hiring process</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph rounds["Interview Process"]
+        R1["📄 Screening<br/>HR Chat<br/>30 min"]
+        R2["💻 Tech Screen<br/>Code Challenge<br/>45-60 min"]
+        R3["🎯 On-site<br/>Full Stack<br/>2-4 hours"]
+        R4["💰 Offer<br/>Negotiation<br/>Final"]
+    end
+    style R1 fill:#58a6ff,color:#fff
+    style R2 fill:#a371f7,color:#fff
+    style R3 fill:#3fb950,color:#fff
+    style R4 fill:#d29922,color:#fff
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">❓</span>
+                    <div>
+                        <h3 class="card-title">Common Questions</h3>
+                    </div>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="quiz-question">❓ Q: Explain the difference between GET and POST</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="correct">GET retrieves data (safe, idempotent), POST creates data (not safe, not idempotent)</div>
+                        <div class="quiz-option" data-answer="wrong">GET is faster than POST</div>
+                        <div class="quiz-option" data-answer="wrong">POST is for reading data</div>
+                        <div class="quiz-option" data-answer="wrong">They are the same thing</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="quiz-question">❓ Q: What is Entity Framework Core?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="correct">An ORM that maps C# objects to database tables</div>
+                        <div class="quiz-option" data-answer="wrong">A JavaScript framework</div>
+                        <div class="quiz-option" data-answer="wrong">A testing library</div>
+                        <div class="quiz-option" data-answer="wrong">A CSS framework</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="quiz-question">❓ Q: Explain dependency injection in .NET</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="correct">A technique where dependencies are provided to a class rather than created by it</div>
+                        <div class="quiz-option" data-answer="wrong">A way to inject data into databases</div>
+                        <div class="quiz-option" data-answer="wrong">A testing methodology</div>
+                        <div class="quiz-option" data-answer="wrong">A type of database</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💻</span>
+                    <div>
+                        <h3 class="card-title">Coding Practice</h3>
+                    </div>
+                </div>
+
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Practice array/string manipulations</li>
+                    <li><span class="checkbox"></span> Understand Big-O notation basics</li>
+                    <li><span class="checkbox"></span> Know when to use List vs Dictionary</li>
+                    <li><span class="checkbox"></span> Be able to explain your solution</li>
+                    <li><span class="checkbox"></span> Test your code with edge cases</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🎤</span>
+                    <div>
+                        <h3 class="card-title">Behavioral Questions</h3>
+                    </div>
+                </div>
+
+                <div class="comparison">
+                    <div class="comparison-item info">
+                        <div class="comparison-label">❌ Weak Answer</div>
+                        <p style="font-size:0.85rem;color:var(--text-secondary);">"I'm a good team player."</p>
+                    </div>
+                    <div class="comparison-item success">
+                        <div class="comparison-label">✅ Strong Answer</div>
+                        <p style="font-size:0.85rem;color:var(--text-secondary);">"In my last project, I collaborated with two teammates to build a REST API. I took the lead on architecting the database schema while they handled the frontend integration."</p>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-box-header">💡 Use the STAR Method</div>
+                    <p><strong>S</strong>ituation → <strong>T</strong>ask → <strong>A</strong>ction → <strong>R</strong>esult. Structure your answers to show what you did and the outcome.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="congrats-box">
+            <div class="congrats-icon">🎉</div>
+            <h2>Congratulations!</h2>
+            <p>You've completed the .NET Developer Study Plan! You've learned:</p>
+            <ul>
+                <li>Web Fundamentals (HTTP, MVC)</li>
+                <li>C# Programming & LINQ</li>
+                <li>ASP.NET Core Development</li>
+                <li>Career-Ready Skills</li>
+            </ul>
+            <p>Now it's time to apply for positions and start your .NET development career. Good luck!</p>
+        </div>
+
+        <footer>
+            <p><a href="advanced.html" style="color: var(--accent);">← Advanced Topics</a> | <a href="index.html" style="color: var(--accent);">Home →</a></p>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+
+        // Quiz functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const container = this.closest('.quiz-container');
+                const options = container.querySelectorAll('.quiz-option');
+                const feedback = container.querySelector('.quiz-feedback');
+                
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    opt.style.pointerEvents = 'none';
+                });
+                
+                if (this.dataset.answer === 'correct') {
+                    this.classList.add('correct');
+                    feedback.textContent = '✓ Correct! Great job!';
+                    feedback.className = 'quiz-feedback show correct';
+                } else {
+                    this.classList.add('incorrect');
+                    this.style.textDecoration = 'line-through';
+                    const correct = container.querySelector('[data-answer="correct"]');
+                    correct.classList.add('correct');
+                    feedback.textContent = '✗ Not quite. The correct answer is highlighted.';
+                    feedback.className = 'quiz-feedback show incorrect';
+                }
+            });
+        });
+
+        // Checkbox functionality
+        document.querySelectorAll('.checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+    </script>
+</body>
+</html>

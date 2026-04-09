@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Basics - .NET Study Plan</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">⚡</div>
+            <div class="dotnet">.NET Study Plan</div>
+            <h1><a href="index.html" style="color: var(--accent); text-decoration: none;">Zero to Market</a></h1>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Modules</div>
+            <a href="index.html" class="nav-link"><span class="nav-number">🏠</span>Home</a>
+            <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
+            <a href="csharp-basics.html" class="nav-link active"><span class="nav-number">02</span>C# Basics</a>
+            <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
+            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">In This Module</div>
+            <a href="#csharp-basics" class="nav-link"><span class="nav-number">04</span>Variables & Types</a>
+            <a href="#csharp-oop" class="nav-link"><span class="nav-number">05</span>OOP Concepts</a>
+            <a href="#csharp-collections" class="nav-link"><span class="nav-number">06</span>Collections & LINQ</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero">
+            <div class="hero-badge"><span>📚 Module 2</span></div>
+            <h1>C# <span>Basics</span></h1>
+            <p>Master the C# programming language fundamentals. These concepts apply everywhere in .NET development.</p>
+        </div>
+
+        <!-- 04: C# Basics -->
+        <section class="section" id="csharp-basics">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <div>
+                    <h2 class="section-title">C# Fundamentals</h2>
+                    <span class="section-subtitle">The language you'll write every day</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 3-4</span>
+            <span class="level-badge beginner">Beginner</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📝</span>
+                    <div>
+                        <h3 class="card-title">Variables & Data Types</h3>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart TB
+    subgraph types["C# Types"]
+        T1["int, long, float, double<br/>Numbers"]
+        T2["string<br/>Text"]
+        T3["bool<br/>True/False"]
+        T4["DateTime<br/>Dates"]
+        T5["decimal<br/>Money (precise)"]
+    end
+    style T1 fill:#58a6ff,color:#fff
+    style T2 fill:#a371f7,color:#fff
+    style T3 fill:#3fb950,color:#fff
+    style T4 fill:#d29922,color:#fff
+    style T5 fill:#f85149,color:#fff
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Variables</span>
+<span class="keyword">var</span> <span class="type">age</span> = <span class="string">25</span>;                    <span class="comment">// int - whole numbers</span>
+<span class="keyword">var</span> <span class="type">price</span> = <span class="string">19.99</span>;              <span class="comment">// double</span>
+<span class="keyword">var</span> <span class="type">name</span> = <span class="string">"John"</span>;              <span class="comment">// string</span>
+<span class="keyword">var</span> <span class="type">isActive</span> = <span class="keyword">true</span>;             <span class="comment">// bool</span>
+<span class="keyword">var</span> <span class="type">amount</span> = <span class="string">99.99m</span>;             <span class="comment">// decimal - for money!</span>
+<span class="type">DateTime</span> <span class="type">today</span> = <span class="type">DateTime</span>.<span class="method">Today</span>(); <span class="comment">// DateTime</span></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔀</span>
+                    <div>
+                        <h3 class="card-title">Control Flow</h3>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="grid-item">
+                        <h4>If / Else If / Else</h4>
+                        <div class="code-block">
+                            <pre><span class="keyword">if</span> (age >= <span class="string">18</span>)
+{
+    <span class="method">Console</span>.<span class="method">WriteLine</span>(<span class="string">"Adult"</span>);
+}
+<span class="keyword">else</span>
+{
+    <span class="method">Console</span>.<span class="method">WriteLine</span>(<span class="string">"Minor"</span>);
+}</pre>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h4>Switch Expression (C# 8+)</h4>
+                        <div class="code-block">
+                            <pre><span class="keyword">var</span> <span class="type">result</span> = status <span class="keyword">switch</span>
+{
+    <span class="string">"pending"</span> => <span class="string">"Waiting..."</span>,
+    <span class="string">"active"</span>  => <span class="string">"Ready!"</span>,
+    _              => <span class="string">"Unknown"</span>
+};</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05: OOP -->
+        <section class="section" id="csharp-oop">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <div>
+                    <h2 class="section-title">OOP Concepts</h2>
+                    <span class="section-subtitle">The four pillars of object-oriented programming</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🏛️</span>
+                    <div>
+                        <h3 class="card-title">The Four Pillars</h3>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart TB
+    subgraph pillars["Four Pillars"]
+        P1["🔒 Encapsulation<br/>Hide internals, expose interface"]
+        P2["🧬 Inheritance<br/>Reuse through class hierarchy"]
+        P3["🎭 Polymorphism<br/>Same name, different behavior"]
+        P4["📦 Abstraction<br/>Simplify complex systems"]
+    end
+    style P1 fill:#58a6ff,color:#fff
+    style P2 fill:#a371f7,color:#fff
+    style P3 fill:#3fb950,color:#fff
+    style P4 fill:#d29922,color:#fff
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔒</span>
+                    <div>
+                        <h3 class="card-title">Encapsulation Example</h3>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="keyword">public class</span> <span class="type">BankAccount</span>
+{
+    <span class="comment">// Private - can't access directly from outside</span>
+    <span class="keyword">private decimal</span> _balance;
+    
+    <span class="comment">// Public property - controlled access</span>
+    <span class="keyword">public decimal</span> <span class="type">Balance</span> => _balance;
+    
+    <span class="comment">// Public method - controls what can be done</span>
+    <span class="keyword">public void</span> <span class="method">Deposit</span>(<span class="type">decimal</span> amount)
+    {
+        <span class="keyword">if</span> (amount <= <span class="string">0</span>)
+            <span class="keyword">throw new</span> <span class="type">ArgumentException</span>(<span class="string">"Must be positive"</span>);
+        
+        _balance += amount;
+    }
+}</pre>
+                </div>
+
+                <div class="pro-tip">
+                    <div class="pro-tip-header">✨ Pro Tip</div>
+                    <p>Always mark fields as <code>private</code> and provide public methods or properties. This prevents invalid states like negative bank balances!</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🎭</span>
+                    <div>
+                        <h3 class="card-title">Interfaces: The Contract</h3>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="comment">// Define what methods a class MUST have</span>
+<span class="keyword">public interface</span> <span class="type">IPayable</span>
+{
+    <span class="type">decimal</span> <span class="method">CalculatePay</span>();
+    <span class="keyword">void</span> <span class="method">ProcessPayment</span>(<span class="type">decimal</span> amount);
+}
+
+<span class="comment">// Any class that implements this MUST have these methods</span>
+<span class="keyword">public class</span> <span class="type">PayPalPayment</span> : <span class="type">IPayable</span>
+{
+    <span class="keyword">public decimal</span> <span class="method">CalculatePay</span>() { <span class="keyword">return</span> <span class="string">100m</span>; }
+    <span class="keyword">public void</span> <span class="method">ProcessPayment</span>(<span class="type">decimal</span> amount) { <span class="comment">/* PayPal logic */</span> }
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06: Collections & LINQ -->
+        <section class="section" id="csharp-collections">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <div>
+                    <h2 class="section-title">Collections & LINQ</h2>
+                    <span class="section-subtitle">Working with lists of data</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <div>
+                        <h3 class="card-title">Common Collections</h3>
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="grid-item">
+                        <h4>List&lt;T&gt;</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Dynamic array, most common</p>
+                        <div class="code-block">
+                            <pre><span class="keyword">var</span> <span class="type">names</span> = <span class="keyword">new</span> <span class="type">List</span><<span class="type">string</span>>
+{
+    <span class="string">"John"</span>, <span class="string">"Jane"</span>, <span class="string">"Bob"</span>
+};</pre>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h4>Dictionary&lt;K,V&gt;</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Key-value pairs</p>
+                        <div class="code-block">
+                            <pre><span class="keyword">var</span> <span class="type">ages</span> = <span class="keyword">new</span> <span class="type">Dictionary</span><<span class="type">string</span>, <span class="type">int</span>>
+{
+    [<span class="string">"John"</span>] = <span class="string">25</span>,
+    [<span class="string">"Jane"</span>] = <span class="string">30</span>
+};</pre>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h4>HashSet&lt;T&gt;</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Unique values only</p>
+                        <div class="code-block">
+                            <pre><span class="keyword">var</span> <span class="type">unique</span> = <span class="keyword">new</span> <span class="type">HashSet</span><<span class="type">int</span>>
+{ <span class="string">1</span>, <span class="string">2</span>, <span class="string">3</span>, <span class="string">1</span> };
+<span class="comment">// Only {1, 2, 3}</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔍</span>
+                    <div>
+                        <h3 class="card-title">LINQ: Querying Made Easy</h3>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><span class="keyword">var</span> <span class="type">users</span> = <span class="keyword">new</span> <span class="type">List</span><<span class="type">User</span>>
+{
+    <span class="keyword">new</span> <span class="type">User</span>{ <span class="type">Name</span> = <span class="string">"John"</span>, <span class="type">Age</span> = <span class="string">25</span>, <span class="type">IsActive</span> = <span class="keyword">true</span> },
+    <span class="keyword">new</span> <span class="type">User</span>{ <span class="type">Name</span> = <span class="string">"Jane"</span>, <span class="type">Age</span> = <span class="string">17</span>, <span class="type">IsActive</span> = <span class="keyword">true</span> },
+    <span class="keyword">new</span> <span class="type">User</span>{ <span class="type">Name</span> = <span class="string">"Bob"</span>, <span class="type">Age</span> = <span class="string">30</span>, <span class="type">IsActive</span> = <span class="keyword">false</span> }
+};
+
+<span class="comment">// LINQ queries</span>
+<span class="keyword">var</span> <span class="type">adults</span> = users.<span class="method">Where</span>(u => u.<span class="type">Age</span> >= <span class="string">18</span>).<span class="method">ToList</span>();
+<span class="keyword">var</span> <span class="type">names</span> = users.<span class="method">Select</span>(u => u.<span class="type">Name</span>).<span class="method">ToList</span>();
+<span class="keyword">var</span> <span class="type">active</span> = users.<span class="method">Where</span>(u => u.<span class="type">IsActive</span>).<span class="method">Count</span>();</pre>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-header">🎯 Exercise: Practice LINQ</div>
+                <p>Try these LINQ operations:</p>
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Filter: <code>users.Where(u => u.Age > 20)</code></li>
+                    <li><span class="checkbox"></span> Select: <code>users.Select(u => u.Name)</code></li>
+                    <li><span class="checkbox"></span> Order: <code>users.OrderBy(u => u.Age)</code></li>
+                    <li><span class="checkbox"></span> First: <code>users.FirstOrDefault(u => u.Name == "John")</code></li>
+                </ul>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-header">✨ Next Step</div>
+                <p>Ready to build web apps? <a href="aspnet-core.html" style="color: var(--accent);">Continue to ASP.NET Core →</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <p><a href="web-fundamentals.html" style="color: var(--accent);">← Web Fundamentals</a> | <a href="index.html" style="color: var(--accent);">Home</a> | <a href="aspnet-core.html" style="color: var(--accent);">ASP.NET Core →</a></p>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+
+        document.querySelectorAll('.checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+    </script>
+</body>
+</html>

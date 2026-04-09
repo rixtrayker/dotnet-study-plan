@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Fundamentals - .NET Study Plan</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">⚡</div>
+            <div class="dotnet">.NET Study Plan</div>
+            <h1><a href="index.html" style="color: var(--accent); text-decoration: none;">Zero to Market</a></h1>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Modules</div>
+            <a href="index.html" class="nav-link"><span class="nav-number">🏠</span>Home</a>
+            <a href="web-fundamentals.html" class="nav-link active"><span class="nav-number">01</span>Web Fundamentals</a>
+            <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
+            <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
+            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">In This Module</div>
+            <a href="#web-basics" class="nav-link"><span class="nav-number">01</span>How the Web Works</a>
+            <a href="#http" class="nav-link"><span class="nav-number">02</span>HTTP Protocol</a>
+            <a href="#mvc" class="nav-link"><span class="nav-number">03</span>MVC Pattern</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero">
+            <div class="hero-badge"><span>📚 Module 1</span></div>
+            <h1>Web <span>Fundamentals</span></h1>
+            <p>Understanding how the web works is essential before diving into any framework. These concepts apply to every web technology.</p>
+        </div>
+
+        <!-- 01: How the Web Works -->
+        <section class="section" id="web-basics">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <div>
+                    <h2 class="section-title">How the Web Works</h2>
+                    <span class="section-subtitle">The foundation every developer needs</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 1</span>
+            <span class="level-badge everyone">Everyone</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌐</span>
+                    <div>
+                        <h3 class="card-title">The Request-Response Cycle</h3>
+                        <p class="card-description">Every web interaction follows this pattern</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    A["👤 User\nBrowser"] -->|"1. Request<br/>GET /users"| B["🌐 Server\nYour App"]
+    B -->|"2. Process<br/>Find data"| C["🗄️ Database"]
+    C -->|"3. Data"| B
+    B -->|"4. Response<br/>HTML/JSON"| A
+    style A fill:#58a6ff,color:#fff
+    style B fill:#a371f7,color:#fff
+    style C fill:#3fb950,color:#fff
+                </div>
+
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <span class="flow-step-number">1</span>
+                        <div class="flow-step-content">
+                            <h4>User types URL or clicks a link</h4>
+                            <p>Browser creates an HTTP request to the server.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <span class="flow-step-number">2</span>
+                        <div class="flow-step-content">
+                            <h4>Server receives the request</h4>
+                            <p>Your application determines what to do based on the URL.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <span class="flow-step-number">3</span>
+                        <div class="flow-step-content">
+                            <h4>Server processes and responds</h4>
+                            <p>Returns HTML (pages) or JSON (APIs) to the browser.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-box-header">💡 Think of it like a restaurant</div>
+                    <p>Browser = Customer ordering food | Server = Waiter taking order | Kitchen = Database preparing ingredients | Food = Response</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <div>
+                        <h3 class="card-title">Anatomy of a URL</h3>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre>https://www.example.com:443/users/123?q=john&sort=name
+├───┬──┴──────┬──────┬─────┬──────┬────────┬─────────┘
+   │   Host    │ Port │Path │ ID  │Query  │ Fragment
+   Protocol    Domain │      │     │Params
+                   Port (default 443 for https)</pre>
+                </div>
+
+                <div class="grid-4">
+                    <div class="grid-item">
+                        <h4>🔤 Protocol</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">http:// or https://</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>🌐 Domain</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">example.com</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>📁 Path</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">/users/123</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>❓ Query</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">?q=john</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">❓ Quiz: What does the server return to the browser?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">A file from the hard drive</div>
+                    <div class="quiz-option" data-answer="correct">HTML, JSON, or other response data</div>
+                    <div class="quiz-option" data-answer="wrong">The database itself</div>
+                    <div class="quiz-option" data-answer="wrong">JavaScript code</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </section>
+
+        <!-- 02: HTTP Protocol -->
+        <section class="section" id="http">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <div>
+                    <h2 class="section-title">HTTP Protocol</h2>
+                    <span class="section-subtitle">The language browsers and servers speak</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📨</span>
+                    <div>
+                        <h3 class="card-title">HTTP Methods (Verbs)</h3>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart TB
+    subgraph methods["HTTP Methods"]
+        GET["GET - Read data<br/>Safe, idempotent"]
+        POST["POST - Create data<br/>Not safe, not idempotent"]
+        PUT["PUT - Update entire record<br/>Idempotent"]
+        PATCH["PATCH - Partial update<br/>Not idempotent"]
+        DELETE["DELETE - Remove data<br/>Idempotent"]
+    end
+    style GET fill:#3fb950,color:#fff
+    style POST fill:#58a6ff,color:#fff
+    style PUT fill:#d29922,color:#fff
+    style PATCH fill:#a371f7,color:#fff
+    style DELETE fill:#f85149,color:#fff
+                </div>
+
+                <div class="grid-2">
+                    <div class="grid-item">
+                        <h4>GET /users</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Fetch list of all users</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>GET /users/5</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Fetch user with ID 5</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>POST /users</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Create a new user</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>PUT /users/5</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Update entire user 5</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <div>
+                        <h3 class="card-title">HTTP Status Codes</h3>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart TB
+    subgraph codes["Status Codes"]
+        S1["1xx - Informational"]
+        S2["2xx - Success<br/>200 OK, 201 Created"]
+        S3["3xx - Redirect<br/>301 Moved"]
+        S4["4xx - Client Error<br/>404 Not Found, 401 Unauthorized"]
+        S5["5xx - Server Error<br/>500 Internal Error"]
+    end
+    style S1 fill:#6e7681,color:#fff
+    style S2 fill:#3fb950,color:#fff
+    style S3 fill:#d29922,color:#fff
+    style S4 fill:#f85149,color:#fff
+    style S5 fill:#db61a2,color:#fff
+                </div>
+
+                <span class="concept-tag">200 OK</span>
+                <span class="concept-tag">201 Created</span>
+                <span class="concept-tag">400 Bad Request</span>
+                <span class="concept-tag">401 Unauthorized</span>
+                <span class="concept-tag">404 Not Found</span>
+                <span class="concept-tag">500 Server Error</span>
+            </div>
+        </section>
+
+        <!-- 03: MVC Pattern -->
+        <section class="section" id="mvc">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <div>
+                    <h2 class="section-title">MVC Pattern</h2>
+                    <span class="section-subtitle">The architecture behind most web frameworks</span>
+                </div>
+            </div>
+
+            <span class="week-badge">Week 2</span>
+            <span class="level-badge everyone">Everyone</span>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🏛️</span>
+                    <div>
+                        <h3 class="card-title">MVC: Model - View - Controller</h3>
+                        <p class="card-description">Separation of concerns made simple</p>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart LR
+    subgraph mvc["MVC Pattern"]
+        C["📝 Controller<br/>Handles requests<br/>Coordinates"]
+        M["📦 Model<br/>Business logic<br/>Data access"]
+        V["🎨 View<br/>HTML output<br/>User interface"]
+    end
+    
+    C -->|"Uses data from"| M
+    C -->|"Renders"| V
+    M -->|"Data for"| V
+                </div>
+
+                <div class="grid-3">
+                    <div class="grid-item">
+                        <h4>📝 Controller</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Receives user input, calls the right methods, returns responses.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>📦 Model</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">Your data, business rules, and database logic.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>🎨 View</h4>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">What the user sees - HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🍕</span>
+                    <div>
+                        <h3 class="card-title">The Restaurant Analogy</h3>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+flowchart TB
+    subgraph restaurant["MVC = Restaurant"]
+        W["👨‍🍳 Waiter<br/>Controller<br/>Takes orders, coordinates"]
+        K["👨‍🍳 Kitchen<br/>Model<br/>Prepares food, knows recipes"]
+        P["🍽️ Plate<br/>View<br/>Presents food nicely"]
+    end
+    
+    C["👤 Customer"] -->|"Order"| W
+    W -->|"Request ingredients"| K
+    K -->|"Cooked food"| W
+    W -->|"Serve"| P
+    P -->|"Enjoys"| C
+                </div>
+
+                <div class="comparison">
+                    <div class="comparison-item info">
+                        <div class="comparison-label">📝 Controller</div>
+                        <p style="font-size:0.85rem;color:var(--text-secondary);">Waiter takes your order and coordinates between you and the kitchen.</p>
+                    </div>
+                    <div class="comparison-item info">
+                        <div class="comparison-label">📦 Model</div>
+                        <p style="font-size:0.85rem;color:var(--text-secondary);">Kitchen prepares the food using recipes (business logic) and ingredients (data).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <div class="tip-box-header">💡 Why MVC?</div>
+                <p><strong>Separation of Concerns:</strong> Each part has ONE job. Controllers handle requests, Models handle data, Views handle presentation. Change your UI without touching your business logic.</p>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-header">✨ Next Step</div>
+                <p>Ready to learn C#? <a href="csharp-basics.html" style="color: var(--accent);">Continue to C# Basics →</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <p><a href="index.html" style="color: var(--accent);">← Back to Home</a> | <a href="csharp-basics.html" style="color: var(--accent);">Next: C# Basics →</a></p>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+
+        // Quiz functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const container = this.closest('.quiz-container');
+                const options = container.querySelectorAll('.quiz-option');
+                const feedback = container.querySelector('.quiz-feedback');
+                
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    opt.style.pointerEvents = 'none';
+                });
+                
+                if (this.dataset.answer === 'correct') {
+                    this.classList.add('correct');
+                    feedback.textContent = '✓ Correct! Great job!';
+                    feedback.className = 'quiz-feedback show correct';
+                } else {
+                    this.classList.add('incorrect');
+                    this.style.textDecoration = 'line-through';
+                    const correct = container.querySelector('[data-answer="correct"]');
+                    correct.classList.add('correct');
+                    feedback.textContent = '✗ Not quite. The correct answer is highlighted.';
+                    feedback.className = 'quiz-feedback show incorrect';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
