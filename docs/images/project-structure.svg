@@ -1,11 +1,5 @@
 <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .text { fill: #c9d1d9; }
-    @media (prefers-color-scheme: light) {
-      .text { fill: #24292f; }
-    }
-  </style>
-  <text x="350" y="30" text-anchor="middle" class="text" font-size="18" font-weight="700">ASP.NET MVC Project Structure</text>
+  <text x="350" y="30" text-anchor="middle" fill="#c9d1d9" font-size="18" font-weight="700">ASP.NET MVC Project Structure</text>
   
   <rect x="30" y="60" width="120" height="160" rx="10" fill="#58a6ff"/>
   <text x="90" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">Controllers/</text>
