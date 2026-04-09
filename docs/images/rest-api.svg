@@ -1,5 +1,15 @@
 <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
-  <text x="350" y="30" text-anchor="middle" fill="#c9d1d9" font-size="18" font-weight="700">RESTful API Endpoints</text>
+  <style>
+    .text { fill: #c9d1d9; }
+    .bg-card { fill: #21262d; }
+    .border { stroke: #30363d; }
+    @media (prefers-color-scheme: light) {
+      .text { fill: #24292f; }
+      .bg-card { fill: #ffffff; }
+      .border { stroke: #d0d7de; }
+    }
+  </style>
+  <text x="350" y="30" text-anchor="middle" class="text" font-size="18" font-weight="700">RESTful API Endpoints</text>
   
   <rect x="30" y="60" width="120" height="70" rx="8" fill="#3fb950"/>
   <text x="90" y="90" text-anchor="middle" fill="white" font-size="13" font-weight="700">GET</text>
@@ -21,13 +31,13 @@
   <text x="640" y="90" text-anchor="middle" fill="white" font-size="13" font-weight="700">DELETE</text>
   <text x="640" y="115" text-anchor="middle" fill="white" font-size="11">/users/5</text>
   
-  <text x="90" y="155" text-anchor="middle" fill="#c9d1d9" font-size="12">List all users</text>
-  <text x="230" y="155" text-anchor="middle" fill="#c9d1d9" font-size="12">Get user by ID</text>
-  <text x="370" y="155" text-anchor="middle" fill="#c9d1d9" font-size="12">Create new user</text>
-  <text x="510" y="155" text-anchor="middle" fill="#c9d1d9" font-size="12">Update user</text>
-  <text x="640" y="155" text-anchor="middle" fill="#c9d1d9" font-size="12">Delete user</text>
+  <text x="90" y="155" text-anchor="middle" class="text" font-size="12">List all users</text>
+  <text x="230" y="155" text-anchor="middle" class="text" font-size="12">Get user by ID</text>
+  <text x="370" y="155" text-anchor="middle" class="text" font-size="12">Create new user</text>
+  <text x="510" y="155" text-anchor="middle" class="text" font-size="12">Update user</text>
+  <text x="640" y="155" text-anchor="middle" class="text" font-size="12">Delete user</text>
   
-  <rect x="30" y="180" width="660" height="50" rx="8" fill="#21262d" stroke="#30363d"/>
-  <text x="350" y="200" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="600">Common Responses:</text>
-  <text x="350" y="220" text-anchor="middle" fill="#c9d1d9" font-size="11">200 OK (GET) - 201 Created (POST) - 204 No Content (DELETE) - 400 Bad Request - 404 Not Found</text>
+  <rect x="30" y="180" width="660" height="50" rx="8" class="bg-card" class="border"/>
+  <text x="350" y="200" text-anchor="middle" class="text" font-size="12" font-weight="600">Common Responses:</text>
+  <text x="350" y="220" text-anchor="middle" class="text" font-size="11">200 OK (GET) - 201 Created (POST) - 204 No Content (DELETE) - 400 Bad Request - 404 Not Found</text>
 </svg>

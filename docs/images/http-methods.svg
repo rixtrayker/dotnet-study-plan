@@ -1,5 +1,11 @@
 <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
-  <text x="350" y="30" text-anchor="middle" fill="#c9d1d9" font-size="18" font-weight="700">HTTP Methods (Verbs)</text>
+  <style>
+    .text { fill: #c9d1d9; }
+    @media (prefers-color-scheme: light) {
+      .text { fill: #24292f; }
+    }
+  </style>
+  <text x="350" y="30" text-anchor="middle" class="text" font-size="18" font-weight="700">HTTP Methods (Verbs)</text>
   
   <rect x="30" y="60" width="200" height="80" rx="10" fill="#3fb950"/>
   <text x="130" y="95" text-anchor="middle" fill="white" font-size="16" font-weight="700">GET</text>

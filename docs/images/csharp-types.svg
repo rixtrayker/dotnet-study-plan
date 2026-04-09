@@ -1,5 +1,17 @@
 <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
-  <text x="350" y="30" text-anchor="middle" fill="#c9d1d9" font-size="18" font-weight="700">C# Data Types</text>
+  <style>
+    .bg-card { fill: #21262d; }
+    .border { stroke: #30363d; }
+    .arrow { stroke: #8b949e; fill: #8b949e; }
+    .text { fill: #c9d1d9; }
+    @media (prefers-color-scheme: light) {
+      .bg-card { fill: #ffffff; }
+      .border { stroke: #d0d7de; }
+      .arrow { stroke: #57606a; fill: #57606a; }
+      .text { fill: #24292f; }
+    }
+  </style>
+  <text x="350" y="30" text-anchor="middle" class="text" font-size="18" font-weight="700">C# Data Types</text>
   
   <rect x="20" y="60" width="120" height="110" rx="10" fill="#58a6ff"/>
   <text x="80" y="95" text-anchor="middle" fill="white" font-size="13" font-weight="700">int, long</text>
