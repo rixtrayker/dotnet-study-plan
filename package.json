@@ -1,0 +1,11 @@
+{
+  "name": "dotnet-study-plan",
+  "version": "1.0.0",
+  "description": ".NET Developer Learning Path with Visual Diagrams",
+  "scripts": {
+    "dev": "npx serve docs -l 3001"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
