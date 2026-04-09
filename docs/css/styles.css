@@ -589,6 +589,14 @@ body {
     margin: 1.5rem 0; 
 }
 
+@media (max-width: 900px) {
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .grid-3 { grid-template-columns: 1fr; }
+}
+
 .grid-4 { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
@@ -600,6 +608,7 @@ body {
     background: var(--bg-card); 
     padding: 1.25rem; 
     border-radius: 12px; 
+    min-width: 0;
 }
 
 .grid-item h4 { 
