@@ -1,0 +1,19 @@
+<svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+  <text x="300" y="30" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">Test Pyramid</text>
+  
+  <polygon points="50,240 550,240 450,170 150,170" fill="var(--diagram-green)"/>
+  <text x="300" y="215" text-anchor="middle" fill="white" font-size="16" font-weight="700">⚙️ Unit Tests</text>
+  <text x="300" y="235" text-anchor="middle" fill="white" font-size="12">Many • Fast • Isolated</text>
+  
+  <polygon points="150,170 450,170 375,110 225,110" fill="var(--diagram-orange)"/>
+  <text x="300" y="145" text-anchor="middle" fill="white" font-size="14" font-weight="700">📦 Integration Tests</text>
+  <text x="300" y="162" text-anchor="middle" fill="white" font-size="11">Some • Medium Speed • Components</text>
+  
+  <polygon points="225,110 375,110 300,60 300,60" fill="var(--diagram-red)"/>
+  <text x="300" y="88" text-anchor="middle" fill="white" font-size="13" font-weight="700">🔺 E2E Tests</text>
+  <text x="300" y="102" text-anchor="middle" fill="white" font-size="10">Few • Slow • Full App</text>
+  
+  <text x="30" y="200" text-anchor="end" fill="var(--diagram-text)" font-size="11">70%</text>
+  <text x="140" y="145" text-anchor="end" fill="var(--diagram-text)" font-size="11">20%</text>
+  <text x="215" y="95" text-anchor="end" fill="var(--diagram-text)" font-size="11">10%</text>
+</svg>

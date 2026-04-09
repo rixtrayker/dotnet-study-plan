@@ -1,0 +1,27 @@
+<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+  <text x="350" y="30" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">Four Pillars of OOP</text>
+  
+  <rect x="20" y="60" width="150" height="110" rx="10" fill="var(--diagram-blue)"/>
+  <text x="95" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">🔒 Encapsulation</text>
+  <text x="95" y="125" text-anchor="middle" fill="white" font-size="12">Hide internals</text>
+  <text x="95" y="143" text-anchor="middle" fill="white" font-size="12">Expose interface</text>
+  <text x="95" y="161" text-anchor="middle" fill="white" font-size="11" opacity="0.8">private, public</text>
+  
+  <rect x="185" y="60" width="150" height="110" rx="10" fill="var(--diagram-purple)"/>
+  <text x="260" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">🧬 Inheritance</text>
+  <text x="260" y="125" text-anchor="middle" fill="white" font-size="12">Reuse code</text>
+  <text x="260" y="143" text-anchor="middle" fill="white" font-size="12">Class hierarchy</text>
+  <text x="260" y="161" text-anchor="middle" fill="white" font-size="11" opacity="0.8">: BaseClass</text>
+  
+  <rect x="350" y="60" width="150" height="110" rx="10" fill="var(--diagram-green)"/>
+  <text x="425" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">🎭 Polymorphism</text>
+  <text x="425" y="125" text-anchor="middle" fill="white" font-size="12">Same name</text>
+  <text x="425" y="143" text-anchor="middle" fill="white" font-size="12">Different behavior</text>
+  <text x="425" y="161" text-anchor="middle" fill="white" font-size="11" opacity="0.8">virtual, override</text>
+  
+  <rect x="515" y="60" width="165" height="110" rx="10" fill="var(--diagram-orange)"/>
+  <text x="597" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">📦 Abstraction</text>
+  <text x="597" y="125" text-anchor="middle" fill="white" font-size="12">Simplify complex</text>
+  <text x="597" y="143" text-anchor="middle" fill="white" font-size="12">systems</text>
+  <text x="597" y="161" text-anchor="middle" fill="white" font-size="11" opacity="0.8">abstract, interface</text>
+</svg>

@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+    </button>
     <nav class="sidebar">
         <div class="sidebar-header">
             <div class="logo">⚡</div>
@@ -23,8 +27,7 @@
             <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
             <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
             <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
-            <a href="advanced.html" class="nav-link active"><span class="nav-number">04</span>Advanced Topics</a>
-            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">🎯</span>Interview Prep</a>
         </div>
 
         <div class="nav-section">
@@ -32,7 +35,7 @@
             <a href="#middleware" class="nav-link"><span class="nav-number">16</span>Middleware</a>
             <a href="#dependency-injection" class="nav-link"><span class="nav-number">17</span>Dependency Injection</a>
             <a href="#logging" class="nav-link"><span class="nav-number">18</span>Logging & Config</a>
-            <a href="#deployment" class="nav-link"><span class="nav-number">19</span>Deployment</a>
+
         </div>
     </nav>
 
@@ -40,7 +43,7 @@
         <div class="hero">
             <div class="hero-badge"><span>📚 Module 4</span></div>
             <h1>Advanced <span>Topics</span></h1>
-            <p>Master middleware, dependency injection, logging, and deployment strategies for production-ready applications.</p>
+            <p>Master middleware, dependency injection, and logging for ASP.NET Core applications. Essential concepts for building maintainable code.</p>
         </div>
 
         <!-- 16: Middleware -->
@@ -64,18 +67,8 @@
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    A["📥 Request"] -->|"1"| B["📋 Logging"]
-    B -->|"2"| C["🔐 Authentication"]
-    C -->|"3"| D["⚡ Routing"]
-    D -->|"4"| E["🎯 Endpoint"]
-    E -->|"Response"| D --> C --> B --> A
-    style A fill:#58a6ff,color:#fff
-    style B fill:#d29922,color:#fff
-    style C fill:#f85149,color:#fff
-    style D fill:#a371f7,color:#fff
-    style E fill:#3fb950,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/middleware-pipeline.svg" alt="Middleware Pipeline Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -143,16 +136,8 @@ app.<span class="method">Run</span>();</pre>
                     </div>
                 </div>
 
-                <div class="mermaid">
-sequenceDiagram
-    participant Controller
-    participant Container
-    participant Service
-    
-    Container->>Service: new UserService(repo, mailer)
-    Container->>Controller: inject UserService
-    Controller->>Service: doSomething()
-    Service-->>Controller: result
+                <div class="diagram-svg">
+                    <img src="images/di-container.svg" alt="Dependency Injection Container Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -278,107 +263,46 @@ _logger.<span class="method">LogError</span>(ex, <span class="string">"Failed to
             </div>
         </section>
 
-        <!-- 19: Deployment -->
-        <section class="section" id="deployment">
-            <div class="section-header">
-                <span class="section-number">19</span>
-                <div>
-                    <h2 class="section-title">Deployment</h2>
-                    <span class="section-subtitle">Getting your app to production</span>
-                </div>
-            </div>
-
-            <span class="level-badge advanced">Advanced</span>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🚀</span>
-                    <div>
-                        <h3 class="card-title">Deployment Options</h3>
-                    </div>
-                </div>
-
-                <div class="mermaid">
-flowchart LR
-    A["💻 Development"] -->|"Build"| B["📦 Package"]
-    B --> C1["🐳 Docker"]
-    B --> C2["☁️ Azure/AWS"]
-    B --> C3["🖥️ VPS"]
-    C1 --> D["🐙 Container"]
-    C2 --> D2["☁️ Cloud"]
-    C3 --> D3["Server"]
-    style A fill:#58a6ff,color:#fff
-    style B fill:#a371f7,color:#fff
-                </div>
-
-                <div class="grid-3">
-                    <div class="grid-item">
-                        <h4>🐳 Docker</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Containerize for consistency</p>
-                        <div class="code-block">
-                            <pre style="font-size:0.75rem"><span class="comment"># Dockerfile</span>
-<span class="keyword">FROM</span> mcr.microsoft.com/dotnet/sdk:8.0
-<span class="keyword">WORKDIR</span> /app
-<span class="keyword">COPY</span> . .
-<span class="keyword">RUN</span> dotnet publish -c Release
-<span class="keyword">EXPOSE</span> 80
-<span class="keyword">ENTRYPOINT</span> [<span class="string">"dotnet"</span>, <span class="string">"app.dll"</span>]</pre>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h4>☁️ Azure App Service</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Managed .NET hosting</p>
-                        <div class="code-block">
-                            <pre style="font-size:0.75rem"><span class="comment"># Deploy with GitHub Actions</span>
-- uses: azure/webapps-deploy@v2
-  with:
-    publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}</pre>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h4>🖥️ Linux VPS</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Full control, lower cost</p>
-                        <div class="code-block">
-                            <pre style="font-size:0.75rem"><span class="comment"># Install and run</span>
-dotnet restore
-dotnet build -c Release
-systemctl start myapp</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="exercise-box">
-                <div class="exercise-header">🎯 Exercise: Prepare for Deployment</div>
-                <p>Before deploying, ensure you have:</p>
-                <ul class="checklist">
-                    <li><span class="checkbox"></span> Connection strings in environment variables</li>
-                    <li><span class="checkbox"></span> HTTPS configured</li>
-                    <li><span class="checkbox"></span> Logging set up</li>
-                    <li><span class="checkbox"></span> Health check endpoint</li>
-                    <li><span class="checkbox"></span> Proper error pages</li>
-                </ul>
-            </div>
-
-            <div class="pro-tip">
-                <div class="pro-tip-header">✨ Next Step</div>
-                <p>Ready to start your career? <a href="career.html" style="color: var(--accent);">Continue to Career Path →</a></p>
-            </div>
-        </section>
+        <div class="pro-tip">
+            <div class="pro-tip-header">✨ Next Step</div>
+            <p>Ready for interviews? <a href="career.html" style="color: var(--accent);">Practice with 100 Interview Questions →</a></p>
+        </div>
 
         <footer>
-            <p><a href="aspnet-core.html" style="color: var(--accent);">← ASP.NET Core</a> | <a href="index.html" style="color: var(--accent);">Home</a> | <a href="career.html" style="color: var(--accent);">Career Path →</a></p>
+            <p><a href="aspnet-core.html" style="color: var(--accent);">← ASP.NET Core</a> | <a href="index.html" style="color: var(--accent);">Home</a> | <a href="career.html" style="color: var(--accent);">Interview Prep →</a></p>
         </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
-            sequence: { actorMargin: 50, showSequenceNumbers: true }
-        });
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeUI(newTheme);
+        }
+        
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'light') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark';
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeUI(savedTheme);
 
         // Quiz functionality
         document.querySelectorAll('.quiz-option').forEach(option => {

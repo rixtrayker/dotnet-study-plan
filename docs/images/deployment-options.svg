@@ -1,0 +1,51 @@
+<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-dep" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="var(--diagram-arrow)"/>
+    </marker>
+  </defs>
+  
+  <text x="350" y="25" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">Deployment Options</text>
+  
+  <rect x="30" y="50" width="120" height="70" rx="8" fill="var(--diagram-blue)"/>
+  <text x="90" y="80" text-anchor="middle" fill="white" font-size="14" font-weight="700">💻 Dev</text>
+  <text x="90" y="100" text-anchor="middle" fill="white" font-size="11">localhost</text>
+  
+  <rect x="190" y="50" width="120" height="70" rx="8" fill="var(--diagram-purple)"/>
+  <text x="250" y="80" text-anchor="middle" fill="white" font-size="14" font-weight="700">📦 Build</text>
+  <text x="250" y="100" text-anchor="middle" fill="white" font-size="11">dotnet publish</text>
+  
+  <rect x="350" y="50" width="100" height="70" rx="8" fill="var(--diagram-orange)"/>
+  <text x="400" y="80" text-anchor="middle" fill="white" font-size="14" font-weight="700">🐳 Docker</text>
+  <text x="400" y="100" text-anchor="middle" fill="white" font-size="11">Container</text>
+  
+  <rect x="480" y="50" width="100" height="70" rx="8" fill="var(--diagram-green)"/>
+  <text x="530" y="80" text-anchor="middle" fill="white" font-size="14" font-weight="700">☁️ Cloud</text>
+  <text x="530" y="100" text-anchor="middle" fill="white" font-size="11">Azure/AWS</text>
+  
+  <rect x="610" y="50" width="80" height="70" rx="8" fill="var(--diagram-pink)"/>
+  <text x="650" y="80" text-anchor="middle" fill="white" font-size="14" font-weight="700">🖥️ VPS</text>
+  <text x="650" y="100" text-anchor="middle" fill="white" font-size="11">Linux</text>
+  
+  <line x1="150" y1="85" x2="190" y2="85" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-dep)"/>
+  <line x1="310" y1="85" x2="350" y2="85" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-dep)"/>
+  
+  <path d="M 310 85 L 330 85 L 330 120 L 400 120" stroke="var(--diagram-arrow)" stroke-width="2" fill="none" marker-end="url(#arrow-dep)"/>
+  <path d="M 330 85 L 330 155 L 530 155" stroke="var(--diagram-arrow)" stroke-width="2" fill="none" marker-end="url(#arrow-dep)"/>
+  <path d="M 330 85 L 330 190 L 650 190" stroke="var(--diagram-arrow)" stroke-width="2" fill="none" marker-end="url(#arrow-dep)"/>
+  
+  <rect x="340" y="140" width="120" height="50" rx="6" fill="var(--diagram-green)" opacity="0.3" stroke="var(--diagram-green)"/>
+  <text x="400" y="170" text-anchor="middle" fill="var(--diagram-text)" font-size="12">Production</text>
+  
+  <rect x="470" y="175" width="120" height="50" rx="6" fill="var(--diagram-green)" opacity="0.3" stroke="var(--diagram-green)"/>
+  <text x="530" y="205" text-anchor="middle" fill="var(--diagram-text)" font-size="12">Production</text>
+  
+  <rect x="600" y="210" width="100" height="40" rx="6" fill="var(--diagram-green)" opacity="0.3" stroke="var(--diagram-green)"/>
+  <text x="650" y="235" text-anchor="middle" fill="var(--diagram-text)" font-size="12">Production</text>
+  
+  <text x="350" y="130" text-anchor="middle" fill="var(--diagram-text)" font-size="11" font-weight="600">Choose your deployment strategy based on scale and budget:</text>
+  
+  <text x="90" y="155" text-anchor="middle" fill="var(--diagram-text)" font-size="10">Docker: Consistent environments</text>
+  <text x="90" y="170" text-anchor="middle" fill="var(--diagram-text)" font-size="10">Cloud: Auto-scaling, managed</text>
+  <text x="90" y="185" text-anchor="middle" fill="var(--diagram-text)" font-size="10">VPS: Full control, lower cost</text>
+</svg>

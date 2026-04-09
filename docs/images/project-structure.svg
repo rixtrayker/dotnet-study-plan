@@ -1,0 +1,38 @@
+<svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
+  <text x="350" y="30" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">ASP.NET MVC Project Structure</text>
+  
+  <rect x="30" y="60" width="120" height="160" rx="10" fill="var(--diagram-blue)"/>
+  <text x="90" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">📂 Controllers/</text>
+  <text x="90" y="125" text-anchor="middle" fill="white" font-size="12">Handle requests</text>
+  <text x="90" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">UsersController.cs</text>
+  <text x="90" y="170" text-anchor="middle" fill="white" font-size="11" opacity="0.8">HomeController.cs</text>
+  <text x="90" y="190" text-anchor="middle" fill="white" font-size="11" opacity="0.8">API endpoints</text>
+  
+  <rect x="170" y="60" width="120" height="160" rx="10" fill="var(--diagram-purple)"/>
+  <text x="230" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">📂 Models/</text>
+  <text x="230" y="125" text-anchor="middle" fill="white" font-size="12">Data & logic</text>
+  <text x="230" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">User.cs</text>
+  <text x="230" y="170" text-anchor="middle" fill="white" font-size="11" opacity="0.8">AppDbContext.cs</text>
+  <text x="230" y="190" text-anchor="middle" fill="white" font-size="11" opacity="0.8">ViewModels</text>
+  
+  <rect x="310" y="60" width="120" height="160" rx="10" fill="var(--diagram-green)"/>
+  <text x="370" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">📂 Views/</text>
+  <text x="370" y="125" text-anchor="middle" fill="white" font-size="12">HTML pages</text>
+  <text x="370" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Index.cshtml</text>
+  <text x="370" y="170" text-anchor="middle" fill="white" font-size="11" opacity="0.8">_Layout.cshtml</text>
+  <text x="370" y="190" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Razor syntax</text>
+  
+  <rect x="450" y="60" width="120" height="160" rx="10" fill="var(--diagram-orange)"/>
+  <text x="510" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">📂 wwwroot/</text>
+  <text x="510" y="125" text-anchor="middle" fill="white" font-size="12">Static files</text>
+  <text x="510" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">css/</text>
+  <text x="510" y="170" text-anchor="middle" fill="white" font-size="11" opacity="0.8">js/</text>
+  <text x="510" y="190" text-anchor="middle" fill="white" font-size="11" opacity="0.8">images/</text>
+  
+  <rect x="590" y="60" width="100" height="160" rx="10" fill="var(--diagram-red)"/>
+  <text x="640" y="95" text-anchor="middle" fill="white" font-size="14" font-weight="700">📄 Program.cs</text>
+  <text x="640" y="125" text-anchor="middle" fill="white" font-size="12">App startup</text>
+  <text x="640" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Services</text>
+  <text x="640" y="170" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Middleware</text>
+  <text x="640" y="190" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Configuration</text>
+</svg>

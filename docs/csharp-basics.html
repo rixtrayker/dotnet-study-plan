@@ -10,6 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+    </button>
+
     <nav class="sidebar">
         <div class="sidebar-header">
             <div class="logo">⚡</div>
@@ -23,8 +28,7 @@
             <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
             <a href="csharp-basics.html" class="nav-link active"><span class="nav-number">02</span>C# Basics</a>
             <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
-            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
-            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">🎯</span>Interview Prep</a>
         </div>
 
         <div class="nav-section">
@@ -63,20 +67,8 @@
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart TB
-    subgraph types["C# Types"]
-        T1["int, long, float, double<br/>Numbers"]
-        T2["string<br/>Text"]
-        T3["bool<br/>True/False"]
-        T4["DateTime<br/>Dates"]
-        T5["decimal<br/>Money (precise)"]
-    end
-    style T1 fill:#58a6ff,color:#fff
-    style T2 fill:#a371f7,color:#fff
-    style T3 fill:#3fb950,color:#fff
-    style T4 fill:#d29922,color:#fff
-    style T5 fill:#f85149,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/csharp-types.svg" alt="C# Data Types Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -145,18 +137,8 @@ flowchart TB
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart TB
-    subgraph pillars["Four Pillars"]
-        P1["🔒 Encapsulation<br/>Hide internals, expose interface"]
-        P2["🧬 Inheritance<br/>Reuse through class hierarchy"]
-        P3["🎭 Polymorphism<br/>Same name, different behavior"]
-        P4["📦 Abstraction<br/>Simplify complex systems"]
-    end
-    style P1 fill:#58a6ff,color:#fff
-    style P2 fill:#a371f7,color:#fff
-    style P3 fill:#3fb950,color:#fff
-    style P4 fill:#d29922,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/oop-pillars.svg" alt="OOP Four Pillars Diagram" style="max-width: 100%; height: auto;">
                 </div>
             </div>
 
@@ -241,7 +223,7 @@ flowchart TB
                 <div class="grid-3">
                     <div class="grid-item">
                         <h4>List&lt;T&gt;</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Dynamic array, most common</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Dynamic array, most common</p>
                         <div class="code-block">
                             <pre><span class="keyword">var</span> <span class="type">names</span> = <span class="keyword">new</span> <span class="type">List</span><<span class="type">string</span>>
 {
@@ -251,7 +233,7 @@ flowchart TB
                     </div>
                     <div class="grid-item">
                         <h4>Dictionary&lt;K,V&gt;</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Key-value pairs</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Key-value pairs</p>
                         <div class="code-block">
                             <pre><span class="keyword">var</span> <span class="type">ages</span> = <span class="keyword">new</span> <span class="type">Dictionary</span><<span class="type">string</span>, <span class="type">int</span>>
 {
@@ -262,7 +244,7 @@ flowchart TB
                     </div>
                     <div class="grid-item">
                         <h4>HashSet&lt;T&gt;</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Unique values only</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Unique values only</p>
                         <div class="code-block">
                             <pre><span class="keyword">var</span> <span class="type">unique</span> = <span class="keyword">new</span> <span class="type">HashSet</span><<span class="type">int</span>>
 { <span class="string">1</span>, <span class="string">2</span>, <span class="string">3</span>, <span class="string">1</span> };
@@ -317,14 +299,38 @@ flowchart TB
         </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
-        });
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeUI(newTheme);
+        }
+        
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'light') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark';
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeUI(savedTheme);
 
+        // Checkbox functionality
         document.querySelectorAll('.checkbox').forEach(checkbox => {
             checkbox.addEventListener('click', function() {
                 this.classList.toggle('checked');

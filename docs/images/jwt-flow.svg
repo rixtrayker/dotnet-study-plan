@@ -1,0 +1,42 @@
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-jwt" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="var(--diagram-arrow)"/>
+    </marker>
+  </defs>
+  
+  <text x="350" y="30" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">JWT Authentication Flow</text>
+  
+  <rect x="50" y="50" width="100" height="40" rx="8" fill="var(--diagram-blue)"/>
+  <text x="100" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">👤 User</text>
+  
+  <rect x="300" y="50" width="100" height="40" rx="8" fill="var(--diagram-purple)"/>
+  <text x="350" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">🌐 API</text>
+  
+  <rect x="550" y="50" width="100" height="40" rx="8" fill="var(--diagram-green)"/>
+  <text x="600" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">🗄️ Database</text>
+  
+  <line x1="100" y1="90" x2="100" y2="290" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="350" y1="90" x2="350" y2="290" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="600" y1="90" x2="600" y2="200" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <line x1="100" y1="110" x2="350" y2="110" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <text x="225" y="105" text-anchor="middle" fill="var(--diagram-text)" font-size="10">1. POST /login</text>
+  <text x="225" y="125" text-anchor="middle" fill="var(--diagram-text)" font-size="9" opacity="0.7">{email, password}</text>
+  
+  <line x1="350" y1="145" x2="600" y2="145" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <text x="475" y="140" text-anchor="middle" fill="var(--diagram-text)" font-size="10">2. Verify</text>
+  
+  <line x1="600" y1="175" x2="350" y2="175" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <text x="475" y="190" text-anchor="middle" fill="var(--diagram-text)" font-size="10">3. User data</text>
+  
+  <rect x="320" y="195" width="60" height="25" rx="4" fill="var(--diagram-orange)"/>
+  <text x="350" y="212" text-anchor="middle" fill="white" font-size="9">Generate JWT</text>
+  
+  <line x1="350" y1="235" x2="100" y2="235" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <text x="225" y="255" text-anchor="middle" fill="var(--diagram-text)" font-size="10">4. {token: "eyJ..."}</text>
+  
+  <line x1="100" y1="275" x2="350" y2="275" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <text x="225" y="270" text-anchor="middle" fill="var(--diagram-text)" font-size="10">5. GET /protected</text>
+  <text x="225" y="290" text-anchor="middle" fill="var(--diagram-text)" font-size="9" opacity="0.7">Authorization: Bearer eyJ...</text>
+</svg>

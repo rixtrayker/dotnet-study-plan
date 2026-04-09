@@ -1,0 +1,32 @@
+<svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-di" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="var(--diagram-arrow)"/>
+    </marker>
+  </defs>
+  
+  <text x="300" y="25" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">Dependency Injection Container</text>
+  
+  <rect x="150" y="45" width="300" height="170" rx="12" fill="var(--bg-card)" stroke="var(--diagram-border)" stroke-width="2"/>
+  <text x="300" y="65" text-anchor="middle" fill="var(--diagram-text)" font-size="14" font-weight="600">DI Container (IoC)</text>
+  
+  <rect x="170" y="85" width="120" height="60" rx="8" fill="var(--diagram-purple)"/>
+  <text x="230" y="110" text-anchor="middle" fill="white" font-size="13" font-weight="700">UserService</text>
+  <text x="230" y="130" text-anchor="middle" fill="white" font-size="11">new Service()</text>
+  
+  <rect x="310" y="85" width="120" height="60" rx="8" fill="var(--diagram-blue)"/>
+  <text x="370" y="110" text-anchor="middle" fill="white" font-size="13" font-weight="700">Controller</text>
+  <text x="370" y="130" text-anchor="middle" fill="white" font-size="11">Needs Service</text>
+  
+  <line x1="290" y1="115" x2="310" y2="115" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-di)"/>
+  <text x="300" y="140" text-anchor="middle" fill="var(--diagram-text)" font-size="10">Injects</text>
+  
+  <rect x="200" y="160" width="200" height="40" rx="6" fill="var(--diagram-green)"/>
+  <text x="300" y="185" text-anchor="middle" fill="white" font-size="12">builder.Services.AddScoped&lt;&gt;()</text>
+  
+  <line x1="80" y1="115" x2="170" y2="115" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-di)"/>
+  <text x="125" y="105" text-anchor="middle" fill="var(--diagram-text)" font-size="10">Request</text>
+  
+  <line x1="430" y1="115" x2="520" y2="115" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-di)"/>
+  <text x="475" y="105" text-anchor="middle" fill="var(--diagram-text)" font-size="10">Response</text>
+</svg>

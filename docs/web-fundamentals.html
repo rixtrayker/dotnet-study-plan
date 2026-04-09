@@ -10,6 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+    </button>
+
     <nav class="sidebar">
         <div class="sidebar-header">
             <div class="logo">⚡</div>
@@ -23,8 +28,7 @@
             <a href="web-fundamentals.html" class="nav-link active"><span class="nav-number">01</span>Web Fundamentals</a>
             <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
             <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
-            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
-            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">🎯</span>Interview Prep</a>
         </div>
 
         <div class="nav-section">
@@ -64,15 +68,8 @@
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    A["👤 User\nBrowser"] -->|"1. Request<br/>GET /users"| B["🌐 Server\nYour App"]
-    B -->|"2. Process<br/>Find data"| C["🗄️ Database"]
-    C -->|"3. Data"| B
-    B -->|"4. Response<br/>HTML/JSON"| A
-    style A fill:#58a6ff,color:#fff
-    style B fill:#a371f7,color:#fff
-    style C fill:#3fb950,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/request-response.svg" alt="Request-Response Cycle Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="flow-steps">
@@ -124,19 +121,19 @@ flowchart LR
                 <div class="grid-4">
                     <div class="grid-item">
                         <h4>🔤 Protocol</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">http:// or https://</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">http:// or https://</p>
                     </div>
                     <div class="grid-item">
                         <h4>🌐 Domain</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">example.com</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">example.com</p>
                     </div>
                     <div class="grid-item">
                         <h4>📁 Path</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">/users/123</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">/users/123</p>
                     </div>
                     <div class="grid-item">
                         <h4>❓ Query</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">?q=john</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">?q=john</p>
                     </div>
                 </div>
             </div>
@@ -171,38 +168,26 @@ flowchart LR
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart TB
-    subgraph methods["HTTP Methods"]
-        GET["GET - Read data<br/>Safe, idempotent"]
-        POST["POST - Create data<br/>Not safe, not idempotent"]
-        PUT["PUT - Update entire record<br/>Idempotent"]
-        PATCH["PATCH - Partial update<br/>Not idempotent"]
-        DELETE["DELETE - Remove data<br/>Idempotent"]
-    end
-    style GET fill:#3fb950,color:#fff
-    style POST fill:#58a6ff,color:#fff
-    style PUT fill:#d29922,color:#fff
-    style PATCH fill:#a371f7,color:#fff
-    style DELETE fill:#f85149,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/http-methods.svg" alt="HTTP Methods Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="grid-2">
                     <div class="grid-item">
                         <h4>GET /users</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Fetch list of all users</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Fetch list of all users</p>
                     </div>
                     <div class="grid-item">
                         <h4>GET /users/5</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Fetch user with ID 5</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Fetch user with ID 5</p>
                     </div>
                     <div class="grid-item">
                         <h4>POST /users</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Create a new user</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Create a new user</p>
                     </div>
                     <div class="grid-item">
                         <h4>PUT /users/5</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Update entire user 5</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Update entire user 5</p>
                     </div>
                 </div>
             </div>
@@ -215,20 +200,8 @@ flowchart TB
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart TB
-    subgraph codes["Status Codes"]
-        S1["1xx - Informational"]
-        S2["2xx - Success<br/>200 OK, 201 Created"]
-        S3["3xx - Redirect<br/>301 Moved"]
-        S4["4xx - Client Error<br/>404 Not Found, 401 Unauthorized"]
-        S5["5xx - Server Error<br/>500 Internal Error"]
-    end
-    style S1 fill:#6e7681,color:#fff
-    style S2 fill:#3fb950,color:#fff
-    style S3 fill:#d29922,color:#fff
-    style S4 fill:#f85149,color:#fff
-    style S5 fill:#db61a2,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/http-status-codes.svg" alt="HTTP Status Codes Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <span class="concept-tag">200 OK</span>
@@ -262,66 +235,33 @@ flowchart TB
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    subgraph mvc["MVC Pattern"]
-        C["📝 Controller<br/>Handles requests<br/>Coordinates"]
-        M["📦 Model<br/>Business logic<br/>Data access"]
-        V["🎨 View<br/>HTML output<br/>User interface"]
-    end
-    
-    C -->|"Uses data from"| M
-    C -->|"Renders"| V
-    M -->|"Data for"| V
+                <div class="diagram-svg">
+                    <img src="images/mvc-pattern.svg" alt="MVC Pattern Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="grid-3">
                     <div class="grid-item">
                         <h4>📝 Controller</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Receives user input, calls the right methods, returns responses.</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Receives user input, calls the right methods, returns responses.</p>
                     </div>
                     <div class="grid-item">
                         <h4>📦 Model</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Your data, business rules, and database logic.</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">Your data, business rules, and database logic.</p>
                     </div>
                     <div class="grid-item">
                         <h4>🎨 View</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">What the user sees - HTML, CSS, JavaScript.</p>
+                        <p style="font-size:0.95rem;color:var(--text-secondary);">What the user sees - HTML, CSS, JavaScript.</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🍕</span>
-                    <div>
-                        <h3 class="card-title">The Restaurant Analogy</h3>
-                    </div>
-                </div>
-
-                <div class="mermaid">
-flowchart TB
-    subgraph restaurant["MVC = Restaurant"]
-        W["👨‍🍳 Waiter<br/>Controller<br/>Takes orders, coordinates"]
-        K["👨‍🍳 Kitchen<br/>Model<br/>Prepares food, knows recipes"]
-        P["🍽️ Plate<br/>View<br/>Presents food nicely"]
-    end
-    
-    C["👤 Customer"] -->|"Order"| W
-    W -->|"Request ingredients"| K
-    K -->|"Cooked food"| W
-    W -->|"Serve"| P
-    P -->|"Enjoys"| C
                 </div>
 
                 <div class="comparison">
                     <div class="comparison-item info">
                         <div class="comparison-label">📝 Controller</div>
-                        <p style="font-size:0.85rem;color:var(--text-secondary);">Waiter takes your order and coordinates between you and the kitchen.</p>
+                        <p style="font-size:1rem;color:var(--text-secondary);">Waiter takes your order and coordinates between you and the kitchen.</p>
                     </div>
                     <div class="comparison-item info">
                         <div class="comparison-label">📦 Model</div>
-                        <p style="font-size:0.85rem;color:var(--text-secondary);">Kitchen prepares the food using recipes (business logic) and ingredients (data).</p>
+                        <p style="font-size:1rem;color:var(--text-secondary);">Kitchen prepares the food using recipes (business logic) and ingredients (data).</p>
                     </div>
                 </div>
             </div>
@@ -342,13 +282,36 @@ flowchart TB
         </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
-        });
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeUI(newTheme);
+        }
+        
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'light') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark';
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeUI(savedTheme);
 
         // Quiz functionality
         document.querySelectorAll('.quiz-option').forEach(option => {

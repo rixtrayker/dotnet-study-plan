@@ -3,13 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Path - .NET Study Plan</title>
+    <title>Interview Prep - .NET Study Plan</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Quiz-specific styles */
+        .quiz-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        /* Tag filter styles */
+        .tag-filters {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tag-filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .tag-filters h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        
+        .tag-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tag-toggle-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .filter-tag {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        
+        .filter-tag:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        
+        .filter-tag.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        .filter-tag.hidden-tag {
+            opacity: 0.4;
+            text-decoration: line-through;
+        }
+        
+        /* Question card styles */
+        .question-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            margin-bottom: 1.25rem;
+            transition: all 0.2s;
+        }
+        
+        .question-card:hover {
+            border-color: var(--accent);
+        }
+        
+        .question-card.hidden {
+            display: none;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .question-number {
+            background: var(--accent);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .question-text {
+            flex: 1;
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        
+        .question-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .q-tag {
+            background: var(--bg-card);
+            color: var(--text-muted);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            border: 1px solid var(--border);
+        }
+        
+        .q-tag.difficulty-easy { color: var(--accent-green); border-color: var(--accent-green); }
+        .q-tag.difficulty-medium { color: var(--accent-orange); border-color: var(--accent-orange); }
+        .q-tag.difficulty-hard { color: var(--accent-red); border-color: var(--accent-red); }
+        
+        .answer-section {
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+        
+        .reveal-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        
+        .reveal-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        .reveal-btn.revealed {
+            background: var(--bg-card);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+        
+        .answer-content {
+            display: none;
+            margin-top: 1rem;
+            padding: 1.25rem;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-green);
+        }
+        
+        .answer-content.revealed {
+            display: block;
+        }
+        
+        .answer-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .answer-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+        
+        .answer-code {
+            margin-top: 1rem;
+            background: var(--code-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        
+        .answer-code pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        /* Progress tracking */
+        .progress-tracker {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 300px;
+            right: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 99;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .progress-info {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .progress-info strong {
+            color: var(--text-primary);
+        }
+        
+        .progress-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .progress-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .progress-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .progress-tracker {
+                left: 1rem;
+                right: 1rem;
+                bottom: 4rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+            }
+            
+            .question-header {
+                flex-direction: column;
+            }
+            
+            .quiz-stats {
+                justify-content: center;
+            }
+        }
+        
+        [data-theme="light"] .progress-tracker {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+    </button>
+
     <nav class="sidebar">
         <div class="sidebar-header">
             <div class="logo">⚡</div>
@@ -23,400 +336,1093 @@
             <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
             <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
             <a href="aspnet-core.html" class="nav-link"><span class="nav-number">03</span>ASP.NET Core</a>
-            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
-            <a href="career.html" class="nav-link active"><span class="nav-number">05</span>Career Path</a>
+            <a href="career.html" class="nav-link active"><span class="nav-number">04</span>Interview Prep</a>
         </div>
 
         <div class="nav-section">
-            <div class="nav-section-title">In This Module</div>
-            <a href="#market" class="nav-link"><span class="nav-number">13</span>Market Requirements</a>
-            <a href="#portfolio" class="nav-link"><span class="nav-number">14</span>Portfolio Projects</a>
-            <a href="#interviews" class="nav-link"><span class="nav-number">15</span>Interview Prep</a>
+            <div class="nav-section-title">Quick Stats</div>
+            <div style="padding: 0 1rem;">
+                <div style="background: var(--bg-card); border-radius: 8px; padding: 1rem; margin-bottom: 0.5rem;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);" id="sidebar-progress">0%</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Questions Revealed</div>
+                </div>
+                <div style="background: var(--bg-card); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-green);" id="sidebar-mastered">0</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Mastered</div>
+                </div>
+            </div>
         </div>
     </nav>
 
     <main class="main-content">
         <div class="hero">
-            <div class="hero-badge"><span>📚 Module 5</span></div>
-            <h1>Career <span>Path</span></h1>
-            <p>Bridge the gap from learning to landing your first .NET developer role. Market requirements, portfolio building, and interview preparation.</p>
+            <div class="hero-badge"><span>🎯 Interview Preparation</span></div>
+            <h1>100 Essential <span>Interview Questions</span></h1>
+            <p>Master these common junior .NET developer interview questions. Click tags to filter, click buttons to reveal answers. Perfect for absolute beginners!</p>
         </div>
 
-        <!-- 13: Market Requirements -->
-        <section class="section" id="market">
-            <div class="section-header">
-                <span class="section-number">13</span>
-                <div>
-                    <h2 class="section-title">Market Requirements</h2>
-                    <span class="section-subtitle">What employers are looking for</span>
-                </div>
+        <!-- Stats -->
+        <div class="quiz-stats">
+            <div class="stat-box">
+                <div class="stat-number">100</div>
+                <div class="stat-label">Total Questions</div>
             </div>
-
-            <span class="week-badge">Week 13</span>
-            <span class="level-badge everyone">Everyone</span>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🎯</span>
-                    <div>
-                        <h3 class="card-title">Must-Have Skills</h3>
-                        <p class="card-description">These are non-negotiable for any .NET junior role</p>
-                    </div>
-                </div>
-
-                <div class="mermaid">
-flowchart LR
-    subgraph must["Must Have"]
-        M1["C# / .NET<br/>Programming"]
-        M2["ASP.NET Core<br/>Web Framework"]
-        M3["SQL / Databases<br/>Data Storage"]
-        M4["REST APIs<br/>Integration"]
-        M5["Git<br/>Version Control"]
-    end
-    style M1 fill:#58a6ff,color:#fff
-    style M2 fill:#a371f7,color:#fff
-    style M3 fill:#3fb950,color:#fff
-    style M4 fill:#d29922,color:#fff
-    style M5 fill:#f85149,color:#fff
-                </div>
-
-                <div class="grid-3">
-                    <div class="grid-item">
-                        <h4>💻 Core Language</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">C# syntax, OOP concepts, LINQ</p>
-                    </div>
-                    <div class="grid-item">
-                        <h4>🌐 Web Framework</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">ASP.NET Core MVC/Razor Pages</p>
-                    </div>
-                    <div class="grid-item">
-                        <h4>🗄️ Database</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">SQL, EF Core, migrations</p>
-                    </div>
-                </div>
+            <div class="stat-box">
+                <div class="stat-number" id="stat-revealed">0</div>
+                <div class="stat-label">Revealed</div>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">📈</span>
-                    <div>
-                        <h3 class="card-title">Should-Know Skills</h3>
-                        <p class="card-description">Differentiate yourself from other candidates</p>
-                    </div>
-                </div>
-
-                <div class="mermaid">
-flowchart LR
-    subgraph should["Should Know"]
-        S1["JWT / Auth<br/>Security"]
-        S2["Docker<br/>Containerization"]
-        S3["xUnit / NUnit<br/>Testing"]
-        S4["Azure/AWS<br/>Cloud Basics"]
-    end
-    style S1 fill:#58a6ff,color:#fff
-    style S2 fill:#a371f7,color:#fff
-    style S3 fill:#3fb950,color:#fff
-    style S4 fill:#d29922,color:#fff
-                </div>
-
-                <div class="concept-tag">Authentication</div>
-                <div class="concept-tag">Authorization</div>
-                <div class="concept-tag">Docker</div>
-                <div class="concept-tag">Unit Testing</div>
-                <div class="concept-tag">CI/CD Basics</div>
+            <div class="stat-box">
+                <div class="stat-number" id="stat-mastered">0</div>
+                <div class="stat-label">Mastered</div>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🌟</span>
-                    <div>
-                        <h3 class="card-title">Nice-to-Have Skills</h3>
-                        <p class="card-description">Bonus points that help you stand out</p>
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="grid-item">
-                        <h4>☁️ Cloud Platforms</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">Azure, AWS basics</p>
-                    </div>
-                    <div class="grid-item">
-                        <h4>🔄 Modern APIs</h4>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">GraphQL, gRPC</p>
-                    </div>
-                </div>
+            <div class="stat-box">
+                <div class="stat-number" id="stat-filtered">100</div>
+                <div class="stat-label">Showing</div>
             </div>
-
-            <div class="tip-box">
-                <div class="tip-box-header">💡 Focus on the Basics First</div>
-                <p>Master the "Must Have" skills before expanding to "Should Know". Employers prioritize strong fundamentals over breadth.</p>
-            </div>
-        </section>
-
-        <!-- 14: Portfolio Projects -->
-        <section class="section" id="portfolio">
-            <div class="section-header">
-                <span class="section-number">14</span>
-                <div>
-                    <h2 class="section-title">Portfolio Projects</h2>
-                    <span class="section-subtitle">Build projects that demonstrate your skills</span>
-                </div>
-            </div>
-
-            <span class="week-badge">Week 14</span>
-            <span class="level-badge everyone">Everyone</span>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">📁</span>
-                    <div>
-                        <h3 class="card-title">Project Recommendations</h3>
-                        <p class="card-description">Build these to showcase your .NET skills</p>
-                    </div>
-                </div>
-
-                <div class="mermaid">
-flowchart LR
-    subgraph projects["Portfolio Projects"]
-        P1["📝 Todo API<br/>REST CRUD<br/>Full-stack"]
-        P2["🛒 E-commerce<br/>Shopping Cart<br/>Auth + Payments"]
-        P3["📊 Dashboard<br/>Admin Panel<br/>Real-time Data"]
-    end
-    style P1 fill:#58a6ff,color:#fff
-    style P2 fill:#a371f7,color:#fff
-    style P3 fill:#3fb950,color:#fff
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">✅</span>
-                    <div>
-                        <h3 class="card-title">Project Checklist</h3>
-                        <p class="card-description">What every portfolio project should include</p>
-                    </div>
-                </div>
-
-                <ul class="checklist">
-                    <li><span class="checkbox"></span> Working CRUD operations (Create, Read, Update, Delete)</li>
-                    <li><span class="checkbox"></span> Database integration with EF Core</li>
-                    <li><span class="checkbox"></span> Clean API responses (proper status codes)</li>
-                    <li><span class="checkbox"></span> Basic authentication/authorization</li>
-                    <li><span class="checkbox"></span> Git version control with meaningful commits</li>
-                    <li><span class="checkbox"></span> README with setup instructions</li>
-                    <li><span class="checkbox"></span> Deployed to a live URL (Azure/AWSRender)</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🐙</span>
-                    <div>
-                        <h3 class="card-title">GitHub Best Practices</h3>
-                    </div>
-                </div>
-
-                <div class="code-block">
-                    <pre><span class="comment"># Good commit messages</span>
-<span class="type">add</span> <span class="method">user</span> model and repository
-<span class="type">implement</span> <span class="method">user</span> CRUD endpoints
-<span class="type">add</span> <span class="method">JWT</span> authentication
-<span class="type">fix</span> <span class="method">validation</span> error handling
-
-<span class="comment"># Branch naming</span>
-<span class="type">feature</span>/user-authentication
-<span class="type">bugfix</span>/login-validation
-<span class="type">hotfix</span>/production-error</pre>
-                </div>
-            </div>
-
-            <div class="pro-tip">
-                <div class="pro-tip-header">✨ Quality Over Quantity</div>
-                <p>Two well-documented, working projects are better than five half-finished ones. Focus on completing projects with clean code and proper architecture.</p>
-            </div>
-        </section>
-
-        <!-- 15: Interview Preparation -->
-        <section class="section" id="interviews">
-            <div class="section-header">
-                <span class="section-number">15</span>
-                <div>
-                    <h2 class="section-title">Interview Preparation</h2>
-                    <span class="section-subtitle">Prepare to ace your technical interviews</span>
-                </div>
-            </div>
-
-            <span class="week-badge">Week 15</span>
-            <span class="level-badge everyone">Everyone</span>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">📋</span>
-                    <div>
-                        <h3 class="card-title">Interview Rounds</h3>
-                        <p class="card-description">What to expect in the hiring process</p>
-                    </div>
-                </div>
-
-                <div class="mermaid">
-flowchart LR
-    subgraph rounds["Interview Process"]
-        R1["📄 Screening<br/>HR Chat<br/>30 min"]
-        R2["💻 Tech Screen<br/>Code Challenge<br/>45-60 min"]
-        R3["🎯 On-site<br/>Full Stack<br/>2-4 hours"]
-        R4["💰 Offer<br/>Negotiation<br/>Final"]
-    end
-    style R1 fill:#58a6ff,color:#fff
-    style R2 fill:#a371f7,color:#fff
-    style R3 fill:#3fb950,color:#fff
-    style R4 fill:#d29922,color:#fff
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">❓</span>
-                    <div>
-                        <h3 class="card-title">Common Questions</h3>
-                    </div>
-                </div>
-
-                <div class="quiz-container">
-                    <div class="quiz-question">❓ Q: Explain the difference between GET and POST</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" data-answer="correct">GET retrieves data (safe, idempotent), POST creates data (not safe, not idempotent)</div>
-                        <div class="quiz-option" data-answer="wrong">GET is faster than POST</div>
-                        <div class="quiz-option" data-answer="wrong">POST is for reading data</div>
-                        <div class="quiz-option" data-answer="wrong">They are the same thing</div>
-                    </div>
-                    <div class="quiz-feedback"></div>
-                </div>
-
-                <div class="quiz-container">
-                    <div class="quiz-question">❓ Q: What is Entity Framework Core?</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" data-answer="correct">An ORM that maps C# objects to database tables</div>
-                        <div class="quiz-option" data-answer="wrong">A JavaScript framework</div>
-                        <div class="quiz-option" data-answer="wrong">A testing library</div>
-                        <div class="quiz-option" data-answer="wrong">A CSS framework</div>
-                    </div>
-                    <div class="quiz-feedback"></div>
-                </div>
-
-                <div class="quiz-container">
-                    <div class="quiz-question">❓ Q: Explain dependency injection in .NET</div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" data-answer="correct">A technique where dependencies are provided to a class rather than created by it</div>
-                        <div class="quiz-option" data-answer="wrong">A way to inject data into databases</div>
-                        <div class="quiz-option" data-answer="wrong">A testing methodology</div>
-                        <div class="quiz-option" data-answer="wrong">A type of database</div>
-                    </div>
-                    <div class="quiz-feedback"></div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">💻</span>
-                    <div>
-                        <h3 class="card-title">Coding Practice</h3>
-                    </div>
-                </div>
-
-                <ul class="checklist">
-                    <li><span class="checkbox"></span> Practice array/string manipulations</li>
-                    <li><span class="checkbox"></span> Understand Big-O notation basics</li>
-                    <li><span class="checkbox"></span> Know when to use List vs Dictionary</li>
-                    <li><span class="checkbox"></span> Be able to explain your solution</li>
-                    <li><span class="checkbox"></span> Test your code with edge cases</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🎤</span>
-                    <div>
-                        <h3 class="card-title">Behavioral Questions</h3>
-                    </div>
-                </div>
-
-                <div class="comparison">
-                    <div class="comparison-item info">
-                        <div class="comparison-label">❌ Weak Answer</div>
-                        <p style="font-size:0.85rem;color:var(--text-secondary);">"I'm a good team player."</p>
-                    </div>
-                    <div class="comparison-item success">
-                        <div class="comparison-label">✅ Strong Answer</div>
-                        <p style="font-size:0.85rem;color:var(--text-secondary);">"In my last project, I collaborated with two teammates to build a REST API. I took the lead on architecting the database schema while they handled the frontend integration."</p>
-                    </div>
-                </div>
-
-                <div class="tip-box">
-                    <div class="tip-box-header">💡 Use the STAR Method</div>
-                    <p><strong>S</strong>ituation → <strong>T</strong>ask → <strong>A</strong>ction → <strong>R</strong>esult. Structure your answers to show what you did and the outcome.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="congrats-box">
-            <div class="congrats-icon">🎉</div>
-            <h2>Congratulations!</h2>
-            <p>You've completed the .NET Developer Study Plan! You've learned:</p>
-            <ul>
-                <li>Web Fundamentals (HTTP, MVC)</li>
-                <li>C# Programming & LINQ</li>
-                <li>ASP.NET Core Development</li>
-                <li>Career-Ready Skills</li>
-            </ul>
-            <p>Now it's time to apply for positions and start your .NET development career. Good luck!</p>
         </div>
 
-        <footer>
-            <p><a href="advanced.html" style="color: var(--accent);">← Advanced Topics</a> | <a href="index.html" style="color: var(--accent);">Home →</a></p>
+        <!-- Tag Filters -->
+        <div class="tag-filters">
+            <div class="tag-filters-header">
+                <h3>🔖 Filter by Tags</h3>
+                <button class="tag-toggle-btn" onclick="toggleAllTags()">Hide/Show All</button>
+            </div>
+            <div class="tags-container" id="tags-container">
+                <!-- Tags will be generated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questions-container">
+            <!-- Questions will be generated by JavaScript -->
+        </div>
+
+        <footer style="margin-bottom: 100px;">
+            <p><a href="aspnet-core.html" style="color: var(--accent);">← Back to ASP.NET Core</a> | <a href="index.html" style="color: var(--accent);">Home</a></p>
         </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
-        });
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+        <div class="progress-info">
+            <strong>Progress:</strong> <span id="progress-text">0 of 100 questions revealed</span>
+        </div>
+        <div class="progress-actions">
+            <button class="progress-btn" onclick="revealAll()">Reveal All</button>
+            <button class="progress-btn" onclick="hideAll()">Hide All</button>
+            <button class="progress-btn" onclick="scrollToTop()">↑ Top</button>
+        </div>
+    </div>
 
-        // Quiz functionality
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const container = this.closest('.quiz-container');
-                const options = container.querySelectorAll('.quiz-option');
-                const feedback = container.querySelector('.quiz-feedback');
+    <script>
+        // ==========================================
+        // 100 INTERVIEW QUESTIONS DATA
+        // ==========================================
+        const interviewQuestions = [
+            // C# BASICS (1-25)
+            {
+                id: 1,
+                question: "What is the difference between value types and reference types in C#?",
+                answer: "Value types (int, bool, struct) store data directly on the stack, while reference types (class, interface, string) store a reference to the data on the heap. Value types are copied when assigned, reference types share the same memory location.",
+                tags: ["csharp", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 2,
+                question: "What is the difference between 'const' and 'readonly' in C#?",
+                answer: "'const' values are compile-time constants and cannot change. 'readonly' values can be set at runtime (in constructor) and cannot change after that. 'const' is implicitly static, 'readonly' can be instance or static.",
+                tags: ["csharp", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 3,
+                question: "What is boxing and unboxing in C#?",
+                answer: "Boxing is converting a value type to a reference type (object). Unboxing is converting a boxed object back to a value type. Boxing creates a copy on the heap, which has performance overhead.",
+                tags: ["csharp", "basics", "intermediate"],
+                difficulty: "medium",
+                code: "int i = 42;\nobject boxed = i;    // Boxing\nint j = (int)boxed;  // Unboxing"
+            },
+            {
+                id: 4,
+                question: "What are the four pillars of Object-Oriented Programming?",
+                answer: "1) Encapsulation - hiding internal details, 2) Inheritance - reusing code through class hierarchy, 3) Polymorphism - same interface, different implementations, 4) Abstraction - simplifying complex reality.",
+                tags: ["csharp", "oop", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 5,
+                question: "What is the difference between '==' and '.Equals()' in C#?",
+                answer: "'==' compares references for reference types and values for value types. '.Equals()' is a method that can be overridden to provide custom equality comparison. For strings, both work the same due to operator overloading.",
+                tags: ["csharp", "basics", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 6,
+                question: "What is a constructor in C#?",
+                answer: "A constructor is a special method that runs when an object is created. It has the same name as the class, no return type, and is used to initialize object state.",
+                tags: ["csharp", "basics", "oop", "beginner"],
+                difficulty: "easy",
+                code: "public class Person\n{\n    public string Name;\n    \n    // Constructor\n    public Person(string name)\n    {\n        Name = name;\n    }\n}"
+            },
+            {
+                id: 7,
+                question: "What is method overloading?",
+                answer: "Method overloading is defining multiple methods with the same name but different parameters (different number, type, or order of parameters). It provides compile-time polymorphism.",
+                tags: ["csharp", "oop", "basics", "beginner"],
+                difficulty: "easy",
+                code: "public void Print(string message) { }\npublic void Print(int number) { }\npublic void Print(string message, int count) { }"
+            },
+            {
+                id: 8,
+                question: "What is method overriding?",
+                answer: "Method overriding is providing a new implementation of a base class method in a derived class using the 'override' keyword. It requires the base method to be marked 'virtual' or 'abstract' and provides runtime polymorphism.",
+                tags: ["csharp", "oop", "basics", "beginner"],
+                difficulty: "easy",
+                code: "public class Animal\n{\n    public virtual void Speak() { }\n}\n\npublic class Dog : Animal\n{\n    public override void Speak()\n    {\n        Console.WriteLine(\"Woof!\");\n    }\n}"
+            },
+            {
+                id: 9,
+                question: "What is the difference between 'abstract' class and 'interface'?",
+                answer: "Abstract classes can have implementation, fields, and constructors. Interfaces only define contracts (methods, properties) without implementation until C# 8. A class can inherit one abstract class but implement multiple interfaces.",
+                tags: ["csharp", "oop", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 10,
+                question: "What is LINQ and why use it?",
+                answer: "LINQ (Language Integrated Query) provides a consistent way to query data from various sources (arrays, lists, databases, XML). It makes code more readable, type-safe, and shorter compared to traditional loops.",
+                tags: ["csharp", "linq", "beginner"],
+                difficulty: "easy",
+                code: "var adults = people.Where(p => p.Age >= 18)\n                   .OrderBy(p => p.Name)\n                   .Select(p => p.Name)\n                   .ToList();"
+            },
+            {
+                id: 11,
+                question: "What is the difference between 'var' and explicit type declaration?",
+                answer: "'var' uses type inference - the compiler determines the type. The type is still strongly typed at compile time. Explicit declaration specifies the type directly. Both generate the same IL code.",
+                tags: ["csharp", "basics", "beginner"],
+                difficulty: "easy",
+                code: "var name = \"John\";  // Compiler knows it's string\nstring name = \"John\";  // Explicit declaration"
+            },
+            {
+                id: 12,
+                question: "What is a nullable type in C#?",
+                answer: "Nullable types can represent the normal range of values plus null. Value types cannot normally be null, but with '?' they can. Useful for database fields that might be null.",
+                tags: ["csharp", "basics", "beginner"],
+                difficulty: "easy",
+                code: "int? age = null;  // Can be null\nint age2 = 25;    // Cannot be null\n\n// Check if has value\nif (age.HasValue)\n    Console.WriteLine(age.Value);"
+            },
+            {
+                id: 13,
+                question: "What is the 'using' statement in C#?",
+                answer: "The 'using' statement ensures that IDisposable objects are properly disposed of, even if an exception occurs. It calls Dispose() automatically at the end of the block. In modern C#, 'using var' doesn't require braces.",
+                tags: ["csharp", "basics", "intermediate"],
+                difficulty: "medium",
+                code: "using (var stream = new FileStream(\"file.txt\"))\n{\n    // Use stream\n}  // Automatically disposed here\n\n// Modern syntax:\nusing var stream = new FileStream(\"file.txt\");"
+            },
+            {
+                id: 14,
+                question: "What is exception handling in C#?",
+                answer: "Exception handling manages runtime errors using try-catch-finally blocks. Try contains code that might throw an exception, catch handles specific exceptions, and finally always executes (useful for cleanup).",
+                tags: ["csharp", "basics", "error-handling", "beginner"],
+                difficulty: "easy",
+                code: "try\n{\n    var result = 10 / 0;\n}\ncatch (DivideByZeroException ex)\n{\n    Console.WriteLine(ex.Message);\n}\nfinally\n{\n    // Cleanup code always runs\n}"
+            },
+            {
+                id: 15,
+                question: "What is the difference between 'string' and 'StringBuilder'?",
+                answer: "Strings are immutable - every modification creates a new string. StringBuilder is mutable and efficient for multiple modifications. Use StringBuilder when concatenating strings in loops or making many changes.",
+                tags: ["csharp", "performance", "intermediate"],
+                difficulty: "medium",
+                code: "// Inefficient - creates many string objects\nstring result = \"\";\nfor (int i = 0; i < 1000; i++)\n    result += i;\n\n// Efficient - modifies same object\nvar sb = new StringBuilder();\nfor (int i = 0; i < 1000; i++)\n    sb.Append(i);"
+            },
+            {
+                id: 16,
+                question: "What is a delegate in C#?",
+                answer: "A delegate is a type that represents references to methods with a specific signature. It's like a function pointer in other languages. Used for callbacks, events, and LINQ. Action<T> and Func<T> are built-in delegate types.",
+                tags: ["csharp", "advanced", "intermediate"],
+                difficulty: "hard",
+                code: "// Declare delegate\npublic delegate void LogMessage(string message);\n\n// Use delegate\nLogMessage logger = Console.WriteLine;\nlogger(\"Hello!\");\n\n// Built-in delegates\nAction<string> action = Console.WriteLine;\nFunc<int, int, int> add = (a, b) => a + b;"
+            },
+            {
+                id: 17,
+                question: "What is the difference between 'IEnumerable' and 'IQueryable'?",
+                answer: "IEnumerable executes queries in-memory (LINQ to Objects). IQueryable translates queries to the data source (like SQL for databases) for server-side execution. Use IQueryable for database queries to reduce data transfer.",
+                tags: ["csharp", "linq", "entity-framework", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 18,
+                question: "What are extension methods?",
+                answer: "Extension methods allow adding methods to existing types without modifying them. Defined as static methods in static classes with 'this' before the first parameter. Common in LINQ methods.",
+                tags: ["csharp", "advanced", "intermediate"],
+                difficulty: "medium",
+                code: "public static class StringExtensions\n{\n    public static bool IsNullOrEmpty(this string str)\n    {\n        return string.IsNullOrEmpty(str);\n    }\n}\n\n// Usage:\n\"hello\".IsNullOrEmpty();"
+            },
+            {
+                id: 19,
+                question: "What is the 'async' and 'await' keywords?",
+                answer: "'async' marks a method as asynchronous. 'await' pauses execution until an asynchronous operation completes without blocking the thread. Returns Task or Task<T>. Essential for I/O operations like database calls or API requests.",
+                tags: ["csharp", "async", "intermediate"],
+                difficulty: "medium",
+                code: "public async Task<User> GetUserAsync(int id)\n{\n    var user = await _dbContext.Users\n        .FirstOrDefaultAsync(u => u.Id == id);\n    return user;\n}"
+            },
+            {
+                id: 20,
+                question: "What is the difference between 'List<T>' and 'Array'?",
+                answer: "Arrays have fixed size, List<T> grows dynamically. Arrays are slightly faster for fixed data. List<T> provides more methods (Add, Remove, etc.). Use arrays for fixed collections, List<T> for dynamic collections.",
+                tags: ["csharp", "collections", "basics", "beginner"],
+                difficulty: "easy",
+                code: "// Array - fixed size\nint[] numbers = new int[5];\n\n// List - dynamic size\nList<int> numbers = new List<int>();\nnumbers.Add(1);\nnumbers.Add(2);"
+            },
+            {
+                id: 21,
+                question: "What is a Dictionary in C#?",
+                answer: "Dictionary<TKey, TValue> is a collection of key-value pairs with fast lookup by key. Keys must be unique. Uses hashing for O(1) average lookup time. Great for caching and fast data retrieval.",
+                tags: ["csharp", "collections", "basics", "beginner"],
+                difficulty: "easy",
+                code: "var ages = new Dictionary<string, int>();\nages[\"John\"] = 25;\nages[\"Jane\"] = 30;\n\n// Fast lookup\nint johnsAge = ages[\"John\"];  // O(1)"
+            },
+            {
+                id: 22,
+                question: "What is the difference between 'struct' and 'class'?",
+                answer: "Structs are value types (stored on stack), classes are reference types (stored on heap). Structs cannot inherit from classes, cannot have parameterless constructors (before C# 10), and are best for small, immutable data structures.",
+                tags: ["csharp", "oop", "basics", "intermediate"],
+                difficulty: "medium",
+                code: "// Value type - copied when assigned\npublic struct Point\n{\n    public int X;\n    public int Y;\n}\n\n// Reference type - reference copied\npublic class Person\n{\n    public string Name;\n}"
+            },
+            {
+                id: 23,
+                question: "What is garbage collection in C#?",
+                answer: "Garbage Collection (GC) automatically manages memory by reclaiming memory used by objects no longer referenced. Runs automatically when memory is needed. Developers can call GC.Collect() but usually shouldn't. Large objects go to LOH (Large Object Heap).",
+                tags: ["csharp", "memory", "advanced"],
+                difficulty: "hard",
+                code: null
+            },
+            {
+                id: 24,
+                question: "What is the 'static' keyword?",
+                answer: "'static' means the member belongs to the type itself, not instances. Static members are shared across all instances. Static classes cannot be instantiated. Useful for utility methods and singleton patterns.",
+                tags: ["csharp", "basics", "beginner"],
+                difficulty: "easy",
+                code: "public static class MathHelper\n{\n    public static int Add(int a, int b)\n    {\n        return a + b;\n    }\n}\n\n// Usage - no instance needed\nvar sum = MathHelper.Add(5, 3);"
+            },
+            {
+                id: 25,
+                question: "What is a property in C#?",
+                answer: "Properties are accessors for private fields. Provide get and/or set accessors. Auto-implemented properties (public string Name { get; set; }) create backing fields automatically. Enable validation and computed properties.",
+                tags: ["csharp", "basics", "oop", "beginner"],
+                difficulty: "easy",
+                code: "public class Person\n{\n    private string _name;\n    \n    // Full property\n    public string Name\n    {\n        get { return _name; }\n        set { _name = value; }\n    }\n    \n    // Auto-implemented\n    public int Age { get; set; }\n    \n    // Read-only\n    public DateTime CreatedAt { get; } = DateTime.Now;\n}"
+            },
+
+            // ASP.NET CORE (26-50)
+            {
+                id: 26,
+                question: "What is ASP.NET Core?",
+                answer: "ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern web applications. It's a redesign of ASP.NET that runs on .NET Core/.NET 5+, is modular, and supports Windows, macOS, and Linux.",
+                tags: ["aspnet", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 27,
+                question: "What is the MVC pattern in ASP.NET Core?",
+                answer: "MVC separates an application into three components: Model (data/business logic), View (UI/presentation), and Controller (handles requests, coordinates). This separation improves maintainability and testability.",
+                tags: ["aspnet", "mvc", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 28,
+                question: "What is Dependency Injection in ASP.NET Core?",
+                answer: "DI is a built-in framework for managing object creation and dependencies. Services are registered in Program.cs and injected where needed via constructors. Supports Singleton, Scoped (per request), and Transient lifetimes.",
+                tags: ["aspnet", "di", "intermediate"],
+                difficulty: "medium",
+                code: "// Register\nbuilder.Services.AddScoped<IUserService, UserService>();\n\n// Inject\npublic class UsersController : Controller\n{\n    private readonly IUserService _userService;\n    \n    public UsersController(IUserService userService)\n    {\n        _userService = userService;\n    }\n}"
+            },
+            {
+                id: 29,
+                question: "What is Entity Framework Core?",
+                answer: "EF Core is an Object-Relational Mapper (ORM) that lets you work with databases using .NET objects. It handles data access, supports LINQ queries, migrations for schema changes, and multiple database providers (SQL Server, SQLite, PostgreSQL).",
+                tags: ["aspnet", "ef-core", "database", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 30,
+                question: "What is a middleware in ASP.NET Core?",
+                answer: "Middleware is software that processes requests and responses in the request pipeline. Each middleware can pass to the next, then handle the response on the way back. Examples: authentication, logging, exception handling, routing.",
+                tags: ["aspnet", "middleware", "intermediate"],
+                difficulty: "medium",
+                code: "app.UseAuthentication();\napp.UseAuthorization();\napp.MapControllers();"
+            },
+            {
+                id: 31,
+                question: "What is the difference between 'AddTransient', 'AddScoped', and 'AddSingleton'?",
+                answer: "Transient: new instance each time. Scoped: one instance per HTTP request. Singleton: one instance for the entire application lifetime. Choose based on whether service needs state, thread-safety, and resource usage.",
+                tags: ["aspnet", "di", "intermediate"],
+                difficulty: "medium",
+                code: "// New instance every time\nbuilder.Services.AddTransient<IEmailService, EmailService>();\n\n// One per HTTP request\nbuilder.Services.AddScoped<IDbContext, AppDbContext>();\n\n// One for entire app\nbuilder.Services.AddSingleton<ICacheService, CacheService>();"
+            },
+            {
+                id: 32,
+                question: "What is a REST API?",
+                answer: "REST (Representational State Transfer) is an architectural style for designing networked applications. Uses HTTP methods (GET, POST, PUT, DELETE) on resources identified by URLs. Stateless, cacheable, and uses standard HTTP status codes.",
+                tags: ["aspnet", "api", "rest", "basics", "beginner"],
+                difficulty: "easy",
+                code: "GET    /api/users      // List all\nGET    /api/users/1    // Get one\nPOST   /api/users      // Create\nPUT    /api/users/1    // Update\nDELETE /api/users/1    // Delete"
+            },
+            {
+                id: 33,
+                question: "What is JWT authentication?",
+                answer: "JWT (JSON Web Token) is a compact, self-contained way to transmit information between parties as a JSON object. Contains header, payload (claims), and signature. Used for stateless authentication - server validates token instead of storing session.",
+                tags: ["aspnet", "security", "authentication", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 34,
+                question: "What is the difference between 'IActionResult' and 'ActionResult<T>'?",
+                answer: "IActionResult is the base interface for action results. ActionResult<T> was the older generic type. In modern ASP.NET Core, you can return specific types (User) or IActionResult. The framework wraps them appropriately.",
+                tags: ["aspnet", "mvc", "intermediate"],
+                difficulty: "medium",
+                code: "// Returns 200 OK with user\n[HttpGet(\"{id}\")]\npublic async Task<User> Get(int id) { }\n\n// Returns various status codes\n[HttpGet(\"{id}\")]\npublic async Task<IActionResult> Get(int id)\n{\n    var user = await _service.Get(id);\n    if (user == null) return NotFound();\n    return Ok(user);\n}"
+            },
+            {
+                id: 35,
+                question: "What is routing in ASP.NET Core?",
+                answer: "Routing maps incoming HTTP requests to controller actions. Can be conventional (template-based in Program.cs) or attribute-based ([Route], [HttpGet] on actions). Attribute routing is more common for APIs.",
+                tags: ["aspnet", "routing", "basics", "beginner"],
+                difficulty: "easy",
+                code: "// Attribute routing\n[ApiController]\n[Route(\"api/[controller]\")]\npublic class UsersController : ControllerBase\n{\n    [HttpGet(\"{id}\")]\n    public IActionResult Get(int id) { }\n}"
+            },
+            {
+                id: 36,
+                question: "What is model binding?",
+                answer: "Model binding automatically maps data from HTTP requests to action method parameters. Can bind from route data, query strings, form data, or JSON body. The [FromBody], [FromRoute], [FromQuery] attributes specify the source.",
+                tags: ["aspnet", "mvc", "intermediate"],
+                difficulty: "medium",
+                code: "[HttpPost]\npublic IActionResult Create([FromBody] CreateUserDto dto)\n{\n    // dto automatically populated from JSON body\n}\n\n[HttpGet(\"{id}\")]\npublic IActionResult Get([FromRoute] int id, [FromQuery] string search)"
+            },
+            {
+                id: 37,
+                question: "What is model validation?",
+                answer: "Model validation ensures data meets requirements before processing. Use Data Annotations attributes like [Required], [StringLength], [Range], [EmailAddress]. The [ApiController] attribute automatically returns 400 Bad Request for invalid models.",
+                tags: ["aspnet", "mvc", "validation", "beginner"],
+                difficulty: "easy",
+                code: "public class CreateUserDto\n{\n    [Required]\n    [StringLength(100)]\n    public string Name { get; set; }\n    \n    [Required]\n    [EmailAddress]\n    public string Email { get; set; }\n    \n    [Range(18, 120)]\n    public int Age { get; set; }\n}"
+            },
+            {
+                id: 38,
+                question: "What is the difference between 'appsettings.json' and User Secrets?",
+                answer: "appsettings.json stores configuration that can be committed (connection strings without passwords, feature flags). User Secrets store sensitive data (passwords, API keys) outside the project directory, not committed to source control.",
+                tags: ["aspnet", "configuration", "security", "beginner"],
+                difficulty: "easy",
+                code: "// appsettings.json - non-sensitive\n{\"Logging\": {\"LogLevel\": {\"Default\": \"Information\"}}}\n\n// User Secrets - sensitive\ndotnet user-secrets set \"ConnectionStrings:Default\" \"Server=...;Password=secret\""
+            },
+            {
+                id: 39,
+                question: "What is CORS and why is it needed?",
+                answer: "CORS (Cross-Origin Resource Sharing) allows web pages to request resources from a different domain than the one serving the page. Browsers block such requests by default for security. ASP.NET Core provides middleware to configure allowed origins.",
+                tags: ["aspnet", "security", "api", "intermediate"],
+                difficulty: "medium",
+                code: "builder.Services.AddCors(options =>\n{\n    options.AddPolicy(\"AllowSpecific\", policy =>\n    {\n        policy.WithOrigins(\"https://example.com\")\n              .AllowAnyHeader()\n              .AllowAnyMethod();\n    });\n});\n\napp.UseCors(\"AllowSpecific\");"
+            },
+            {
+                id: 40,
+                question: "What is a migration in Entity Framework?",
+                answer: "Migrations manage database schema changes over time. Each migration represents a set of schema changes. Use 'dotnet ef migrations add' to create, 'dotnet ef database update' to apply. Keeps database in sync with your model classes.",
+                tags: ["aspnet", "ef-core", "database", "beginner"],
+                difficulty: "easy",
+                code: "# Create migration\ndotnet ef migrations add InitialCreate\n\n# Apply to database\ndotnet ef database update\n\n# Remove last migration\ndotnet ef migrations remove"
+            },
+            {
+                id: 41,
+                question: "What is lazy loading vs eager loading in EF Core?",
+                answer: "Eager loading loads related data with Include(). Lazy loading loads related data when accessed (requires proxy setup). Eager loading is usually preferred as it reduces database round trips and makes queries more predictable.",
+                tags: ["aspnet", "ef-core", "performance", "intermediate"],
+                difficulty: "medium",
+                code: "// Eager loading - one query\nvar usersWithPosts = await _db.Users\n    .Include(u => u.Posts)\n    .ToListAsync();\n\n// Without Include - Posts would be null\nvar users = await _db.Users.ToListAsync();"
+            },
+            {
+                id: 42,
+                question: "What is the Repository Pattern?",
+                answer: "Repository Pattern abstracts data access logic, providing a clean separation between business logic and data access. Common interface for CRUD operations. Makes code testable (can mock repository) and allows changing data source without affecting business logic.",
+                tags: ["aspnet", "architecture", "patterns", "intermediate"],
+                difficulty: "medium",
+                code: "public interface IUserRepository\n{\n    Task<User> GetByIdAsync(int id);\n    Task<IEnumerable<User>> GetAllAsync();\n    Task AddAsync(User user);\n    Task SaveChangesAsync();\n}\n\npublic class UserRepository : IUserRepository\n{\n    private readonly AppDbContext _db;\n    // Implementation...\n}"
+            },
+            {
+                id: 43,
+                question: "What is the difference between 'FirstOrDefault' and 'SingleOrDefault'?",
+                answer: "FirstOrDefault returns the first match or null/default - throws only if source is null. SingleOrDefault expects exactly one match - throws if multiple found. Use FirstOrDefault when 0 or 1 matches expected, SingleOrDefault when exactly 1 match expected.",
+                tags: ["csharp", "linq", "ef-core", "intermediate"],
+                difficulty: "medium",
+                code: "// Returns first user named John, or null\nvar user = _db.Users\n    .FirstOrDefault(u => u.Name == \"John\");\n\n// Throws if multiple users named John\nvar user = _db.Users\n    .SingleOrDefault(u => u.Name == \"John\");"
+            },
+            {
+                id: 44,
+                question: "What is xUnit and how do you write a basic test?",
+                answer: "xUnit is a popular .NET testing framework. Tests are marked with [Fact] for parameterless tests or [Theory] for data-driven tests. Use Assert class for validations. Arrange-Act-Assert is the common pattern.",
+                tags: ["testing", "xunit", "beginner"],
+                difficulty: "easy",
+                code: "public class CalculatorTests\n{\n    [Fact]\n    public void Add_TwoNumbers_ReturnsSum()\n    {\n        // Arrange\n        var calc = new Calculator();\n        \n        // Act\n        var result = calc.Add(2, 3);\n        \n        // Assert\n        Assert.Equal(5, result);\n    }\n    \n    [Theory]\n    [InlineData(2, 3, 5)]\n    [InlineData(5, 5, 10)]\n    public void Add_VariousInputs_ReturnsExpected(int a, int b, int expected)\n    {\n        var calc = new Calculator();\n        Assert.Equal(expected, calc.Add(a, b));\n    }\n}"
+            },
+            {
+                id: 45,
+                question: "What is the difference between unit tests and integration tests?",
+                answer: "Unit tests test isolated components (single method/class) with mocked dependencies - fast and many. Integration tests test multiple components working together with real dependencies (database, APIs) - slower and fewer. Both are important.",
+                tags: ["testing", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 46,
+                question: "What is a DTO (Data Transfer Object)?",
+                answer: "DTO is an object that carries data between processes/layers. Used to decouple internal models from API contracts, shape data for specific use cases, and avoid exposing sensitive fields. Often used with libraries like AutoMapper.",
+                tags: ["aspnet", "api", "architecture", "beginner"],
+                difficulty: "easy",
+                code: "// Domain model - has everything\npublic class User\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n    public string PasswordHash { get; set; }  // Sensitive!\n}\n\n// DTO - only what clients need\npublic class UserDto\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n    // No password!\n}"
+            },
+            {
+                id: 47,
+                question: "What is AutoMapper and why use it?",
+                answer: "AutoMapper is a library that automatically maps properties between objects (e.g., Entity to DTO). Reduces boilerplate mapping code. Configured once, then use Mapper.Map(). Supports flattening, custom converters, and projection for EF Core.",
+                tags: ["aspnet", "tools", "intermediate"],
+                difficulty: "medium",
+                code: "// Configure\nvar config = new MapperConfiguration(cfg =>\n{\n    cfg.CreateMap<User, UserDto>();\n});\nvar mapper = config.CreateMapper();\n\n// Use\nUserDto dto = mapper.Map<UserDto>(user);\n\n// Or with dependency injection\npublic UserService(IMapper mapper) { }"
+            },
+            {
+                id: 48,
+                question: "What is the difference between 'IActionResult' and specific return types?",
+                answer: "IActionResult allows returning different status codes (Ok, NotFound, BadRequest). Specific types always return 200 OK. For APIs that might have errors (resource not found), use IActionResult. For simple cases that always succeed, specific types are cleaner.",
+                tags: ["aspnet", "api", "intermediate"],
+                difficulty: "medium",
+                code: "// Can return 200 or 404\npublic async Task<IActionResult> Get(int id)\n{\n    var user = await _service.Get(id);\n    if (user == null) return NotFound();\n    return Ok(user);\n}\n\n// Always returns 200\npublic async Task<User> Get(int id)\n{\n    return await _service.Get(id);  // Throws if null?\n}"
+            },
+            {
+                id: 49,
+                question: "What is Swagger/OpenAPI?",
+                answer: "Swagger/OpenAPI is a specification for documenting REST APIs. ASP.NET Core can auto-generate interactive documentation from your controllers and XML comments. Shows available endpoints, parameters, request/response schemas. Essential for API development.",
+                tags: ["aspnet", "api", "tools", "beginner"],
+                difficulty: "easy",
+                code: "// Install: Swashbuckle.AspNetCore\n\n// Program.cs\nbuilder.Services.AddSwaggerGen();\n\nif (app.Environment.IsDevelopment())\n{\n    app.UseSwagger();\n    app.UseSwaggerUI();\n}\n\n// Access at: /swagger"
+            },
+            {
+                id: 50,
+                question: "What is logging in ASP.NET Core and how do you use it?",
+                answer: "Built-in logging framework with ILogger<T>. Supports multiple providers (Console, Debug, File, etc.). Log levels: Trace, Debug, Information, Warning, Error, Critical. Configure in appsettings.json or Program.cs. Inject ILogger into constructors.",
+                tags: ["aspnet", "logging", "beginner"],
+                difficulty: "easy",
+                code: "public class UserService\n{\n    private readonly ILogger<UserService> _logger;\n    \n    public UserService(ILogger<UserService> logger)\n    {\n        _logger = logger;\n    }\n    \n    public void DoWork()\n    {\n        _logger.LogInformation(\"Starting work...\");\n        _logger.LogWarning(\"Something unexpected\");\n        _logger.LogError(ex, \"Operation failed\");\n    }\n}"
+            },
+
+            // WEB FUNDAMENTALS (51-70)
+            {
+                id: 51,
+                question: "What is HTTP and how does it work?",
+                answer: "HTTP (HyperText Transfer Protocol) is the foundation of web communication. It's a request-response protocol where clients (browsers) send requests to servers, which return responses. Stateless - each request is independent.",
+                tags: ["web", "http", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 52,
+                question: "What are the main HTTP methods and their purposes?",
+                answer: "GET: retrieve data, POST: create resource, PUT: update entire resource, PATCH: partial update, DELETE: remove resource. GET and DELETE should not have side effects (idempotent). POST and PATCH can have side effects.",
+                tags: ["web", "http", "rest", "basics", "beginner"],
+                difficulty: "easy",
+                code: "GET    /users       # List users\nGET    /users/1     # Get user 1\nPOST   /users       # Create new user\nPUT    /users/1     # Replace user 1\nPATCH  /users/1     # Update part of user 1\nDELETE /users/1     # Delete user 1"
+            },
+            {
+                id: 53,
+                question: "What are HTTP status codes? Name some common ones.",
+                answer: "Status codes indicate request result. 200 OK (success), 201 Created, 400 Bad Request (client error), 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Server Error (server error). First digit indicates category (2xx success, 4xx client error, 5xx server error).",
+                tags: ["web", "http", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 54,
+                question: "What is the difference between HTTP and HTTPS?",
+                answer: "HTTPS is HTTP with SSL/TLS encryption. HTTPS encrypts data between client and server, preventing eavesdropping and tampering. Uses port 443 instead of 80. Essential for sensitive data (passwords, payments). Modern browsers mark HTTP sites as 'Not Secure'.",
+                tags: ["web", "http", "security", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 55,
+                question: "What is a URL and what are its parts?",
+                answer: "URL (Uniform Resource Locator) is a web address. Parts: protocol (https://), domain (www.example.com), port (:443), path (/users/123), query string (?page=1&size=10), fragment (#section). Protocol and domain are required.",
+                tags: ["web", "http", "basics", "beginner"],
+                difficulty: "easy",
+                code: "https://www.example.com:443/api/users?page=1\n|------|----------------|---|----------|-------|\nscheme   host           port path       query"
+            },
+            {
+                id: 56,
+                question: "What are HTTP headers?",
+                answer: "Headers provide additional information with HTTP requests/responses. Common request headers: Accept (content type wanted), Authorization (credentials), Content-Type (body format). Response headers: Content-Type, Cache-Control, Set-Cookie.",
+                tags: ["web", "http", "basics", "beginner"],
+                difficulty: "easy",
+                code: "GET /api/users HTTP/1.1\nHost: api.example.com\nAccept: application/json\nAuthorization: Bearer eyJhbG...\nContent-Type: application/json"
+            },
+            {
+                id: 57,
+                question: "What is JSON and why is it used in APIs?",
+                answer: "JSON (JavaScript Object Notation) is a lightweight data format that's easy to read and write. Language-independent but uses JavaScript syntax. Used in APIs because it's compact, human-readable, and supported by virtually all programming languages.",
+                tags: ["web", "api", "json", "basics", "beginner"],
+                difficulty: "easy",
+                code: "{\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"isActive\": true,\n    \"roles\": [\"User\", \"Admin\"]\n}"
+            },
+            {
+                id: 58,
+                question: "What is the difference between SQL and NoSQL databases?",
+                answer: "SQL databases are relational with structured schemas, tables, and SQL queries (SQL Server, PostgreSQL). NoSQL databases are non-relational with flexible schemas (MongoDB - documents, Redis - key-value). SQL for structured data with relationships, NoSQL for unstructured/flexible data.",
+                tags: ["database", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 59,
+                question: "What is a primary key in SQL?",
+                answer: "A primary key uniquely identifies each row in a table. Cannot be null, must be unique. Often an auto-incrementing integer (IDENTITY in SQL Server). Can be composite (multiple columns). Used for relationships between tables via foreign keys.",
+                tags: ["database", "sql", "basics", "beginner"],
+                difficulty: "easy",
+                code: "CREATE TABLE Users (\n    Id INT PRIMARY KEY IDENTITY,\n    Name NVARCHAR(100) NOT NULL,\n    Email NVARCHAR(100) UNIQUE\n);"
+            },
+            {
+                id: 60,
+                question: "What is a foreign key?",
+                answer: "A foreign key establishes a relationship between tables. It references the primary key of another table. Ensures referential integrity (can't reference non-existent data). Used to join tables in queries.",
+                tags: ["database", "sql", "basics", "beginner"],
+                difficulty: "easy",
+                code: "CREATE TABLE Posts (\n    Id INT PRIMARY KEY IDENTITY,\n    Title NVARCHAR(200),\n    UserId INT,\n    FOREIGN KEY (UserId) REFERENCES Users(Id)\n        ON DELETE CASCADE\n);"
+            },
+            {
+                id: 61,
+                question: "What is the difference between INNER JOIN and LEFT JOIN?",
+                answer: "INNER JOIN returns only matching rows from both tables. LEFT JOIN returns all rows from the left table and matching rows from the right (NULL if no match). Use INNER for required relationships, LEFT for optional relationships.",
+                tags: ["database", "sql", "intermediate"],
+                difficulty: "medium",
+                code: "-- Only users with posts\nSELECT u.Name, p.Title\nFROM Users u\nINNER JOIN Posts p ON u.Id = p.UserId;\n\n-- All users, with posts if they have any\nSELECT u.Name, p.Title\nFROM Users u\nLEFT JOIN Posts p ON u.Id = p.UserId;"
+            },
+            {
+                id: 62,
+                question: "What is Git and why is it used?",
+                answer: "Git is a distributed version control system. Tracks changes to code over time, allows multiple developers to collaborate, creates history of changes, supports branching for feature development, enables reverting to previous versions.",
+                tags: ["git", "tools", "basics", "beginner"],
+                difficulty: "easy",
+                code: "# Common commands\ngit init                    # Initialize repository\ngit clone <url>            # Copy repository\ngit add .                  # Stage changes\ngit commit -m \"message\"    # Save changes\ngit push                   # Upload to remote\ngit pull                   # Download from remote"
+            },
+            {
+                id: 63,
+                question: "What is the difference between 'git pull' and 'git fetch'?",
+                answer: "'git fetch' downloads changes from remote but doesn't merge them into your working branch. 'git pull' is fetch + merge - downloads and immediately tries to merge. Use fetch to review changes before merging.",
+                tags: ["git", "tools", "intermediate"],
+                difficulty: "medium",
+                code: "git fetch origin          # Download only\ngit diff origin/main      # Review changes\ngit merge origin/main     # Merge when ready\n\n# Or all at once:\ngit pull origin main      # Fetch + merge"
+            },
+            {
+                id: 64,
+                question: "What is a Git branch and why use them?",
+                answer: "Branches are independent lines of development. Main/master branch contains production code. Feature branches isolate new work. Allows multiple developers to work simultaneously without conflicts. Merge back to main when complete.",
+                tags: ["git", "tools", "basics", "beginner"],
+                difficulty: "easy",
+                code: "git branch feature-login      # Create branch\ngit checkout feature-login    # Switch to branch\n# Or: git switch -c feature-login\n\n# Work on feature...\n\ngit checkout main\ngit merge feature-login       # Merge back"
+            },
+            {
+                id: 65,
+                question: "What is a pull request (PR)?",
+                answer: "A pull request is a request to merge changes from one branch to another (typically feature to main). Allows code review, discussion, and automated checks before merging. Common workflow in team development using GitHub, Azure DevOps, etc.",
+                tags: ["git", "tools", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 66,
+                question: "What are cookies and how do they work?",
+                answer: "Cookies are small text files stored by the browser. Used for session management (login state), personalization, tracking. Server sends 'Set-Cookie' header, browser stores and sends back with 'Cookie' header on subsequent requests. Can have expiration dates.",
+                tags: ["web", "security", "basics", "beginner"],
+                difficulty: "easy",
+                code: "// Server sets cookie\nSet-Cookie: sessionId=abc123; HttpOnly; Secure; SameSite=Strict\n\n// Browser sends on subsequent requests\nCookie: sessionId=abc123; userPref=dark"
+            },
+            {
+                id: 67,
+                question: "What is the difference between localStorage and sessionStorage?",
+                answer: "localStorage persists until explicitly cleared, sessionStorage clears when tab closes. Both store key-value strings in the browser. Larger capacity than cookies (5MB vs 4KB). Not sent with HTTP requests (unlike cookies).",
+                tags: ["web", "basics", "beginner"],
+                difficulty: "easy",
+                code: "// localStorage - persists\nlocalStorage.setItem('theme', 'dark');\nconst theme = localStorage.getItem('theme');\n\n// sessionStorage - tab only\nsessionStorage.setItem('temp', 'value');"
+            },
+            {
+                id: 68,
+                question: "What is the DOM?",
+                answer: "DOM (Document Object Model) is a tree representation of HTML/XML documents. Each element is a node. JavaScript can manipulate the DOM to change content, structure, and styles dynamically. Browser renders the DOM as the visual page.",
+                tags: ["web", "javascript", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 69,
+                question: "What is responsive web design?",
+                answer: "Responsive design makes websites work on all screen sizes (mobile, tablet, desktop). Uses flexible layouts, media queries (@media in CSS), and flexible images. Mobile-first approach starts with mobile styles and enhances for larger screens.",
+                tags: ["web", "css", "basics", "beginner"],
+                difficulty: "easy",
+                code: "/* Mobile first */\n.container {\n    width: 100%;\n    padding: 1rem;\n}\n\n/* Tablet and up */\n@media (min-width: 768px) {\n    .container {\n        max-width: 720px;\n        margin: 0 auto;\n    }\n}"
+            },
+            {
+                id: 70,
+                question: "What is browser caching?",
+                answer: "Browser caching stores copies of resources (images, CSS, JS) locally. On subsequent visits, browser loads from cache instead of downloading again. Faster page loads, less bandwidth. Controlled by Cache-Control headers from server.",
+                tags: ["web", "performance", "basics", "beginner"],
+                difficulty: "easy",
+                code: "Cache-Control: public, max-age=31536000  // Cache 1 year\nCache-Control: no-cache, no-store         // Don't cache"
+            },
+
+            // GENERAL/CAREER (71-100)
+            {
+                id: 71,
+                question: "What is SOLID?",
+                answer: "SOLID is five design principles: Single Responsibility (class does one thing), Open/Closed (open for extension, closed for modification), Liskov Substitution (derived classes substitutable), Interface Segregation (small interfaces), Dependency Inversion (depend on abstractions).",
+                tags: ["architecture", "patterns", "advanced"],
+                difficulty: "hard",
+                code: null
+            },
+            {
+                id: 72,
+                question: "What is the difference between authentication and authorization?",
+                answer: "Authentication verifies who you are (login with username/password). Authorization determines what you're allowed to do (permissions, roles). Authentication happens first, then authorization checks permissions for requested action.",
+                tags: ["security", "basics", "beginner"],
+                difficulty: "easy",
+                code: null
+            },
+            {
+                id: 73,
+                question: "What is hashing and why is it used for passwords?",
+                answer: "Hashing is a one-way function that converts data to a fixed-length string. Same input always produces same output, but output cannot be reversed to input. Used for passwords so even if database is compromised, passwords remain secure. Use bcrypt, Argon2, or PBKDF2.",
+                tags: ["security", "intermediate"],
+                difficulty: "medium",
+                code: "// Never store plain text passwords!\n// Store hashed version:\nstring passwordHash = BCrypt.HashPassword(\"userPassword\");\n\n// Verify:\nbool valid = BCrypt.Verify(\"userPassword\", passwordHash);"
+            },
+            {
+                id: 74,
+                question: "What is XSS (Cross-Site Scripting)?",
+                answer: "XSS is a security vulnerability where attackers inject malicious scripts into web pages viewed by other users. Can steal cookies, session tokens. Prevent by encoding output, validating input, using Content-Security-Policy headers. ASP.NET Core Razor automatically encodes by default.",
+                tags: ["security", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 75,
+                question: "What is SQL Injection and how do you prevent it?",
+                answer: "SQL Injection is when attackers insert malicious SQL into input fields. Can read, modify, or delete database data. Prevent by using parameterized queries (never concatenate SQL strings), ORMs like EF Core, input validation.",
+                tags: ["security", "database", "intermediate"],
+                difficulty: "medium",
+                code: "// NEVER DO THIS:\nvar sql = $\"SELECT * FROM Users WHERE Name = '{userInput}'\";\n\n// DO THIS:\nvar sql = \"SELECT * FROM Users WHERE Name = @name\";\ncommand.Parameters.AddWithValue(\"@name\", userInput);\n\n// Or use EF Core (automatically parameterized):\nvar user = _db.Users.FirstOrDefault(u => u.Name == userInput);"
+            },
+            {
+                id: 76,
+                question: "What is caching and why use it?",
+                answer: "Caching stores copies of frequently accessed data in fast storage (memory) to reduce database/API calls. Improves performance and scalability. Types: in-memory cache, distributed cache (Redis), response caching. Consider cache invalidation strategies.",
+                tags: ["performance", "intermediate"],
+                difficulty: "medium",
+                code: "// ASP.NET Core Memory Cache\npublic async Task<User> GetUser(int id)\n{\n    if (!_cache.TryGetValue($\"user_{id}\", out User user))\n    {\n        user = await _db.Users.FindAsync(id);\n        _cache.Set($\"user_{id}\", user, TimeSpan.FromMinutes(5));\n    }\n    return user;\n}"
+            },
+            {
+                id: 77,
+                question: "What is pagination and why is it important?",
+                answer: "Pagination breaks large datasets into smaller chunks (pages). Reduces database load, improves response time, better user experience. Common patterns: offset-based (page 1, 20 items), cursor-based (for real-time data). Never return unlimited data.",
+                tags: ["api", "performance", "database", "beginner"],
+                difficulty: "easy",
+                code: "// Offset pagination\npublic async Task<List<User>> GetUsers(int page = 1, int pageSize = 20)\n{\n    return await _db.Users\n        .Skip((page - 1) * pageSize)\n        .Take(pageSize)\n        .ToListAsync();\n}\n\n// URL: /api/users?page=2&pageSize=20"
+            },
+            {
+                id: 78,
+                question: "What is the difference between compile-time and runtime errors?",
+                answer: "Compile-time errors are caught by the compiler before running (syntax errors, type mismatches). Runtime errors occur during execution (null reference, divide by zero). Compile-time errors prevent building; runtime errors cause exceptions during operation.",
+                tags: ["csharp", "basics", "beginner"],
+                difficulty: "easy",
+                code: "// Compile-time error:\nint x = \"hello\";  // Cannot convert string to int\n\n// Runtime error:\nstring s = null;\nint len = s.Length;  // NullReferenceException"
+            },
+            {
+                id: 79,
+                question: "What is a race condition?",
+                answer: "A race condition occurs when multiple threads access shared data concurrently, and the outcome depends on the timing of their execution. Can cause data corruption and unpredictable behavior. Prevent with locks, mutexes, or concurrent collections.",
+                tags: ["csharp", "concurrency", "advanced"],
+                difficulty: "hard",
+                code: "// Race condition example:\nint counter = 0;\n\n// Thread 1 and 2 both execute:\ncounter++;  // Read, increment, write - not atomic!\n\n// Solution:\nlock (lockObject)\n{\n    counter++;\n}\n\n// Or use Interlocked:\nInterlocked.Increment(ref counter);"
+            },
+            {
+                id: 80,
+                question: "What is a deadlock?",
+                answer: "A deadlock occurs when two or more threads are waiting for each other to release resources, creating a circular wait. Neither can proceed. Prevention: acquire locks in consistent order, use timeouts, avoid nested locks when possible.",
+                tags: ["csharp", "concurrency", "advanced"],
+                difficulty: "hard",
+                code: null
+            },
+            {
+                id: 81,
+                question: "What is the difference between a process and a thread?",
+                answer: "A process is an independent running program with its own memory space. A thread is a unit of execution within a process. Multiple threads share the same process memory. Processes are isolated; threads within a process share memory.",
+                tags: ["general", "basics", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 82,
+                question: "What is Big O notation?",
+                answer: "Big O describes algorithm efficiency as input size grows. O(1) - constant time, O(log n) - logarithmic, O(n) - linear, O(n²) - quadratic. Important for choosing efficient algorithms and understanding performance characteristics.",
+                tags: ["algorithms", "intermediate"],
+                difficulty: "medium",
+                code: "O(1)       - Dictionary lookup\nO(log n)   - Binary search\nO(n)       - Linear search\nO(n log n) - Efficient sorting\nO(n²)      - Nested loops"
+            },
+            {
+                id: 83,
+                question: "What is recursion and when should you use it?",
+                answer: "Recursion is when a function calls itself. Needs a base case to stop. Good for tree/graph traversal, divide-and-conquer algorithms. Can cause stack overflow if too deep. Iteration is usually more memory-efficient.",
+                tags: ["algorithms", "basics", "intermediate"],
+                difficulty: "medium",
+                code: "// Factorial example\npublic int Factorial(int n)\n{\n    if (n <= 1) return 1;  // Base case\n    return n * Factorial(n - 1);  // Recursive case\n}\n\n// Factorial(5) = 5 * 4 * 3 * 2 * 1 = 120"
+            },
+            {
+                id: 84,
+                question: "What is a stack and a queue?",
+                answer: "Stack: LIFO (Last In First Out) - like a stack of plates. Push to add, Pop to remove. Queue: FIFO (First In First Out) - like a line. Enqueue to add, Dequeue to remove. Both are fundamental data structures.",
+                tags: ["algorithms", "data-structures", "basics"],
+                difficulty: "easy",
+                code: "// Stack - LIFO\nvar stack = new Stack<int>();\nstack.Push(1);\nstack.Push(2);\nint top = stack.Pop();  // Returns 2\n\n// Queue - FIFO\nvar queue = new Queue<int>();\nqueue.Enqueue(1);\nqueue.Enqueue(2);\nint first = queue.Dequeue();  // Returns 1"
+            },
+            {
+                id: 85,
+                question: "What is the difference between an array and a linked list?",
+                answer: "Array: contiguous memory, fixed size (unless resized), O(1) access by index, O(n) insert/delete in middle. Linked list: scattered memory, dynamic size, O(n) access by position, O(1) insert/delete if you have the node reference.",
+                tags: ["algorithms", "data-structures", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 86,
+                question: "What is CI/CD?",
+                answer: "CI/CD (Continuous Integration/Continuous Deployment) automates building, testing, and deploying code. CI: automatically build and test on code changes. CD: automatically deploy passing builds. Reduces manual work, catches issues early, enables frequent releases.",
+                tags: ["devops", "tools", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 87,
+                question: "What is an API gateway?",
+                answer: "API gateway is a server that acts as an entry point for API requests. Handles routing, authentication, rate limiting, caching, request/response transformation. Common in microservices architectures to provide a single entry point.",
+                tags: ["architecture", "api", "advanced"],
+                difficulty: "hard",
+                code: null
+            },
+            {
+                id: 88,
+                question: "What is the difference between monolithic and microservices architecture?",
+                answer: "Monolithic: single deployable unit, all components together. Simpler initially but harder to scale independently. Microservices: independent services that communicate via APIs. Can scale independently, different tech stacks, but more operational complexity.",
+                tags: ["architecture", "advanced"],
+                difficulty: "hard",
+                code: null
+            },
+            {
+                id: 89,
+                question: "What is Docker and what problem does it solve?",
+                answer: "Docker packages applications with their dependencies into containers. Ensures 'works on my machine' becomes 'works everywhere'. Consistent environments across dev, test, and production. Lightweight compared to virtual machines.",
+                tags: ["devops", "tools", "intermediate"],
+                difficulty: "medium",
+                code: "# Dockerfile example\nFROM mcr.microsoft.com/dotnet/aspnet:8.0\nWORKDIR /app\nCOPY . .\nEXPOSE 80\nENTRYPOINT [\"dotnet\", \"MyApp.dll\"]"
+            },
+            {
+                id: 90,
+                question: "What is load balancing?",
+                answer: "Load balancing distributes incoming traffic across multiple servers. Prevents any single server from becoming a bottleneck, improves availability (if one server fails, others continue), enables horizontal scaling. Implemented via hardware or software (NGINX, Azure Load Balancer).",
+                tags: ["architecture", "performance", "intermediate"],
+                difficulty: "medium",
+                code: null
+            },
+            {
+                id: 91,
+                question: "What is the CAP theorem?",
+                answer: "CAP theorem states that a distributed system can only guarantee two of three: Consistency (all nodes see same data), Availability (every request gets a response), Partition tolerance (system works despite network failures). In practice, systems choose between CP or AP.",
+                tags: ["architecture", "database", "advanced"],
+                difficulty: "hard",
+                code: null
+            },
+            {
+                id: 92,
+                question: "What is eventual consistency?",
+                answer: "Eventual consistency means that if no new updates are made, eventually all replicas will converge to the same value. Used in distributed systems where immediate consistency is too expensive. Accepts temporary inconsistencies for better availability and performance.",
+                tags: ["architecture", "database", "advanced"],
+                difficulty: "hard",
+                code: null
+            },
+            {
+                id: 93,
+                question: "What is the Single Responsibility Principle?",
+                answer: "A class should have only one reason to change, meaning it should have only one job. Makes code more maintainable and testable. If a class does too many things, changes for one reason might break another functionality.",
+                tags: ["architecture", "solid", "intermediate"],
+                difficulty: "medium",
+                code: "// Bad: UserService handles users AND emails\npublic class UserService\n{\n    void CreateUser() { }\n    void SendEmail() { }  // Wrong!\n}\n\n// Good: Separate concerns\npublic class UserService { void CreateUser() { } }\npublic class EmailService { void SendEmail() { } }"
+            },
+            {
+                id: 94,
+                question: "What is the difference between an abstract class and an interface in C# 8+?",
+                answer: "C# 8+ allows default implementations in interfaces. Key differences remain: abstract classes can have fields, constructors, and access modifiers. Interfaces are still for defining contracts and support multiple inheritance. Abstract classes are for shared base functionality.",
+                tags: ["csharp", "oop", "advanced"],
+                difficulty: "hard",
+                code: "// C# 8+ interface with default implementation\npublic interface ILogger\n{\n    void Log(string message);\n    \n    void LogError(string message)  // Default implementation\n    {\n        Log($\"ERROR: {message}\");\n    }\n}"
+            },
+            {
+                id: 95,
+                question: "What is pattern matching in C#?",
+                answer: "Pattern matching is checking if a value has a certain shape and extracting data. Includes type patterns, property patterns, tuple patterns, list patterns (C# 11). Makes code more concise and readable compared to traditional if/else or switch statements.",
+                tags: ["csharp", "advanced"],
+                difficulty: "hard",
+                code: "// Type pattern\nif (obj is Person p)\n    Console.WriteLine(p.Name);\n\n// Property pattern\nif (person is { Age: >= 18, Name: not null })\n    Console.WriteLine(\"Adult\");\n\n// List pattern (C# 11)\nif (numbers is [1, 2, 3])\n    Console.WriteLine(\"Match!\");"
+            },
+            {
+                id: 96,
+                question: "What is the difference between 'is' and 'as' keywords?",
+                answer: "'is' checks if an object is of a type and can assign to a variable (C# 7+ pattern matching). 'as' attempts to cast and returns null if it fails instead of throwing. Use 'is' for type checking, 'as' when null is an acceptable result.",
+                tags: ["csharp", "basics", "intermediate"],
+                difficulty: "medium",
+                code: "// is - type check with assignment\nif (obj is Person person)\n{\n    Console.WriteLine(person.Name);\n}\n\n// as - cast or null\nvar person = obj as Person;\nif (person != null)\n{\n    Console.WriteLine(person.Name);\n}"
+            },
+            {
+                id: 97,
+                question: "What is a record in C# 9+?",
+                answer: "Records are reference types with value-based equality semantics. Designed for immutable data models. Compiler generates Equals, GetHashCode, ToString, and copy constructor. Great for DTOs and domain models that don't change after creation.",
+                tags: ["csharp", "advanced"],
+                difficulty: "hard",
+                code: "// Immutable record\npublic record Person(string Name, int Age);\n\n// Usage\nvar person1 = new Person(\"John\", 30);\nvar person2 = new Person(\"John\", 30);\n\n// Value equality: true!\nConsole.WriteLine(person1 == person2);  // True\n\n// With-expression for copy\nvar older = person1 with { Age = 31 };"
+            },
+            {
+                id: 98,
+                question: "What is the difference between 'ConfigureAwait(false)' and not using it?",
+                answer: "ConfigureAwait(false) tells the await to not capture the current synchronization context. Important in library code to prevent deadlocks and improve performance. In UI apps (WinForms, WPF), omitting it ensures code resumes on UI thread.",
+                tags: ["csharp", "async", "advanced"],
+                difficulty: "hard",
+                code: "// Library code - don't need context\npublic async Task<string> GetDataAsync()\n{\n    var response = await httpClient\n        .GetAsync(\"url\")\n        .ConfigureAwait(false);\n    return await response.Content\n        .ReadAsStringAsync()\n        .ConfigureAwait(false);\n}\n\n// UI code - need to update UI\nprivate async void Button_Click()\n{\n    var data = await GetDataAsync();\n    // Back on UI thread\n    textBox.Text = data;\n}"
+            },
+            {
+                id: 99,
+                question: "What is reflection in C#?",
+                answer: "Reflection allows code to inspect and interact with types at runtime. Can get type information, access private members, create instances dynamically, invoke methods. Powerful but slow and bypasses compile-time type safety. Use sparingly.",
+                tags: ["csharp", "advanced"],
+                difficulty: "hard",
+                code: "// Get type info at runtime\nvar type = typeof(string);\nvar methods = type.GetMethods();\n\n// Create instance dynamically\nvar instance = Activator.CreateInstance(typeof(Person));\n\n// Invoke method by name\nvar method = type.GetMethod(\"Substring\");\nvar result = method.Invoke(\"hello\", new object[] { 0, 3 });"
+            },
+            {
+                id: 100,
+                question: "What advice would you give a junior developer starting their first .NET job?",
+                answer: "1) Focus on fundamentals - C#, OOP, and HTTP are more important than frameworks. 2) Write clean, readable code over clever code. 3) Ask questions - senior developers expect it. 4) Learn your team's codebase gradually. 5) Write tests from day one. 6) Keep learning but don't chase every new technology. 7) Soft skills matter as much as technical skills.",
+                tags: ["career", "beginner"],
+                difficulty: "easy",
+                code: null
+            }
+        ];
+
+        // ==========================================
+        // THEME TOGGLE
+        // ==========================================
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeUI(newTheme);
+        }
+        
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'light') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark';
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeUI(savedTheme);
+
+        // ==========================================
+        // TAG FILTERING
+        // ==========================================
+        const allTags = [...new Set(interviewQuestions.flatMap(q => q.tags))].sort();
+        let activeTags = new Set(allTags);
+        let hiddenTags = new Set();
+
+        function renderTags() {
+            const container = document.getElementById('tags-container');
+            container.innerHTML = allTags.map(tag => `
+                <button class="filter-tag ${activeTags.has(tag) ? 'active' : ''} ${hiddenTags.has(tag) ? 'hidden-tag' : ''}" 
+                        onclick="toggleTag('${tag}')" 
+                        data-tag="${tag}">
+                    ${tag}
+                </button>
+            `).join('');
+        }
+
+        function toggleTag(tag) {
+            if (activeTags.has(tag)) {
+                activeTags.delete(tag);
+            } else {
+                activeTags.add(tag);
+            }
+            renderTags();
+            filterQuestions();
+        }
+
+        function toggleAllTags() {
+            if (activeTags.size === allTags.length) {
+                // Hide all
+                activeTags.clear();
+            } else {
+                // Show all
+                activeTags = new Set(allTags);
+            }
+            renderTags();
+            filterQuestions();
+        }
+
+        // ==========================================
+        // QUESTIONS RENDERING
+        // ==========================================
+        function getDifficultyClass(difficulty) {
+            return `difficulty-${difficulty}`;
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = interviewQuestions.map(q => `
+                <div class="question-card" data-id="${q.id}" data-tags="${q.tags.join(',')}">
+                    <div class="question-header">
+                        <span class="question-number">${q.id}</span>
+                        <span class="question-text">${q.question}</span>
+                    </div>
+                    <div class="question-tags">
+                        ${q.tags.map(tag => `<span class="q-tag">${tag}</span>`).join('')}
+                        <span class="q-tag ${getDifficultyClass(q.difficulty)}">${q.difficulty}</span>
+                    </div>
+                    <div class="answer-section">
+                        <button class="reveal-btn" onclick="toggleAnswer(${q.id})">
+                            👁️ Reveal Answer
+                        </button>
+                        <div class="answer-content" id="answer-${q.id}">
+                            <div class="answer-label">Answer</div>
+                            <div class="answer-text">${q.answer}</div>
+                            ${q.code ? `
+                                <div class="answer-code">
+                                    <pre>${escapeHtml(q.code)}</pre>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function toggleAnswer(id) {
+            const answerEl = document.getElementById(`answer-${id}`);
+            const btn = answerEl.previousElementSibling;
+            
+            answerEl.classList.toggle('revealed');
+            
+            if (answerEl.classList.contains('revealed')) {
+                btn.textContent = '🙈 Hide Answer';
+                btn.classList.add('revealed');
+            } else {
+                btn.textContent = '👁️ Reveal Answer';
+                btn.classList.remove('revealed');
+            }
+            
+            updateStats();
+        }
+
+        function filterQuestions() {
+            const cards = document.querySelectorAll('.question-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const tags = card.dataset.tags.split(',');
+                const hasActiveTag = tags.some(tag => activeTags.has(tag));
                 
-                options.forEach(opt => {
-                    opt.classList.remove('correct', 'incorrect');
-                    opt.style.pointerEvents = 'none';
-                });
-                
-                if (this.dataset.answer === 'correct') {
-                    this.classList.add('correct');
-                    feedback.textContent = '✓ Correct! Great job!';
-                    feedback.className = 'quiz-feedback show correct';
+                if (hasActiveTag) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
                 } else {
-                    this.classList.add('incorrect');
-                    this.style.textDecoration = 'line-through';
-                    const correct = container.querySelector('[data-answer="correct"]');
-                    correct.classList.add('correct');
-                    feedback.textContent = '✗ Not quite. The correct answer is highlighted.';
-                    feedback.className = 'quiz-feedback show incorrect';
+                    card.classList.add('hidden');
                 }
             });
-        });
+            
+            document.getElementById('stat-filtered').textContent = visibleCount;
+        }
 
-        // Checkbox functionality
-        document.querySelectorAll('.checkbox').forEach(checkbox => {
-            checkbox.addEventListener('click', function() {
-                this.classList.toggle('checked');
+        function revealAll() {
+            document.querySelectorAll('.answer-content').forEach(el => {
+                el.classList.add('revealed');
             });
-        });
+            document.querySelectorAll('.reveal-btn').forEach(btn => {
+                btn.textContent = '🙈 Hide Answer';
+                btn.classList.add('revealed');
+            });
+            updateStats();
+        }
+
+        function hideAll() {
+            document.querySelectorAll('.answer-content').forEach(el => {
+                el.classList.remove('revealed');
+            });
+            document.querySelectorAll('.reveal-btn').forEach(btn => {
+                btn.textContent = '👁️ Reveal Answer';
+                btn.classList.remove('revealed');
+            });
+            updateStats();
+        }
+
+        function updateStats() {
+            const revealed = document.querySelectorAll('.answer-content.revealed').length;
+            const total = interviewQuestions.length;
+            const percentage = Math.round((revealed / total) * 100);
+            
+            document.getElementById('stat-revealed').textContent = revealed;
+            document.getElementById('stat-mastered').textContent = revealed;
+            document.getElementById('sidebar-progress').textContent = percentage + '%';
+            document.getElementById('sidebar-mastered').textContent = revealed;
+            document.getElementById('progress-text').textContent = `${revealed} of ${total} questions revealed (${percentage}%)`;
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // INITIALIZE
+        // ==========================================
+        renderTags();
+        renderQuestions();
+        updateStats();
     </script>
 </body>
 </html>

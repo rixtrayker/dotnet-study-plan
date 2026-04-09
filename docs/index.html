@@ -8,113 +8,294 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .home-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero-home {
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-home p {
+            font-size: 1.35rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .module-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .module-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .module-number {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .module-card h3 {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .module-card p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .module-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .beginner-badge {
+            display: inline-block;
+            background: rgba(63, 185, 80, 0.2);
+            color: var(--accent-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .features-section {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .features-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+        
+        footer p {
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-home h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-home p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <main class="main-content" style="margin-left: 0; padding-top: 4rem;">
-        <div class="hero">
-            <div class="hero-badge"><span>📚 Complete Study Plan</span></div>
-            <h1>.NET Developer: <span>Zero to Market Ready</span></h1>
-            <p>A structured path from Web fundamentals → C# → ASP.NET Core → Job-ready. Perfect for beginners who want to become junior developers.</p>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+    </button>
+
+    <main class="home-container">
+        <div class="hero-home">
+            <div class="hero-badge" style="margin-bottom: 1.5rem;"><span>🚀 Beginner Friendly</span></div>
+            <h1>.NET Developer: <span>Zero to Job Ready</span></h1>
+            <p>A step-by-step learning path designed for absolute beginners. No prior coding experience needed. Learn at your own pace with 100+ interview questions and hands-on exercises.</p>
+            <div style="margin-top: 2rem;">
+                <span class="beginner-badge">✨ 100% Free</span>
+                <span class="beginner-badge">📱 Self-Paced</span>
+                <span class="beginner-badge">🎯 Job Focused</span>
+            </div>
         </div>
 
-        <section class="section">
-            <div class="section-header">
-                <span class="section-number" style="background: var(--accent);">🚀</span>
-                <div>
-                    <h2 class="section-title">Choose Your Path</h2>
-                    <span class="section-subtitle">19 sections across 6 modules</span>
-                </div>
-            </div>
-
-            <div class="page-nav" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-                <a href="web-fundamentals.html" class="page-card">
-                    <h3>🌐 Web Fundamentals</h3>
-                    <p>How the web works, HTTP, and MVC architecture</p>
-                    <span class="sections">Sections 01-03 • Weeks 1-2</span>
-                </a>
-                <a href="csharp-basics.html" class="page-card">
-                    <h3>💻 C# Basics</h3>
-                    <p>Variables, OOP, Collections, and LINQ</p>
-                    <span class="sections">Sections 04-06 • Weeks 3-4</span>
-                </a>
-                <a href="aspnet-core.html" class="page-card">
-                    <h3>⚡ ASP.NET Core</h3>
-                    <p>Project setup, MVC, EF Core, APIs, Auth</p>
-                    <span class="sections">Sections 07-12 • Weeks 5-10</span>
-                </a>
-                <a href="advanced.html" class="page-card">
-                    <h3>🔧 Advanced Topics</h3>
-                    <p>Middleware, DI, Logging, and Deployment</p>
-                    <span class="sections">Sections 16-19 • Weeks 11-12</span>
-                </a>
-                <a href="career.html" class="page-card">
-                    <h3>💼 Career Path</h3>
-                    <p>Market requirements, portfolio, interviews</p>
-                    <span class="sections">Sections 13-15</span>
-                </a>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">📊</span>
-                    <div>
-                        <h3 class="card-title">Learning Roadmap</h3>
+        <section>
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">📚 Learning Modules</h2>
+            <div class="modules-grid">
+                <a href="web-fundamentals.html" class="module-card">
+                    <div class="module-number">🌐</div>
+                    <h3>Web Fundamentals</h3>
+                    <p>Start here! Learn how the web works, HTTP protocol, and the MVC pattern that powers most websites.</p>
+                    <div class="module-meta">
+                        <span>📖 3 Sections</span>
+                        <span>⏱️ Weeks 1-2</span>
                     </div>
+                </a>
+
+                <a href="csharp-basics.html" class="module-card">
+                    <div class="module-number">💻</div>
+                    <h3>C# Basics</h3>
+                    <p>Master the C# programming language: variables, object-oriented programming, collections, and LINQ.</p>
+                    <div class="module-meta">
+                        <span>📖 3 Sections</span>
+                        <span>⏱️ Weeks 3-4</span>
+                    </div>
+                </a>
+
+                <a href="aspnet-core.html" class="module-card">
+                    <div class="module-number">⚡</div>
+                    <h3>ASP.NET Core</h3>
+                    <p>Build real web applications with ASP.NET Core: MVC, Entity Framework, REST APIs, and Authentication.</p>
+                    <div class="module-meta">
+                        <span>📖 6 Sections</span>
+                        <span>⏱️ Weeks 5-10</span>
+                    </div>
+                </a>
+
+                <a href="career.html" class="module-card">
+                    <div class="module-number">🎯</div>
+                    <h3>Interview Prep</h3>
+                    <p>100 essential interview questions with answers. Filter by topic, track your progress, ace your interviews!</p>
+                    <div class="module-meta">
+                        <span>📖 100 Questions</span>
+                        <span>🏷️ Tagged & Filterable</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>✨ What Makes This Different?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Visual Diagrams</h4>
+                    <p>SVG diagrams instead of confusing text explanations</p>
                 </div>
-                <div class="mermaid">
-journey
-    title Learning .NET Journey
-    section Foundation
-      Web Basics: 5: You
-      HTTP Protocol: 4: You
-      MVC Pattern: 4: You
-    section Language
-      C# Fundamentals: 5: You
-      OOP Concepts: 4: You
-      LINQ: 4: You
-    section Framework
-      ASP.NET Core: 5: You
-      Entity Framework: 4: You
-      REST APIs: 4: You
-    section Career
-      Portfolio: 5: You
-      Interview Prep: 4: You
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <h4>100+ Questions</h4>
+                    <p>Practice with real interview questions and answers</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏷️</div>
+                    <h4>Smart Filtering</h4>
+                    <p>Filter questions by topic and difficulty level</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌙</div>
+                    <h4>Light & Dark Mode</h4>
+                    <p>Study comfortably day or night</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Learn on any device, anywhere</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h4>Beginner First</h4>
+                    <p>No prior coding experience required</p>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <div class="grid-3">
-                <div class="career-card">
-                    <h4>🎯 Must Know</h4>
-                    <p>C#, ASP.NET Core, SQL, REST APIs, Git</p>
-                </div>
-                <div class="career-card">
-                    <h4>📈 Should Know</h4>
-                    <p>Authentication/JWT, EF Core, Docker, Testing</p>
-                </div>
-                <div class="career-card">
-                    <h4>🌟 Nice to Have</h4>
-                    <p>Azure/AWS, gRPC, Microservices, GraphQL</p>
-                </div>
-            </div>
+        <section style="text-align: center; padding: 3rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready to Start?</h2>
+            <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">Begin with Web Fundamentals - no coding required!</p>
+            <a href="web-fundamentals.html" style="display: inline-block; background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.2s;">
+                🚀 Start Learning →
+            </a>
         </section>
 
         <footer>
-            <p>.NET Developer Study Plan • Built with Mermaid.js</p>
-            <p>19 sections • Interactive quizzes • Practice exercises</p>
+            <p>.NET Developer Study Plan • Built for Beginners</p>
+            <p style="margin-top: 0.5rem;">4 Modules • 100+ Interview Questions • Visual Diagrams</p>
         </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            flowchart: { useMaxWidth: true, htmlLabels: true }
-        });
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeUI(newTheme);
+        }
+        
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'light') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark';
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeUI(savedTheme);
     </script>
 </body>
 </html>

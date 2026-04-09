@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+    </button>
     <nav class="sidebar">
         <div class="sidebar-header">
             <div class="logo">⚡</div>
@@ -23,8 +27,7 @@
             <a href="web-fundamentals.html" class="nav-link"><span class="nav-number">01</span>Web Fundamentals</a>
             <a href="csharp-basics.html" class="nav-link"><span class="nav-number">02</span>C# Basics</a>
             <a href="aspnet-core.html" class="nav-link active"><span class="nav-number">03</span>ASP.NET Core</a>
-            <a href="advanced.html" class="nav-link"><span class="nav-number">04</span>Advanced Topics</a>
-            <a href="career.html" class="nav-link"><span class="nav-number">05</span>Career Path</a>
+            <a href="career.html" class="nav-link"><span class="nav-number">🎯</span>Interview Prep</a>
         </div>
 
         <div class="nav-section">
@@ -67,16 +70,8 @@
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    subgraph steps["Project Setup Steps"]
-        S1["1. Install .NET SDK"]
-        S2["2. Create Project"]
-        S3["3. Run & Test"]
-    end
-    style S1 fill:#58a6ff,color:#fff
-    style S2 fill:#a371f7,color:#fff
-    style S3 fill:#3fb950,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/project-structure.svg" alt="ASP.NET Project Structure Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -108,20 +103,8 @@ dotnet run
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart TB
-    subgraph structure["ASP.NET Core Project"]
-        P1["📁 Controllers/<br/>Request handlers"]
-        P2["📁 Views/<br/>Razor pages"]
-        P3["📁 Models/<br/>Data models"]
-        P4["📁 wwwroot/<br/>Static files"]
-        P5["📁 Program.cs<br/>Entry point"]
-    end
-    style P1 fill:#58a6ff,color:#fff
-    style P2 fill:#a371f7,color:#fff
-    style P3 fill:#3fb950,color:#fff
-    style P4 fill:#d29922,color:#fff
-    style P5 fill:#f85149,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/project-structure.svg" alt="ASP.NET Project Structure Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="grid-3">
@@ -188,19 +171,8 @@ flowchart TB
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    subgraph flow["Request Flow"]
-        R["🌐 HTTP Request"] --> C["📝 Controller"]
-        C --> M["📦 Model"]
-        M --> V["🎨 View"]
-        V --> Res["📄 HTTP Response"]
-    end
-    style R fill:#58a6ff,color:#fff
-    style C fill:#a371f7,color:#fff
-    style M fill:#3fb950,color:#fff
-    style V fill:#d29922,color:#fff
-    style Res fill:#f85149,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/request-flow.svg" alt="ASP.NET Request Flow Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -331,17 +303,8 @@ app.<span class="method">Run</span>();
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    subgraph ef["EF Core Flow"]
-        M["📦 Model Class"] --> C["🔧 DbContext"]
-        C --> D["🗄️ Database"]
-        D --> Q["📡 LINQ Queries"]
-    end
-    style M fill:#58a6ff,color:#fff
-    style C fill:#a371f7,color:#fff
-    style D fill:#3fb950,color:#fff
-    style Q fill:#d29922,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/code-first-flow.svg" alt="Entity Framework Code First Flow Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -460,19 +423,8 @@ context.<span class="method">SaveChanges</span>();</pre>
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    subgraph api["REST API Flow"]
-        Req["📨 HTTP Request"] --> C["📝 API Controller"]
-        C --> S["📦 Service Layer"]
-        S --> Db["🗄️ Database"]
-        Db --> Json["📄 JSON Response"]
-    end
-    style Req fill:#58a6ff,color:#fff
-    style C fill:#a371f7,color:#fff
-    style S fill:#3fb950,color:#fff
-    style Db fill:#d29922,color:#fff
-    style Json fill:#f85149,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/rest-api.svg" alt="REST API Endpoints Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -615,17 +567,8 @@ app.<span class="method">UseSwaggerUI</span>(c => c.SwaggerEndpoint(<span class=
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart LR
-    subgraph auth["Authentication Flow"]
-        U["👤 User"] --> L["🔑 Login"]
-        L --> T["🎫 Token"]
-        T --> A["✅ Authorized"]
-    end
-    style U fill:#58a6ff,color:#fff
-    style L fill:#a371f7,color:#fff
-    style T fill:#3fb950,color:#fff
-    style A fill:#d29922,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/jwt-flow.svg" alt="JWT Authentication Flow Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -763,16 +706,8 @@ builder.<span class="method">Services</span>.<span class="method">AddAuthenticat
                     </div>
                 </div>
 
-                <div class="mermaid">
-flowchart TB
-    subgraph testing["Testing Pyramid"]
-        U["🟢 Unit Tests<br/>Fast, many"]
-        I["🟡 Integration Tests<br/>Medium"]
-        E["🔴 E2E Tests<br/>Slow, few"]
-    end
-    style U fill:#3fb950,color:#fff
-    style I fill:#d29922,color:#fff
-    style E fill:#f85149,color:#fff
+                <div class="diagram-svg">
+                    <img src="images/test-pyramid.svg" alt="Test Pyramid Diagram" style="max-width: 100%; height: auto;">
                 </div>
 
                 <div class="code-block">
@@ -893,13 +828,36 @@ dotnet add package Microsoft.AspNetCore.Mvc.Testing
         </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
-        });
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeUI(newTheme);
+        }
+        
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'light') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark';
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeUI(savedTheme);
 
         document.querySelectorAll('.checkbox').forEach(checkbox => {
             checkbox.addEventListener('click', function() {
