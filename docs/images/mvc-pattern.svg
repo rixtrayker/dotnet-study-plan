@@ -1,15 +1,18 @@
 <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
   <style>
     .text { fill: #c9d1d9; }
-    .arrow { stroke: #8b949e; fill: #8b949e; }
+    .arrow { stroke: #8b949e; }
     @media (prefers-color-scheme: light) {
       .text { fill: #24292f; }
-      .arrow { stroke: #57606a; fill: #57606a; }
+      .arrow { stroke: #57606a; }
     }
   </style>
   <defs>
     <marker id="arrowhead-mvc" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" class="arrow"/>
+      <polygon points="0 0, 10 3, 0 6" fill="#8b949e"/>
+    </marker>
+    <marker id="arrowhead-mvc-light" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#57606a"/>
     </marker>
   </defs>
   
