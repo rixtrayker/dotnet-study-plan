@@ -1,37 +1,37 @@
 <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-cf" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="var(--diagram-arrow)"/>
+      <polygon points="0 0, 10 3, 0 6" fill="#8b949e"/>
     </marker>
   </defs>
   
-  <text x="300" y="30" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">Entity Framework Code First Flow</text>
+  <text x="300" y="30" text-anchor="middle" fill="#c9d1d9" font-size="18" font-weight="700">Entity Framework Code First Flow</text>
   
-  <rect x="30" y="70" width="120" height="100" rx="10" fill="var(--diagram-blue)"/>
-  <text x="90" y="105" text-anchor="middle" fill="white" font-size="14" font-weight="700">📄 Models</text>
+  <rect x="30" y="70" width="120" height="100" rx="10" fill="#58a6ff"/>
+  <text x="90" y="105" text-anchor="middle" fill="white" font-size="14" font-weight="700">Models</text>
   <text x="90" y="130" text-anchor="middle" fill="white" font-size="12">C# Classes</text>
   <text x="90" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">public class Post</text>
   
-  <rect x="180" y="70" width="120" height="100" rx="10" fill="var(--diagram-purple)"/>
-  <text x="240" y="105" text-anchor="middle" fill="white" font-size="14" font-weight="700">📋 Migration</text>
+  <rect x="180" y="70" width="120" height="100" rx="10" fill="#a371f7"/>
+  <text x="240" y="105" text-anchor="middle" fill="white" font-size="14" font-weight="700">Migration</text>
   <text x="240" y="130" text-anchor="middle" fill="white" font-size="12">SQL Script</text>
   <text x="240" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Add-Migration</text>
   
-  <rect x="330" y="70" width="120" height="100" rx="10" fill="var(--diagram-green)"/>
-  <text x="390" y="105" text-anchor="middle" fill="white" font-size="14" font-weight="700">🗄️ Database</text>
+  <rect x="330" y="70" width="120" height="100" rx="10" fill="#3fb950"/>
+  <text x="390" y="105" text-anchor="middle" fill="white" font-size="14" font-weight="700">Database</text>
   <text x="390" y="130" text-anchor="middle" fill="white" font-size="12">SQL Server</text>
   <text x="390" y="150" text-anchor="middle" fill="white" font-size="11" opacity="0.8">Update-Database</text>
   
-  <rect x="480" y="70" width="100" height="100" rx="10" fill="var(--diagram-orange)"/>
-  <text x="530" y="110" text-anchor="middle" fill="white" font-size="14" font-weight="700">💾 Data</text>
+  <rect x="480" y="70" width="100" height="100" rx="10" fill="#d29922"/>
+  <text x="530" y="110" text-anchor="middle" fill="white" font-size="14" font-weight="700">Data</text>
   <text x="530" y="140" text-anchor="middle" fill="white" font-size="12">CRUD Ops</text>
   
-  <line x1="150" y1="120" x2="180" y2="120" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-cf)"/>
-  <text x="165" y="115" text-anchor="middle" fill="var(--diagram-text)" font-size="10">1</text>
+  <line x1="150" y1="120" x2="180" y2="120" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-cf)"/>
+  <text x="165" y="115" text-anchor="middle" fill="#c9d1d9" font-size="10">1</text>
   
-  <line x1="300" y1="120" x2="330" y2="120" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-cf)"/>
-  <text x="315" y="115" text-anchor="middle" fill="var(--diagram-text)" font-size="10">2</text>
+  <line x1="300" y1="120" x2="330" y2="120" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-cf)"/>
+  <text x="315" y="115" text-anchor="middle" fill="#c9d1d9" font-size="10">2</text>
   
-  <line x1="450" y1="120" x2="480" y2="120" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-cf)"/>
-  <text x="465" y="115" text-anchor="middle" fill="var(--diagram-text)" font-size="10">3</text>
+  <line x1="450" y1="120" x2="480" y2="120" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-cf)"/>
+  <text x="465" y="115" text-anchor="middle" fill="#c9d1d9" font-size="10">3</text>
 </svg>

@@ -1,34 +1,34 @@
 <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="var(--diagram-arrow)"/>
+      <polygon points="0 0, 10 3, 0 6" fill="#8b949e"/>
     </marker>
   </defs>
   
-  <rect x="20" y="50" width="120" height="100" rx="12" fill="var(--diagram-blue)"/>
-  <text x="80" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="600">👤 User</text>
+  <rect x="20" y="50" width="120" height="100" rx="12" fill="#58a6ff"/>
+  <text x="80" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="600">User</text>
   <text x="80" y="110" text-anchor="middle" fill="white" font-size="12" opacity="0.9">Browser</text>
   <text x="80" y="135" text-anchor="middle" fill="white" font-size="11" opacity="0.7">Client</text>
   
-  <rect x="240" y="50" width="120" height="100" rx="12" fill="var(--diagram-purple)"/>
-  <text x="300" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="600">🌐 Server</text>
+  <rect x="240" y="50" width="120" height="100" rx="12" fill="#a371f7"/>
+  <text x="300" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="600">Server</text>
   <text x="300" y="110" text-anchor="middle" fill="white" font-size="12" opacity="0.9">Your App</text>
   <text x="300" y="135" text-anchor="middle" fill="white" font-size="11" opacity="0.7">ASP.NET Core</text>
   
-  <rect x="460" y="50" width="120" height="100" rx="12" fill="var(--diagram-green)"/>
-  <text x="520" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="600">🗄️ Database</text>
+  <rect x="460" y="50" width="120" height="100" rx="12" fill="#3fb950"/>
+  <text x="520" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="600">Database</text>
   <text x="520" y="110" text-anchor="middle" fill="white" font-size="12" opacity="0.9">SQL Server</text>
   <text x="520" y="135" text-anchor="middle" fill="white" font-size="11" opacity="0.7">SQLite/PostgreSQL</text>
   
-  <line x1="140" y1="80" x2="240" y2="80" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="190" y="75" text-anchor="middle" fill="var(--diagram-text)" font-size="11">1. Request</text>
+  <line x1="140" y1="80" x2="240" y2="80" stroke="#8b949e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="190" y="75" text-anchor="middle" fill="#c9d1d9" font-size="11">1. Request</text>
   
-  <line x1="360" y1="80" x2="460" y2="80" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="410" y="75" text-anchor="middle" fill="var(--diagram-text)" font-size="11">2. Query</text>
+  <line x1="360" y1="80" x2="460" y2="80" stroke="#8b949e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="410" y="75" text-anchor="middle" fill="#c9d1d9" font-size="11">2. Query</text>
   
-  <line x1="460" y1="120" x2="360" y2="120" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="410" y="140" text-anchor="middle" fill="var(--diagram-text)" font-size="11">3. Data</text>
+  <line x1="460" y1="120" x2="360" y2="120" stroke="#8b949e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="410" y="140" text-anchor="middle" fill="#c9d1d9" font-size="11">3. Data</text>
   
-  <line x1="240" y1="120" x2="140" y2="120" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="190" y="140" text-anchor="middle" fill="var(--diagram-text)" font-size="11">4. Response</text>
+  <line x1="240" y1="120" x2="140" y2="120" stroke="#8b949e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="190" y="140" text-anchor="middle" fill="#c9d1d9" font-size="11">4. Response</text>
 </svg>

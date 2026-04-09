@@ -1,48 +1,48 @@
 <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-seq" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="var(--diagram-arrow)"/>
+      <polygon points="0 0, 10 3, 0 6" fill="#8b949e"/>
     </marker>
   </defs>
   
-  <text x="350" y="30" text-anchor="middle" fill="var(--diagram-text)" font-size="18" font-weight="700">ASP.NET MVC Request Flow</text>
+  <text x="350" y="30" text-anchor="middle" fill="#c9d1d9" font-size="18" font-weight="700">ASP.NET MVC Request Flow</text>
   
-  <rect x="30" y="50" width="100" height="40" rx="8" fill="var(--diagram-blue)"/>
+  <rect x="30" y="50" width="100" height="40" rx="8" fill="#58a6ff"/>
   <text x="80" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">Browser</text>
   
-  <rect x="170" y="50" width="100" height="40" rx="8" fill="var(--diagram-orange)"/>
+  <rect x="170" y="50" width="100" height="40" rx="8" fill="#d29922"/>
   <text x="220" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">Routing</text>
   
-  <rect x="310" y="50" width="100" height="40" rx="8" fill="var(--diagram-blue)"/>
+  <rect x="310" y="50" width="100" height="40" rx="8" fill="#58a6ff"/>
   <text x="360" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">Controller</text>
   
-  <rect x="450" y="50" width="100" height="40" rx="8" fill="var(--diagram-purple)"/>
+  <rect x="450" y="50" width="100" height="40" rx="8" fill="#a371f7"/>
   <text x="500" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">Model</text>
   
-  <rect x="590" y="50" width="100" height="40" rx="8" fill="var(--diagram-green)"/>
+  <rect x="590" y="50" width="100" height="40" rx="8" fill="#3fb950"/>
   <text x="640" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="600">View</text>
   
-  <line x1="80" y1="90" x2="80" y2="290" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
-  <line x1="220" y1="90" x2="220" y2="290" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
-  <line x1="360" y1="90" x2="360" y2="290" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
-  <line x1="500" y1="90" x2="500" y2="290" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
-  <line x1="640" y1="90" x2="640" y2="290" stroke="var(--diagram-border)" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="80" y1="90" x2="80" y2="290" stroke="#30363d" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="220" y1="90" x2="220" y2="290" stroke="#30363d" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="360" y1="90" x2="360" y2="290" stroke="#30363d" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="500" y1="90" x2="500" y2="290" stroke="#30363d" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="640" y1="90" x2="640" y2="290" stroke="#30363d" stroke-width="2" stroke-dasharray="5,5"/>
   
-  <line x1="80" y1="110" x2="220" y2="110" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-seq)"/>
-  <text x="150" y="105" text-anchor="middle" fill="var(--diagram-text)" font-size="10">1. GET /Users</text>
+  <line x1="80" y1="110" x2="220" y2="110" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-seq)"/>
+  <text x="150" y="105" text-anchor="middle" fill="#c9d1d9" font-size="10">1. GET /Users</text>
   
-  <line x1="220" y1="140" x2="360" y2="140" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-seq)"/>
-  <text x="290" y="135" text-anchor="middle" fill="var(--diagram-text)" font-size="10">2. Route match</text>
+  <line x1="220" y1="140" x2="360" y2="140" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-seq)"/>
+  <text x="290" y="135" text-anchor="middle" fill="#c9d1d9" font-size="10">2. Route match</text>
   
-  <line x1="360" y1="170" x2="500" y2="170" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-seq)"/>
-  <text x="430" y="165" text-anchor="middle" fill="var(--diagram-text)" font-size="10">3. GetUsers()</text>
+  <line x1="360" y1="170" x2="500" y2="170" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-seq)"/>
+  <text x="430" y="165" text-anchor="middle" fill="#c9d1d9" font-size="10">3. GetUsers()</text>
   
-  <line x1="500" y1="200" x2="360" y2="200" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-seq)"/>
-  <text x="430" y="215" text-anchor="middle" fill="var(--diagram-text)" font-size="10">4. List&lt;User&gt;</text>
+  <line x1="500" y1="200" x2="360" y2="200" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-seq)"/>
+  <text x="430" y="215" text-anchor="middle" fill="#c9d1d9" font-size="10">4. List&lt;User&gt;</text>
   
-  <line x1="360" y1="230" x2="640" y2="230" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-seq)"/>
-  <text x="500" y="245" text-anchor="middle" fill="var(--diagram-text)" font-size="10">5. return View(users)</text>
+  <line x1="360" y1="230" x2="640" y2="230" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-seq)"/>
+  <text x="500" y="245" text-anchor="middle" fill="#c9d1d9" font-size="10">5. return View(users)</text>
   
-  <line x1="640" y1="260" x2="80" y2="260" stroke="var(--diagram-arrow)" stroke-width="2" marker-end="url(#arrow-seq)"/>
-  <text x="360" y="280" text-anchor="middle" fill="var(--diagram-text)" font-size="10">6. HTML Page</text>
+  <line x1="640" y1="260" x2="80" y2="260" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow-seq)"/>
+  <text x="360" y="280" text-anchor="middle" fill="#c9d1d9" font-size="10">6. HTML Page</text>
 </svg>
